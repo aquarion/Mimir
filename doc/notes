@@ -1,0 +1,38 @@
+Okay, so.
+
+Character
+    ID
+    PID
+    Player
+    Character
+    Group
+    Nation
+    Class
+
+Log
+    ID
+    Event_id
+    Character_id
+    DateTime
+    Description
+
+Kudos
+    ID
+    Sacrifice|Funeral|Arena|Audience|Other
+    Priest
+    Group
+    Nation
+    Deity
+    Lives (10)
+    Arena Bonus
+    Chalkoi (/20)
+    Obol (/4)
+    Drachma 
+    Penta- drachma (*5)
+    Mina (*20)
+    EarthQ (*5)
+    AirQ (*5)
+    FireQ (*5)
+    WaterQ (*5)
+    Total Kudos
+    Notes
