@@ -4,3 +4,6 @@
 [submodule "lib/idiorm"]
 	path = lib/idiorm
 	url = git://github.com/j4mie/idiorm.git
+[submodule "htdocs/assets/away/bootstrap"]
+	path = htdocs/assets/away/bootstrap
+	url = git://github.com/twitter/bootstrap.git
