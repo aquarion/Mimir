@@ -7,7 +7,7 @@
           <h2>Sacrifices</h2>
           <p><img src="/assets/home/img/section-icons/Pawn-Yellow-icon.png" width="128"/></p>
           <p><a class="btn" href="/altar">View Sacrifices</a></p>
-          <p><a class="btn" href="/alter/add">Add New</a></p>
+          <p><a class="btn" href="/altar/add">Add New</a></p>
         </div><!-- /.span4 -->
         <div class="span4 centered notyet">
           <img class="img-circle" data-src="holder.js/140x140">
