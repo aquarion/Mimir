@@ -64,10 +64,11 @@
           <label class="control-label" for="inputDrachma">Drachma</label>
           <div class="controls">
               
-            <input type="number" class="input-mini" id="chalkoi" placeholder="Chlk">
-            <input type="number" class="input-mini" id="drachma" placeholder="Drac">
-            <input type="number" class="input-mini" id="pentadrachma" placeholder="5Drac">
-            <input type="number" class="input-mini" id="Mina" placeholder="Mina">
+            <input type="number" class="input-mini kudossrc" data-value="0.05" id="chalkoi" placeholder="Chlk">
+            <input type="number" class="input-mini kudossrc" data-value="0.25" id="obol" placeholder="Obol">
+            <input type="number" class="input-mini kudossrc" data-value="1" id="drachma" placeholder="Drac">
+            <input type="number" class="input-mini kudossrc" data-value="5" id="pentadrachma" placeholder="5Drac">
+            <input type="number" class="input-mini kudossrc" data-value="20" id="Mina" placeholder="Mina">
             
           </div>
         </div>
@@ -76,20 +77,20 @@
           <div class="controls">
             
             <div class="input-prepend">
-            <span class="add-on"><img src="/assets/home/img/elements/Green.png" width="22px"></span>
-            <input type="number" class="input-mini" id="earth" placeholder="Earth">
+            <span class="add-on kudos"><img src="/assets/home/img/elements/Green.png" width="22px"></span>
+            <input type="number" class="input-mini kudossrc" data-value="5" id="earth" placeholder="Earth">
             </div>
             <div class="input-prepend">
             <span class="add-on"><img src="/assets/home/img/elements/White.png" width="22px"></span>
-            <input type="number" class="input-mini" id="air" placeholder="Air">
+            <input type="number" class="input-mini kudossrc" data-value="5" id="air" placeholder="Air">
             </div>
             <div class="input-prepend">
             <span class="add-on"><img src="/assets/home/img/elements/Red.png" width="22px"></span>
-            <input type="number" class="input-mini" id="fire" placeholder="Fire">
+            <input type="number" class="input-mini kudossrc" data-value="5" id="fire" placeholder="Fire">
             </div>
             <div class="input-prepend">
             <span class="add-on"><img src="/assets/home/img/elements/Blue.png" width="22px"></span>
-            <input type="number" class="input-mini" id="water" placeholder="Water">
+            <input type="number" class="input-mini kudossrc" data-value="5" id="water" placeholder="Water">
             </div>
             
           </div>
@@ -101,18 +102,28 @@
               
             <div class="input-prepend">
             <span class="add-on"><img src="/assets/home/img/heart-icon.png" width="22px"></span>
-            <input type="number" class="input-mini" id="lives" placeholder="">
+            <input type="number" class="input-mini" id="lives" data-value="10" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="inputLives">Life Bonus</label>
+          <div class="controls">
+              
+            <div class="input-prepend">
+            <span class="add-on"><img src="/assets/home/img/heart-icon.png" width="22px"></span>
+            <input type="number" class="input-mini kudossrc" data-value="1" id="life_bonus" placeholder="">
             </div>
           </div>
         </div>
             
         <div class="control-group">
-          <label class="control-label" for="inputArena">Arena Bonus</label>
+          <label class="control-label" for="inputArena" >Arena Bonus</label>
           <div class="controls">
               
             <div class="input-prepend">
             <span class="add-on"><img src="/assets/home/img/announcementIcon.png" width="22px"></span>
-            <input type="number" class="input-mini" id="Arena" placeholder="">
+            <input type="number" class="input-mini kudossrc" data-value="1" id="Arena" placeholder="">
             </div>
           </div>
         </div>
@@ -143,3 +154,36 @@
       
   </div>
 </div>
+<script type="text/javascript">
+
+Altar = {
+    
+    recalculate_total : function(){
+        var total = 0;
+        $(".kudossrc").each(function(thing){
+            thing = $(this);
+            thisTotal = thing.val() * thing.attr("data-value");
+            //console.log(this.id+" @ "+thing.val() +" x "+thing.attr("data-value")+" = "+thisTotal);
+            total = total + thisTotal;
+        });
+        $('#total').val(total);
+    },
+    
+    recalculate_life_bonus : function(){
+        lives = $('#lives').val();
+        value = $('#lives').attr("data-value");
+        $('#life_bonus').val(lives*value);
+        Altar.recalculate_total();
+    },
+    
+    add_init : function(){
+        console.log("Hello World");
+        $(".kudossrc").change(Altar.recalculate_total);
+        $("#lives").change(Altar.recalculate_life_bonus);
+        
+    }
+    
+}
+    
+$(document).ready(Altar.add_init)
+</script>
