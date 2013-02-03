@@ -1,5 +1,7 @@
-<ul class="nav nav-list bs-docs-sidenav">
-          <li><a href="/altar/"><i class="icon-chevron-right"></i> Recent</a></li>
-          <li><a href="/altar/add"><i class="icon-chevron-right"></i> Add New</a></li>
-          <li><a href="/altar/kudos"><i class="icon-chevron-right"></i> Kudos</a></li>
+<?PHP if(!isset($lnav_active)){ $active = ""; } else { $active = $lnav_active; } ?>
+
+<ul class="nav nav-pills">
+          <li class="<?PHP echo $active == "recent" ? "active" : ''; ?>"><a href="/altar/"     >Recent</a></li>
+          <li class="<?PHP echo $active == "add"    ? "active" : ''; ?>"><a href="/altar/add"  >Add New</a></li>
+          <li class="<?PHP echo $active == "stats"  ? "active" : ''; ?>"><a href="/altar/stats">Statistics</a></li>
         </ul>

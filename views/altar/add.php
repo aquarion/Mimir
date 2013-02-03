@@ -1,14 +1,15 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span2">
+    <div class="span1">
+       
+    </div>
+    <div class="span10">
         <?PHP include("navigation.php"); ?>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span2">
+       
     </div>
     <div class="span10">
         <h1>Add New Sacrifice</h1>

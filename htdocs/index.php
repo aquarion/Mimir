@@ -1,8 +1,12 @@
 <?PHP
 
+require_once '../lib/idiorm/idiorm.php';
+require_once '../lib/paris/paris.php';
+
 define("APP_LOC",   realpath("../app"));
 define("FRAME_LOC", realpath("../frame"));
 define("VIEWS_LOC", realpath("../views/"));
+define("CONFIG_LOC", realpath("../etc/"));
 
 class Exception_ClassNotFound extends Exception {
     
@@ -35,6 +39,14 @@ function frame_autoloader($class) {
 
 spl_autoload_register('frame_autoloader');
 
+
+$config = Config::getInstance();
+
+ORM::configure(sprintf('mysql:host=%s;dbname=%s', $config->get("database", "host"), $config->get("database", "name")));
+ORM::configure('username', $config->get("database", "user"));
+ORM::configure('password', $config->get("database", "password"));
+
+
 $router = new Router();
 $route = $router->route($_SERVER['REQUEST_URI']);
 
@@ -46,7 +58,7 @@ try {
     $route->Parameters = array('page' => $_SERVER['REQUEST_URI'], 'message' => 'Failed on Controller "'.$route->Controller.'"', 'exception' => $e);
 }
 
-if(method_exists($controller, $route->Action)){
+if(method_exists($controller, $route->Action) || method_exists($controller, "__call")){
     try{
         call_user_func(array($controller, $route->Action), $route->Parameters);
     } catch (Exception $e){
