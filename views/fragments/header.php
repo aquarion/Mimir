@@ -118,6 +118,9 @@ input::-webkit-inner-spin-button {
                   <ul class="dropdown-menu">
                     <?PHP
                     foreach(Event::options() as $index => $value){
+			if($index == Event::current){
+				$value = "<b>$value</b>";
+			}
                         echo '<li><a href="/auth/set_event/'.$index.'">'.$value.'</a></li>';
                     }
                     ?>
@@ -135,11 +138,13 @@ input::-webkit-inner-spin-button {
       </div>
     </div>
     <?PHP
-    if(Event::current() != Event::latest_event()){ ?>
+    if(Event::current() != Event::latest_event()){
+	$reftime = Event::current() > Event::latest_event() ? "future" : "previous";
+ ?>
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span6 offset3">
-      <div class="alert warning">Beware: You're viewing data for a previous Odyssey event.</div>
+      <div class="alert warning">Beware: You're viewing data for a <?PHP echo $reftime ?> Odyssey event.</div>
     </div>
   </div>
 </div>
