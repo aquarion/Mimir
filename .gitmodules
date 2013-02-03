@@ -1,6 +1,6 @@
+[submodule "lib/idiorm"]
+	url = git://github.com/j4mie/idiorm.git
+	path = lib/idiorm
 [submodule "lib/paris"]
 	path = lib/paris
 	url = git://github.com/j4mie/paris.git
-[submodule "lib/idiorm"]
-	path = lib/idiorm
-	url = git://github.com/j4mie/idiorm.git
