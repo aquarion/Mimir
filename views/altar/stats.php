@@ -28,7 +28,7 @@
     <div class="span12 ">
         <ul class="thumbnails">
             <li class="thumbnail centered span2" >
-                <a href="/altar/stats/carthage/" >
+                <a href="/altar/stats/carthage" >
                     <img src="/assets/home/img/nations/smaller/carthage.png" />
                     <div class="caption">Carthage</div >
                 </a>
