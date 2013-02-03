@@ -11,7 +11,7 @@
 					<a class="close" data-dismiss="alert" href="#">x</a> Incorrect
 				</div>
 				<?PHP } ?>
-					<input class="span3" placeholder="Magic Word" type="text" name="password">
+					<input class="span3" placeholder="Magic Word" type="password" name="password">
 					<input class="span3" type="hidden" name="redirect" value="<?PHP
 						echo isset($redirect) ? $redirect : '/';
 					?>">
