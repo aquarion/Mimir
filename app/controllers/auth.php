@@ -11,6 +11,11 @@
  * @author Nicholas
  */
 class Auth extends My_Controller {
+
+    function init(){
+	return true;
+    }
+
     function set_event($n){
         Event::set_current($n[0]);
         return $this->_redirect($_SERVER['HTTP_REFERER']);
