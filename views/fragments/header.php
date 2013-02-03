@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Mimir</title>
+    <title>Mímir</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -96,7 +96,7 @@ input::-webkit-inner-spin-button {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/" class="<?PHP echo $gactive === "" ? "active" : ''; ?>">Mimir</a>
+          <a class="brand" href="/" class="<?PHP echo $gactive === "" ? "active" : ''; ?>">Mímir</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="<?PHP echo $gactive == "altar"    ? "active" : ''; ?>"><a href="/altar">Kudos</a></li>
@@ -105,6 +105,8 @@ input::-webkit-inner-spin-button {
               <li class="<?PHP echo $gactive == "cauldron" ? "active" : ''; ?>"><a href="#">Potions</a></li>
                <!-- li class="<?PHP echo $gactive == "orbital"  ? "active" : ''; ?>"><a href="#">Mysteries</a></li -->
               <li class="<?PHP echo $gactive == "journals" ? "active" : ''; ?>"><a href="/journals">Journals</a></li>
+              <li><a href="/forum/">Forum</a></li>
+              <li><a href="/odysseywiki/">Story Wiki</a></li>
               
             </ul>
             <ul class="nav pull-right">
