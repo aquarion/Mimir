@@ -2,8 +2,11 @@
 
 class Router {
     
-    function route($path){
-        $path = explode("/", $path);
+    function route($url_string){
+        $url = parse_url($url_string);
+        $path_string = $url['path'];
+        
+        $path = explode("/", $path_string);
         array_shift($path);
         
         $route = new Route();
