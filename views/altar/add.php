@@ -1,21 +1,17 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span1">
-       
-    </div>
-    <div class="span10">
+    <div class="span3">
         <?PHP include("navigation.php"); ?>
+    </div>
+    <div class="span9">
+        <h1 class="pull-right">Add New Sacrifice</h1>
     </div>
   </div>
   <div class="row-fluid">
     <div class="span2">
        
     </div>
-    <div class="span10">
-        <h1>Add New Sacrifice</h1>
-        
-
-        
+    <div class="span10">        
         <form class="form-horizontal">
             <h2>About the Sacrificer</h2>
         <div class="control-group">

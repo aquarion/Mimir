@@ -11,11 +11,13 @@
     <script src="/assets/away/jquery/jquery.min.js"></script>
     <script src="/assets/away/bootstrap/js/bootstrap.js"></script>
     <script src="/assets/away/visualize/js/visualize.jQuery.js"></script>
+    <script src="/assets/away/tablecloth/js/jquery.tablecloth.js"></script>
+    <script src="/assets/away/tablecloth/js/jquery.tablesorter.js"></script>
     
     <!-- Le styles -->
     <link href="/assets/away/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/assets/away/visualize/css/visualize.css" rel="stylesheet">
-    <link href="/assets/away/visualize/css/visualize-light.css" rel="stylesheet">
+    <link href="/assets/away/tablecloth/css/tablecloth.css" rel="stylesheet">
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */

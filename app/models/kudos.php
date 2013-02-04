@@ -18,9 +18,9 @@ class Kudos extends Model {
         $offset = ($page-1) * $count;
         
         $kudos = Model::factory('Kudos')
-            ->limit($count)
-            ->offset($offset)
             ->find_many();
+            #->limit($count)
+            #->offset($offset)
         
             
         return $kudos;
