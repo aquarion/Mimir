@@ -8,6 +8,7 @@ define("FRAME_LOC", realpath("../frame"));
 define("VIEWS_LOC", realpath("../views/"));
 define("CONFIG_LOC", realpath("../etc/"));
 
+
 class Exception_ClassNotFound extends Exception {
     
 }
@@ -16,7 +17,7 @@ class Exception_TemplateNotFound extends Exception {
 }
 
 function frame_autoloader($class) {
-    $class = strtr($class, "_", "/");
+    $class = strtolower(strtr($class, "_", "/"));
     $locations = array(
         APP_LOC.'/models/' . $class . '.php',
         APP_LOC.'/controllers/' . $class . '.php',
@@ -26,8 +27,6 @@ function frame_autoloader($class) {
         FRAME_LOC.'/controller/'.$class . '.php',
     );
     foreach($locations as $location){
-        $location = strtolower($location);
-        #print "check $location<br/>";
         if(file_exists($location)){
             require_once($location);
             return;

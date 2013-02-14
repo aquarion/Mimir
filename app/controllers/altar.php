@@ -48,7 +48,19 @@ class Altar extends Controller {
     function add(){
         $this->data['gnav_active'] = "altar";
         $this->data['lnav_active'] = "add";
-        
+
+	if(count($_POST)){
+
+		#print_r($_POST);
+		$kudos = Model::factory('Kudos')->create();
+		foreach($_POST as $index => $value){
+			// Todo: Error Checking
+			$kudos->$index = $value;
+		}
+		$kudos->save();
+		return $this->index();
+	} 
+       
         $this->render("altar/add");
     }
     
@@ -56,7 +68,7 @@ class Altar extends Controller {
         $this->data['gnav_active'] = "altar";
         $this->data['lnav_active'] = "stats";
         
-        $totals = Model::factory("Kudos")->raw_query("select nation, sum(total) as totalize from Kudos group by nation")->find_many();
+        $totals = Model::factory("Kudos")->raw_query("select nation, sum(total) as totalize from kudos group by nation")->find_many();
         $this->data['totals'] = $totals;
               
         

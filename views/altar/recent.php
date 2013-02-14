@@ -41,7 +41,8 @@
        ?>
         
 
-        
+(Click a link to filter the list by that entity)
+       
             <table class="table-striped table-bordered " width="100%">
         <thead>        
         <tr style="">

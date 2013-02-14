@@ -12,6 +12,8 @@
  */
 class Kudos extends Model {
     //put your code here
+
+    public static $_table = 'kudos';
     
     static function recent($count=100, $page=1){
         
