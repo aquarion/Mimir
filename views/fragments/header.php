@@ -8,16 +8,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- JQuery -->
     <script src="/assets/away/jquery/jquery.min.js"></script>
+    
+    <!-- Bootstrap -->
     <script src="/assets/away/bootstrap/js/bootstrap.js"></script>
-    <script src="/assets/away/visualize/js/visualize.jQuery.js"></script>
+    <link href="/assets/away/bootstrap/css/bootstrap.css" rel="stylesheet">
+    
+    <!-- Visualise -->
+    <script src="/assets/away/graphs/js/visualize.jQuery.js"></script>
+    <link href="/assets/away/graphs/css/visualize.css" rel="stylesheet">
+    
+    <!-- Tablecloth -->
     <script src="/assets/away/tablecloth/js/jquery.tablecloth.js"></script>
     <script src="/assets/away/tablecloth/js/jquery.tablesorter.js"></script>
-    
-    <!-- Le styles -->
-    <link href="/assets/away/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="/assets/away/visualize/css/visualize.css" rel="stylesheet">
     <link href="/assets/away/tablecloth/css/tablecloth.css" rel="stylesheet">
+    
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */

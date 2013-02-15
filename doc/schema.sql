@@ -1,0 +1,25 @@
+
+create table kudos (
+    id bigint auto_increment,
+    sacrifice_type varchar(63),
+    priest_id int,
+    priest_name varchar(255),
+    group_name varchar(255),
+    nation varchar(31),
+    deity varchar(255),
+    lives int,
+    life_bonus int,
+    arena_bonus int,
+    chalkoi int,
+    obol int,
+    drachma int,
+    pentadrachma int,
+    mina int,
+    quin_earth int,
+    quin_air int,
+    quin_fire int,
+    quin_water int,
+    total int,
+    notes text,
+    PRIMARY KEY(id)
+)

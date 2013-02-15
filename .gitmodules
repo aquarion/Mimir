@@ -4,6 +4,3 @@
 [submodule "lib/paris"]
 	path = lib/paris
 	url = git://github.com/j4mie/paris.git
-[submodule "htdocs/assets/away/visualize"]
-	path = htdocs/assets/away/visualize
-	url = git://github.com/filamentgroup/jQuery-Visualize.git
