@@ -173,13 +173,30 @@ Altar = {
         Altar.recalculate_total();
     },
     
+    searchByPriestName : function(query, process){
+        console.log(query);
+        console.log(process);
+    },
+    
+    searchByPid : function(query, process){
+        console.log(query);
+        console.log(process);
+        return $.get('/typeahead', { pid: query }, function (data) {
+            return process(data.options);
+        });
+    },
+    
+    
     add_init : function(){
-        console.log("Hello World");
         $(".kudossrc").change(Altar.recalculate_total);
         $("#lives").change(Altar.recalculate_life_bonus);
         
-    }
-    
+        console.log("Hello");
+        //$("#inputPID").typeahead({source : Altar.searchByPid});
+        $("#inputPID").typeahead(Altar.searchByPid);
+        $("#inputCharacter").typeahead({source : Altar.searchByPriestName});
+        
+    }    
 }
     
 $(document).ready(Altar.add_init)
