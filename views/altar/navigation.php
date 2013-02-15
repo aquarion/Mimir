@@ -2,6 +2,6 @@
 
 <ul class="nav nav-pills">
           <li class="<?PHP echo $active == "recent" ? "active" : ''; ?>"><a href="/altar/"     >Recent</a></li>
-          <li class="<?PHP echo $active == "add"    ? "active" : ''; ?>"><a href="/altar/add"  >Add New</a></li>
+          <li class="<?PHP echo $active == "add"    ? "active" : ''; ?>"><a href="/altar/add"  >New Thing</a></li>
           <li class="<?PHP echo $active == "stats"  ? "active" : ''; ?>"><a href="/altar/stats">Statistics</a></li>
         </ul>
