@@ -15,7 +15,7 @@ if (count($_GET)) {
 	    <?PHP include("navigation.php"); ?>
 	</div>
 	<div class="span9">
-	    <h1 class="pull-right">Sacrifices</h1>
+	    <h1 class="pull-right">Kudos Tracker</h1>
 	</div>
     </div>
     <div class="row-fluid">
