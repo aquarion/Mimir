@@ -15,6 +15,9 @@ class Exception_ClassNotFound extends Exception {
 class Exception_TemplateNotFound extends Exception {
     
 }
+class Exception_FourOhFour extends Exception {
+    
+}
 
 function frame_autoloader($class) {
     $class = strtolower(strtr($class, "_", "/"));
@@ -60,6 +63,11 @@ try {
 if(method_exists($controller, $route->Action) || method_exists($controller, "__call")){
     try{
         call_user_func(array($controller, $route->Action), $route->Parameters);
+    } catch (Exception_FourOhFour $e){
+       $controller = new Error();
+       $route->Parameters = array('page' => $_SERVER['REQUEST_URI'], 'exception' => $e);      
+       $route->Action = "FourOhFour";
+       call_user_func(array($controller, $route->Action), $route->Parameters);
     } catch (Exception $e){
        $controller = new Error();
        $route->Parameters = array('page' => $_SERVER['REQUEST_URI'], 'exception' => $e);      

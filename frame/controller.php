@@ -33,4 +33,8 @@ class Controller {
         include(VIEWS_LOC.'/'.$this->template);
         #include(VIEWS_LOC."/fragments/footer.php");
     }
+    
+    function __call($method, $arguments){
+        throw new Exception_FourOhFour("$method Not found");
+    }
 }
