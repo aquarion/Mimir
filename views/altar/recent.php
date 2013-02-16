@@ -2,12 +2,20 @@
 if (count($_GET)) {
     $url = parse_url($_SERVER['REQUEST_URI']);
     $q = $url['query'] . "&";
+    parse_str($url['query'], $query_index);
 } else {
     $q = false;
 }
+
 ?>
 <style type="text/css">
-
+    .detailcolumn {
+        display: none;
+    }
+    
+    th {
+        cursor: pointer;
+    }
 </style>
 <div class="container-fluid">
     <div class="row-fluid">
@@ -25,7 +33,6 @@ if (count($_GET)) {
 	    echo isset($page_title) ? $page_title : '';
 
 	    if (isset($query_data)) {
-
 		echo '<h3>Remove Filters:</h3> <ul class="unstyled">';
 		foreach ($query_data as $name => $value) {
 		    $query_copy = $query_data;
@@ -40,7 +47,11 @@ if (count($_GET)) {
 	    ?>
 
 
-	    (Click a link to filter the list by that entity)
+	    <p>Click a row heading to sort the table, or a <i class="icon-search"></i> search link to search the table for that thing.
+                <?PHP  if ($q) { ?>
+                Click a <i class="icon-filter"></i> filter link to add that to the search criteria. 
+                <?PHP } ?>
+                You can also <a href="#" class="toggledetailcolumn">toggle the detail columns</a>. </p>
 
             <table class="table-striped table-bordered " width="100%">
 		<thead>        
@@ -51,17 +62,17 @@ if (count($_GET)) {
 			<th>Nation</th>
 			<th>Deity</th>
 			<th>Lives</th>
-			<th>Bonus</th>
-			<th>Arena</th>
-			<th>Clk</th>
-			<th>Obol</th>
-			<th>Drac</th>
-			<th>5/Drac</th>
-			<th>Mina</th>
-			<th>Earth</th>
-			<th>Air</th>
-			<th>Fire</th>
-			<th>Water</th>
+			<th class="detailcolumn">Bonus</th>
+			<th class="detailcolumn">Arena</th>
+			<th class="detailcolumn">Clk</th>
+			<th class="detailcolumn">Obol</th>
+			<th class="detailcolumn">Drac</th>
+			<th class="detailcolumn">5/Drac</th>
+			<th class="detailcolumn">Mina</th>
+			<th class="detailcolumn">Earth</th>
+			<th class="detailcolumn">Air</th>
+			<th class="detailcolumn">Fire</th>
+			<th class="detailcolumn">Water</th>
 			<th>Total</th>
 			<th>Actions</th>
 		    </tr>
@@ -82,25 +93,38 @@ if (count($_GET)) {
 				    break;
 
 				case "priest_name":
+                                    $field = isset($field) ? $field : "priest/".urlencode($value);
 				case "group_name":
+                                    $field = isset($field) ? $field : "group/".urlencode($value);
 				case "nation":
+                                    $field = isset($field) ? $field : "";
 				case "deity":
-				    echo '<td><a href="/altar?' . $index . '=' . $value . '" title="Filter by this">' . ($value ? $value : '&nbsp;') . '</a>';
-				    if ($q) {
-					echo ' <a href="/altar?' . $q . $index . '=' . $value . '" title="Add to Filter"><i class="icon-plus-sign"></i></a>';
-				    }
+                                    $field  = isset($field) ? $field : "deity/".urlencode($value);
+                                    $nation = strtolower($line->nation); 
+				    echo '<td>';
+                                    printf('<a href="/altar/stats/%s/%s" title="Show data tables">%s</a> ', $nation, $field, ($value ? $value : '&nbsp;'));
+                                    if(!isset($query_index[$index])){
+                                        echo '<a href="/altar?' . $index . '=' . $value . '" title="Search for '.$index.' = '.$value.'"><i class="icon-search"></i></a>';
+                                        if ($q) {
+                                            echo ' <a href="/altar?' . $q . $index . '=' . $value . '" title="Add to Filter"><i class="icon-filter"></i></a>';
+                                        }
+                                    } 
 				    echo '</td>';
 				    break;
 
 				case "lives":
-				    echo '<td><span class="hidden">' . $value . '</span>';
+				    echo '<td class="centered"><span class="hidden">' . $value . '</span>';
 				    for ($i = 0; $i < $value; $i++) {
 					echo '<i class="icon-heart"></i>';
 				    }
 				    echo '</td>';
 				    break;
-				default:
+				case "total":
+				case "sacrifice_type":
 				    echo '<td>' . ($value ? $value : '&nbsp;') . '</td>';
+                                    break;
+				default:
+				    echo '<td class="detailcolumn">' . ($value ? $value : '&nbsp;') . '</td>';
 			    }
 			}
 
@@ -124,9 +148,14 @@ if (count($_GET)) {
 	    $("table").stickyTableHeaders();
 	},
     
+        toggle_details: function(){
+            $('.detailcolumn').toggle();
+        },
+    
 	add_init : function(){
-	    Altar.make_table_sortable()
-        
+	    Altar.make_table_sortable();
+            $('.detailcolumn').hide();
+            $('.toggledetailcolumn').click(Altar.toggle_details);
 	}
     
     }
