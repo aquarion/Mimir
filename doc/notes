@@ -36,3 +36,9 @@ Kudos
     WaterQ (*5)
     Total Kudos
     Notes
+
+Journal
+    ID
+    Type[Deity|NPC|Player Account|Crew Notes]
+    Name
+    Description

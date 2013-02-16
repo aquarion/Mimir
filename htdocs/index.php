@@ -2,11 +2,17 @@
 
 require_once '../lib/idiorm/idiorm.php';
 require_once '../lib/paris/paris.php';
+require_once '../lib/php-markdown-lib/Michelf/Markdown.php';
 
 define("APP_LOC",   realpath("../app"));
+define("LIBS_LOC",   realpath("../lib"));
 define("FRAME_LOC", realpath("../frame"));
 define("VIEWS_LOC", realpath("../views/"));
 define("CONFIG_LOC", realpath("../etc/"));
+
+define("DATETIME_MYSQL", 'Y-m-d H:i:s');
+
+set_include_path(get_include_path() . PATH_SEPARATOR . LIBS_LOC.'php-markdown-lib\Michelf'); // Markdown
 
 
 class Exception_ClassNotFound extends Exception {
@@ -20,6 +26,9 @@ class Exception_FourOhFour extends Exception {
 }
 
 function frame_autoloader($class) {
+    if(class_exists($class)){
+        return;
+    }
     $class = strtolower(strtr($class, "_", "/"));
     $locations = array(
         APP_LOC.'/models/' . $class . '.php',
@@ -40,7 +49,6 @@ function frame_autoloader($class) {
 }
 
 spl_autoload_register('frame_autoloader');
-
 
 $config = Config::getInstance();
 

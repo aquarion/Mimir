@@ -23,3 +23,25 @@ create table kudos (
     notes text,
     PRIMARY KEY(id)
 )
+
+
+create table journal (
+    id bigint auto_increment,
+    journal_type ENUM("Deity", "NPC", "Player Account", "Crew Notes", "Other"),
+    title varchar(255),
+    description text,
+    PRIMARY KEY(id)
+);
+
+create table entry (
+    id bigint auto_increment,
+    journal_id INT NULL, 
+    event tinyint,
+    title varchar(255),
+    content mediumtext,
+    physrep varchar(255),
+    author varchar(255),
+    read_by_story tinyint,
+    date_created tinyint,
+    PRIMARY KEY(id)
+)

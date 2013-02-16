@@ -1,0 +1,121 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of event
+ *
+ * @author Nicholas
+ */
+class Event {
+    
+    const current = 6;
+    
+    static function events(){
+        return array(
+            1 => array(
+                'title'   => 'Steer of Heaven',
+                'sign'    => 'Taurus',
+                'element' => 'Earth',
+                'year'    => '2010/1',
+            ),
+            2 => array(
+                'title'   => 'The Two Faces of Earth and Sky',
+                'sign'    => 'Gemini',
+                'element' => 'Air',
+                'year'    => '2011/1',
+            ),
+            3 => array(
+                'title'   => 'The Claws of the Tide King',
+                'sign'    => 'Cancer',
+                'element' => 'Water',
+                'year'    => '2011/2',
+            ),
+            4 => array(
+                'title'   => 'Crown of the Sphinx',
+                'sign'    => 'Leo',
+                'element' => 'Fire',
+                'year'    => '2012/1',
+            ),
+            5 => array(
+                'title'   => 'Queen of the Blood Moon',
+                'sign'    => 'Virgo',
+                'element' => 'Earth',
+                'year'    => '2012/2',
+            ),
+            6 => array(
+                'title'   => 'The Balance of the World',
+                'sign'    => 'Libra',
+                'element' => 'Air',
+                'year'    => '2013/1',
+            ),
+            7 => array(
+                'title'   => 'The Touch of Death',
+                'sign'    => 'Scorpio',
+                'element' => 'Water',
+                'year'    => '2013/2',
+            ),
+            // The Future
+
+            8 => array(
+                'title'   => '2014/1',
+                'sign'    => 'Sagittarius',
+                'element' => 'Fire',
+                'year'    => '2014/1',
+            ),
+            9 => array(
+                'title'   => '2014/2',
+                'sign'    => 'Capricon',
+                'element' => 'Earth',
+                'year'    => '2014/2',
+            ),
+
+            10 => array(
+                'title'   => '2015/1',
+                'sign'    => 'Aquarius',
+                'element' => 'Air',
+                'year'    => '2015/1',
+            ),
+
+            11 => array(
+                'title'   => '2015/2',
+                'sign'    => 'Pisces',
+                'element' => 'Water',
+                'year'    => '2015/2',
+            ),
+
+            12 => array(
+                'title'   => '2016/1',
+                'sign'    => 'Aries',
+                'element' => 'Fire',
+                'year'    => '2016/1',
+            ),
+
+            13 => array(
+                'title'   => '2016/2',
+                'sign'    => 'Taurus',
+                'element' => 'Earth',
+                'year'    => '2016/2',
+            )
+        );
+    }
+    
+    static function options(){
+        $options = array();
+        $events = Event::events();
+        for($i=1;$i <= Event::current; $i++){
+            $options[$i] = $events[$i]['title'];
+        }
+        return $options;
+    }
+    
+    static function title($i){
+        $events = Event::events();
+        return $events[$i]['title'];
+    }
+}
+
+?>

@@ -10,7 +10,7 @@
  *
  * @author Nicholas
  */
-class Kudos extends Model {
+class Kudos extends My_Model {
     //put your code here
 
     public static $_table = 'kudos';

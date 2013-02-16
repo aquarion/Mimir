@@ -1,4 +1,4 @@
-
+<?PHP if(!isset($gnav_active)){ $gactive = ""; } else { $gactive = $gnav_active; } ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,6 +24,11 @@
     <script src="/assets/away/tablecloth/js/jquery.tablesorter.js"></script>
     <link href="/assets/away/tablecloth/css/tablecloth.css" rel="stylesheet">
     
+    <!-- Markdown -->
+    <script type="text/javascript" src="/assets/away/pagedown/Markdown.Converter.js"></script>
+    <script type="text/javascript" src="/assets/away/pagedown/Markdown.Sanitizer.js"></script>
+    <script type="text/javascript" src="/assets/away/pagedown/Markdown.Editor.js"></script>
+    
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -34,11 +39,32 @@
       }
       
       .notyet {
-       
-opacity:0.4;
-filter:alpha(opacity=40); /* For IE8 and earlier */  
-          
+            opacity:0.4;
+            filter:alpha(opacity=40); /* For IE8 and earlier */    
       }
+      
+      
+.icon-link,
+.icon-blockquote,
+.icon-code,
+.icon-bullet-list,
+.icon-list,
+.icon-header,
+.icon-hr-line,
+.icon-undo {
+	background-image: url("/assets/away/pagedown/Markdown.Editor.Icons.png");
+}
+.icon-link              { background-position: 0      0; }
+.icon-blockquote        { background-position: -24px  0; }
+.icon-code              { background-position: -48px  0; }
+.icon-bullet-list       { background-position: -72px  0; }
+.icon-list              { background-position: -96px  0; }
+.icon-header            { background-position: -120px 0; }
+.icon-hr-line           { background-position: -144px 0; }
+.icon-undo               { background-position: -168px 0; }
+
+
+
     </style>
     <link href="/assets/away/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -65,13 +91,12 @@ filter:alpha(opacity=40); /* For IE8 and earlier */
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">Mimir</a>
+          <a class="brand" href="/" class="<?PHP echo $gactive === "" ? "active" : ''; ?>">Mimir</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="/altar">Altar</a></li>
-              <li><a href="/blessr">Blessr</a></li>
-              <li><a href="/journals">Journals</a></li>
+              <li class="<?PHP echo $gactive == "altar" ? "active" : ''; ?>"><a href="/altar">Altar</a></li>
+              <li class="<?PHP echo $gactive == "blessr" ? "active" : ''; ?>"><a href="/blessr">Blessr</a></li>
+              <li class="<?PHP echo $gactive == "journals" ? "active" : ''; ?>"><a href="/journals">Journals</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
