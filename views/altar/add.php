@@ -30,7 +30,7 @@
         <div class="control-group">
           <label class="control-label" for="inputPriest">Priest</label>
           <div class="controls">
-            <input type="number" class="input-mini" id="inputPID" name="priest_id" placeholder="PID" length="4">
+            <input type="number" class="input-mini" id="inputPID" name="priest_id" placeholder="PID" length="4" min="0">
             <input type="text" id="inputCharacter" placeholder="Character" name="priest_name">
           </div>
         </div>
@@ -60,12 +60,30 @@
         <div class="control-group">
           <label class="control-label" for="inputDrachma">Drachma</label>
           <div class="controls">
-              
-            <input type="number" class="input-mini kudossrc" data-value="0.05" id="chalkoi" placeholder="Chlk" name="chalkoi">
-            <input type="number" class="input-mini kudossrc" data-value="0.25" id="obol" placeholder="Obol" name="obol">
-            <input type="number" class="input-mini kudossrc" data-value="1" id="drachma" placeholder="Drac" name="drachma">
-            <input type="number" class="input-mini kudossrc" data-value="5" id="pentadrachma" placeholder="5Drac" name="pentadrachma">
-            <input type="number" class="input-mini kudossrc" data-value="20" id="Mina" placeholder="Mina" name="mina">
+            <div class="input-prepend">
+                <span class="add-on kudos">C</span>
+            <input type="number" class="input-mini kudossrc" data-value="0.05" id="chalkoi" placeholder="halkoi" name="chalkoi" min="0">
+            </div>
+            <div class="input-prepend">
+                <span class="add-on kudos">O</span>
+                <input type="number" class="input-mini kudossrc" data-value="0.25" id="obol" placeholder="bol" name="obol" min="0">
+            </div>
+            <div class="input-prepend">
+                <span class="add-on kudos">D</span>
+                <input type="number" class="input-mini kudossrc" data-value="1" id="drachma" placeholder="rachma" name="drachma" min="0">
+            </div>
+            <div class="input-prepend">
+                <span class="add-on kudos">P</span>
+                <input type="number" class="input-mini kudossrc" data-value="5" id="pentadrachma" placeholder="entadrac" name="pentadrachma" min="0">
+            </div>
+            <div class="input-prepend">
+                <span class="add-on kudos">M</span>
+                <input type="number" class="input-mini kudossrc" data-value="20" id="Mina" placeholder="ina" name="mina" min="0">
+            </div>
+            
+            
+            
+            
             
           </div>
         </div>
@@ -75,19 +93,19 @@
             
             <div class="input-prepend">
             <span class="add-on kudos"><img src="/assets/home/img/elements/Green.png" width="22px"></span>
-            <input type="number" class="input-mini kudossrc" data-value="5" id="earth" placeholder="Earth" name="quin_earth">
+            <input type="number" class="input-mini kudossrc" data-value="5" id="earth" placeholder="Earth" name="quin_earth" min="0">
             </div>
             <div class="input-prepend">
             <span class="add-on"><img src="/assets/home/img/elements/White.png" width="22px"></span>
-            <input type="number" class="input-mini kudossrc" data-value="5" id="air" placeholder="Air" name="quin_air">
+            <input type="number" class="input-mini kudossrc" data-value="5" id="air" placeholder="Air" name="quin_air" min="0">
             </div>
             <div class="input-prepend">
             <span class="add-on"><img src="/assets/home/img/elements/Red.png" width="22px"></span>
-            <input type="number" class="input-mini kudossrc" data-value="5" id="fire" placeholder="Fire" name="quin_fire">
+            <input type="number" class="input-mini kudossrc" data-value="5" id="fire" placeholder="Fire" name="quin_fire" min="0">
             </div>
             <div class="input-prepend">
             <span class="add-on"><img src="/assets/home/img/elements/Blue.png" width="22px"></span>
-            <input type="number" class="input-mini kudossrc" data-value="5" id="water" placeholder="Water" name="quin_water">
+            <input type="number" class="input-mini kudossrc" data-value="5" id="water" placeholder="Water" name="quin_water" min="0">
             </div>
             
           </div>
@@ -98,7 +116,7 @@
           <div class="controls">
               
             <div class="input-prepend">
-            <span class="add-on"><img src="/assets/home/img/heart-icon.png" width="22px"></span>
+            <span class="add-on"><img src="/assets/home/img/fatcow-icons/heart.png"></span>
             <input type="number" class="input-mini" id="lives" data-value="10" placeholder="" name="lives">
             </div>
           </div>
@@ -108,7 +126,7 @@
           <div class="controls">
               
             <div class="input-prepend">
-            <span class="add-on"><img src="/assets/home/img/heart-icon.png" width="22px"></span>
+            <span class="add-on"><img src="/assets/home/img/fatcow-icons/heart_add.png"></span>
             <input type="number" class="input-mini kudossrc" data-value="1" id="life_bonus" placeholder="" name="life_bonus">
             </div>
           </div>
