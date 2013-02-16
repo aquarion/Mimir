@@ -1,7 +1,10 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span12">
+    <div class="span4">
         <?PHP include("navigation.php"); ?>
+    </div>
+    <div class="span8">
+        <h1 class="pull-right">Priest Statistics</h1>
     </div>
   </div>
   <div class="row-fluid">  

@@ -192,12 +192,12 @@ class Altar extends Controller {
         
         $params = array('deity' => $deity);
         
-        $sql = 'select group_name, sum(total) as totalize from kudos 
+        $sql = 'select group_name, nation, sum(total) as totalize from kudos 
             where deity = :deity
             group by lcase(group_name) order by totalize desc';
         $this->data['groups'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
         
-        $sql = 'select priest_id, priest_name, sum(total) as totalize 
+        $sql = 'select priest_id, priest_name, nation, sum(total) as totalize 
             from kudos where deity = :deity
             group by priest_name order by totalize desc';
         $this->data['priests'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
