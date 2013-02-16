@@ -4,44 +4,44 @@
         <?PHP include("navigation.php"); ?>
     </div>
     <div class="span8">
-        <h1 class="pull-right">Kudos by Nation sacrificing</h1>
+        <h1 class="pull-right">Kudos by Nation Sacrificing</h1>
     </div>
   </div>
   <div class="row-fluid">
     <div class="span12 ">
         <ul class="thumbnails">
             <li class="thumbnail centered span2" >
-                <a href="/stats/carthage/" >
+                <a href="/altar/stats/carthage/" >
                     <img src="/assets/home/img/nations/smaller/carthage.png" />
                     <div class="caption">Carthage</div >
                 </a>
             </li>
             <li class="thumbnail centered span2">
-                <a href="/stats/egypt" >
+                <a href="/altar/stats/egypt" >
                     <img src="/assets/home/img/nations/smaller/egypt.png" />
                     <div class="caption">Egypt</div >
                 </a>
             </li>
             <li class="thumbnail centered span2">
-                <a href="/stats/greece" >
+                <a href="/altar/stats/greece" >
                     <img src="/assets/home/img/nations/smaller/greece.png" />
                     <div class="caption">Greece</div >
                 </a>
             </li>
             <li class="thumbnail centered span2">
-                <a href="/stats/hellasphoenicia" >
+                <a href="/altar/stats/hellasphoenicia" >
                     <img src="/assets/home/img/nations/smaller/hellasphoenicia.png" />
                     <div class="caption">Hellas Phoenicia</div >
                 </a>
             </li>
             <li class="thumbnail centered span2">
-                <a href="/stats/persia" >
+                <a href="/altar/stats/persia" >
                     <img src="/assets/home/img/nations/smaller/persia.png" />
                     <div class="caption">Persia</div >
                 </a>
             </li>
             <li class="thumbnail centered span2">
-                <a href="/stats/rome" >
+                <a href="/altar/stats/rome" >
                     <img src="/assets/home/img/nations/smaller/rome.png" />
                     <div class="caption">Rome</div >
                 </a>
