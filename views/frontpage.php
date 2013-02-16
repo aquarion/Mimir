@@ -31,15 +31,31 @@
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div><!-- /.span4 -->
 
-        <div class="span4 centered notyet">
+        <div class="span4 centered">
           <h2>Journals</h2>
           <p><img src="/assets/home/img/section-icons/pabodie-field-notes-icon.png" width="128"/></p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p><a class="btn" href="/journals/">View details &raquo;</a></p>
         </div><!-- /.span4 -->
         
     </div> <!-- /row -->
       <div class="row">
-        <div class="span4 centered notyet">
+        <div class="span5 offset2">
+            <h2>Aquarion's Todo list</h2>
+            <ul>
+                <li>Typeahead find on Kudos addition (Small)
+                <li>Graphs over time (Small)
+                <li>Seperate kudos gain into different events. (Medium)
+                <li>Players database (Large)
+                <li>Blessings Database (Large)
+                <li>Print out a blessing (Large)
+                <li>Lesser Mysteries (Large)
+                <li>Print out LM (Large)
+                <li>Greater Mysteries (Large)
+                <li>Greater Mysteries Briefing Sheets (Large)
+                <li><strike>NPC Journals (Large)</strike>
+                <li>Journals "Recent Entries" page
+                
+            </ul>
         </div><!-- /.span4 -->
     </div> <!-- /row -->
     </div> <!-- /container -->
