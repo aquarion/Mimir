@@ -74,7 +74,7 @@
   </div>
     
   </div>
-    <div class="span8" id="chartLocation">
+    <div class="span8" style="margin-top: 2em;"  id="chartLocation">
         <table class="table hidden" id="kudostotal">
 	<caption>Kudos Total</caption>
 	<thead>
@@ -92,11 +92,99 @@
         </tbody>
         </table>
     </div>
+
+    <div class="span12" style="margin-top: 2em;" id="progressLocation">
+        <table class="table hidden" id="kudosprogress">
+	<caption>Kudos Progress</caption>
+	<thead>
+            <tr>
+                <th scope="col">Nation</th>
+                <?PHP
+                $columns = array_keys($progress);
+                $nations = array(
+                    'Carthage' => array(),
+                    'Egypt' => array(),
+                    'Greece' => array(),
+                    'Hellas Phoenicia' => array(),
+                    'Rome' => array(),
+                    'Persia' => array()
+                );
+                $running = array(
+                    'Carthage' => 0,
+                    'Egypt' => 0,
+                    'Greece' => 0,
+                    'Hellas Phoenicia' => 0,
+                    'Rome' => 0,
+                    'Persia' => 0
+                );
+                foreach($columns as $column){
+                    foreach(array_keys($nations) as $nation){
+                        $running[$nation] += $progress[$column][$nation];
+                        $nations[$nation][] = $running[$nation];
+                    }
+                    echo '<th scope="col">'.$progress[$column]['date'].'</th>';
+                }
+                ?>
+            </tr>
+        </thead>
+        <tbody>
+        <?PHP
+
+        foreach($nations as $nation => $data){
+            
+            echo '<tr><th scope="col">'.$nation.'</th>';
+            foreach($data as $datum){
+                 echo '<td>'.$datum.'</td>';
+            }
+            echo "</tr>";
+        }
+        
+        ?>
+        </table>
+    </div>
+
+    <?PHP /*<div class="span8" id="progressLocation">
+        <table class="table hidden" id="kudosprogress">
+	<caption>Kudos Progress</caption>
+	<thead>
+            <tr>
+                <th scope="col">Date</th>
+                <?PHP foreach(array_keys($results) as $nation){
+                    echo '<th scope="col">'.$nation.'</th>';
+                }?>
+            </tr>
+        </thead>
+        <tbody>
+        <?PHP
+
+        $running = array(
+            'Carthage' => 0,
+            'Egypt' => 0,
+            'Greece' => 0,
+            'Hellas Phoenicia' => 0,
+            'Rome' => 0,
+            'Persia' => 0
+        );
+         foreach($progress as $index => $line){
+               echo '<tr><th scope="row">'.$line['date'].'</th>';
+               foreach(array_keys($results) as $nation){
+                   if($line[$nation] !== 0){
+                       $running[$nation] += $line[$nation];
+                   }
+                    echo '<td scope="col">'.$running[$nation].'</td>';
+               }
+               echo "</tr>";
+            }
+        ?>
+        </tbody>
+        </table>
+    </div> */?>
   </div>
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
     $('#kudostotal').visualize({type: 'pie', width: "600px", height: "600px"}).appendTo("#chartLocation");
+    $('#kudosprogress').visualize({type: 'line', width: "1000px", height: "800px"}).appendTo("#progressLocation");
     
 });
 

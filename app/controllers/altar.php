@@ -128,8 +128,57 @@ class Altar extends Controller {
     
     private function _global_stats(){
         
-        $totals = Model::factory("Kudos")->raw_query("select nation, sum(total) as totalize from kudos group by nation")->find_many();
+        $titles = array(
+            'carthage' => 'Carthage',
+            'egypt' => 'Egypt',
+            'greece' => 'Greece',
+            'hellasphoenicia' => 'Hellas Phoenicia',
+            'rome' => 'Rome',
+            'persia' => 'Persia'
+        );
+        
+        $params =  array('event' => Event::current());
+        $pie_sql = "select nation, sum(total) as totalize from kudos where event_id = :event group by nation";
+        
+        
+        $totals = Model::factory("Kudos")->raw_query($pie_sql, $params)->find_many();
         $this->data['totals'] = $totals;
+        
+        $sql = "SELECT UNIX_TIMESTAMP(date_created) as epoch, ROUND(UNIX_TIMESTAMP(date_created)/(60 * 60)) AS timekey, SUM(total) as totalize
+            FROM kudos where nation = :nation and event_id = :event
+            GROUP BY timekey ORDER BY date_created";
+        
+        $progress = array();
+        
+        $running_total = array(
+            'Carthage' => 0,
+            'Egypt' => 0,
+            'Greece' => 0,
+            'Hellas Phoenicia' => 0,
+            'Rome' => 0,
+            'Persia' => 0
+        );
+        foreach($titles as $short => $long){
+            $params = array('nation' => $long, 'event' => Event::current() );
+            $kudos = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
+            foreach($kudos as $kudo){
+                if(!isset($progress[$kudo->timekey])){
+                    $progress[$kudo->timekey] = $running_total;
+                    
+                    $round_to = 60;
+                    $unrounded_mins = date("i", $kudo->epoch);
+                    $mod = $unrounded_mins % $round_to;
+                    $epoch = $kudo->epoch + ($mod < $round_to/2 ? 0-$mod : $mod);
+                    
+                    $progress[$kudo->timekey]['date'] = date('D H:i', $epoch);
+                }
+                $progress[$kudo->timekey][$long] = $kudo->totalize;
+            }
+        }
+        
+        ksort($progress);
+        
+        $this->data['progress'] = $progress;
         
         $this->render("altar/stats");
     }
@@ -220,14 +269,27 @@ class Altar extends Controller {
         $this->data['capnation']   = $this->_nation_name($nation);
         $this->data['priest_name'] = $priest_name;
         
-        $params = array('priest' => $priest_name);
+        $params = array('priest' => $priest_name, 'event' => Event::current());
         
         $sql = 'select deity, sum(total) as totalize from kudos 
-            where priest_name = :priest
+            where priest_name = :priest and event_id = :event
             group by deity order by totalize desc';
         $this->data['deities'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
         
         $this->render("altar/priest_stats");
+    }
+    
+    function cheat(){
+        die();
+        $kudos = Model::factory("Kudos")->find_many();
+        $time  = strtotime("2012-08-10 18:00");
+        $every = 60*10;
+        foreach($kudos as $kudo){
+            $kudo->date_created = date(DATETIME_MYSQL, $time);
+            $time += $every;
+            $kudo->save();
+            print $kudo->priest_name." - ".date(DATETIME_MYSQL, $time)."<br/>";
+        }
     }
     
 }
