@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span3">
+    <div class="span4">
         <?PHP include("navigation.php"); ?>
     </div>
-    <div class="span9">
+    <div class="span8">
         <h1 class="pull-right">Add New Sacrifice</h1>
     </div>
   </div>
@@ -19,6 +19,7 @@
           <div class="controls">
               <select name="sacrifice_type">
                   <option>Sacrifice</option>
+                  <option>Human Sacrifice</option>
                   <option>Funeral</option>
                   <option>Arena</option>
                   <option>God Audience</option>

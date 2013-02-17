@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="row-fluid">  
-    <div class="span2 centered">
+    <div class="span6 centered">
         <img src="/assets/home/img/nations/smaller/<?PHP echo $nation?>.png" />
     </div>
     <div class="span6">

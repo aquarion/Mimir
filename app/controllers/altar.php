@@ -98,44 +98,9 @@ class Altar extends Controller {
 		    
 	}
     }
-    
-    private function _nation_title($nation){
         
-        $titles = array(
-            'carthage' => 'The Dominion of Carthage',
-            'egypt' => 'The Kingdom of Egypt',
-            'greece' => 'The Free Greek City-States',
-            'hellasphoenicia' => 'Hellas Phoenicia',
-            'rome' => 'The Republic of Rome',
-            'persia' => 'The Persian Empire'
-        );
-        
-        return $titles[$nation];
-    }
-    private function _nation_name($nation){
-        $titles = array(
-            'carthage' => 'Carthage',
-            'egypt' => 'Egypt',
-            'greece' => 'Greece',
-            'hellasphoenicia' => 'Hellas Phoenicia',
-            'rome' => 'Rome',
-            'persia' => 'Persia'
-        );
-        
-        return $titles[$nation];
-        
-    }
-    
     private function _global_stats(){
         
-        $titles = array(
-            'carthage' => 'Carthage',
-            'egypt' => 'Egypt',
-            'greece' => 'Greece',
-            'hellasphoenicia' => 'Hellas Phoenicia',
-            'rome' => 'Rome',
-            'persia' => 'Persia'
-        );
         
         $params =  array('event' => Event::current());
         $pie_sql = "select nation, sum(total) as totalize from kudos where event_id = :event group by nation";
@@ -150,15 +115,9 @@ class Altar extends Controller {
         
         $progress = array();
         
-        $running_total = array(
-            'Carthage' => 0,
-            'Egypt' => 0,
-            'Greece' => 0,
-            'Hellas Phoenicia' => 0,
-            'Rome' => 0,
-            'Persia' => 0
-        );
-        foreach($titles as $short => $long){
+        $running_total = Nation::nations_array();
+        
+        foreach(Nation::nation_ids() as $short => $long){
             $params = array('nation' => $long, 'event' => Event::current() );
             $kudos = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
             foreach($kudos as $kudo){
@@ -185,10 +144,9 @@ class Altar extends Controller {
     
     private function _nation_stats($nation){
         
-        $this->data['nation'] = $nation;
-        
-        $this->data['title'] = $this->_nation_title($nation);
-        $this->data['capnation'] = $this->_nation_name($nation);
+        $this->data['nation']    = $nation;
+        $this->data['title']     = Nation::title($nation);
+        $this->data['capnation'] = Nation::name($nation);
         
         $params = array('nation' => $nation, 'event' => Event::current());
         
@@ -218,7 +176,7 @@ class Altar extends Controller {
         $this->data['nation'] = $nation;
         $this->data['group']  = $group_name;
         
-        $this->data['capnation'] = $this->_nation_name($nation);
+        $this->data['capnation'] = Nation::name($nation);
         
         $params = array('nation' => $nation, 'event' => Event::current(), 'group' => $group_name);
         
@@ -241,8 +199,8 @@ class Altar extends Controller {
         
         $this->data['nation']    = $nation;
         $this->data['deity']     = $deity;
-        $this->data['title']     = $this->_nation_title($nation);
-        $this->data['capnation'] = $this->_nation_name($nation);
+        $this->data['title']     = Nation::title($nation);
+        $this->data['capnation'] = Nation::name($nation);
         
         $params = array('deity' => $deity, 'event' => Event::current());
         
@@ -265,8 +223,8 @@ class Altar extends Controller {
         $priest_name = urldecode($priest_name);
         
         $this->data['nation']      = $nation;
-        $this->data['title']       = $this->_nation_title($nation);
-        $this->data['capnation']   = $this->_nation_name($nation);
+        $this->data['title']       = Nation::title($nation);
+        $this->data['capnation']   = Nation::name($nation);
         $this->data['priest_name'] = $priest_name;
         
         $params = array('priest' => $priest_name, 'event' => Event::current());
