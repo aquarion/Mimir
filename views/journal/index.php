@@ -10,6 +10,15 @@
         <h1 class="pull-right">Journals </h1>
     </div>
   </div>
+    
+  <div class="row-fluid">
+    <div class="span12">
+        <ul class="breadcrumb">
+            <li><a href="/journals">Journals</a> <span class="divider">/</span></li>
+            <li class="active" id="breadcrumbActive">Deity</li>
+        </ul>
+    </div>
+  </div>
   <div class="row-fluid">
     <div class="span9 offset1">
         <ul class="nav nav-tabs" id="journalTabs">
@@ -70,6 +79,7 @@
     // Change hash for page-reload
     $('.nav-tabs a').on('shown', function (e) {
         window.location.hash = e.target.hash;
+        $('#breadcrumbActive').html($(this).html());
     })
     
 </script>
