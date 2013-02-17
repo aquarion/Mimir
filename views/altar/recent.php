@@ -84,12 +84,14 @@ if (count($_GET)) {
 			$data = $line->as_array();
 			#$data['priest_name'] = $data['priest_name']." (".$data['priest_id'].")";
 			echo '<tr>';
-
+                        
 			foreach ($data as $index => $value) {
+                            unset($field);
 			    switch ($index) {
 				case "id":
 				case "notes":
 				case "priest_id":
+				case "event_id":
 				    break;
 
 				case "priest_name":

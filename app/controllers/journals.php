@@ -61,7 +61,7 @@ class Journals extends My_Controller {
                
                 
         $entry = Model::factory('Entry')->create();
-        $entry->event        = Event::current;
+        $entry->event        = Event::current();
         $entry->date_created = date(DATETIME_MYSQL);
         
         $this->data['journal']     = $journal;
@@ -77,8 +77,8 @@ class Journals extends My_Controller {
 
             if ($validate === true){
                 $entry->save();
-                return $this->_redirect(sprintf("/journals/journal/%s", $journal->id));
-                #return $this->_redirect(sprintf("/journals/journal/%s/%s", $journal->id, $entry->id));
+                #return $this->_redirect(sprintf("/journals/journal/%s", $journal->id));
+                return $this->_redirect(sprintf("/journals/journal/%s#post-%s", $journal->id, $entry->id));
             } else {
                 $this->data['errors'] = $validate;
             }

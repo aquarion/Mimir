@@ -1,6 +1,7 @@
 
 create table kudos (
     id bigint auto_increment,
+    event_id TINYINT,
     sacrifice_type varchar(63),
     priest_id int,
     priest_name varchar(255),
@@ -21,8 +22,9 @@ create table kudos (
     quin_water int,
     total int,
     notes text,
+    date_created datetime,
     PRIMARY KEY(id)
-)
+);
 
 
 create table journal (

@@ -1,7 +1,7 @@
 <?PHP
 use \Michelf\Markdown;
 $journal_type = preg_replace('/\s+/', '', $journal->journal_type);
-$posts = $journal->posts()->find_many();
+$posts = $journal->posts()->where("event", Event::current())->find_many();
 ?>
 <div class="container-fluid">
   <div class="row-fluid">
@@ -16,7 +16,6 @@ $posts = $journal->posts()->find_many();
     </div>
   </div>
   <div class="row-fluid">
-  
     <div class="span12">
         <ul class="breadcrumb">
             <li><a href="/journals">Journals</a> <span class="divider">/</span></li>
@@ -63,21 +62,25 @@ $posts = $journal->posts()->find_many();
     <div class="span7">
         <?PHP 
         $event = null;
-        foreach($posts as $post){ 
-        if($event !== $post->event){
-            echo "<h2>".Event::title($post->event)."</h2>";
+        if(count($posts) == 0){
+            echo "<p>No entries found in this journal for ".Event::title()."</p>";
         }
-        ?>
-        <section id="post-<?PHP echo $post->id ?>">
-        <h3><a href='#post-<?PHP echo $post->id ?>'><?PHP echo $post->title ?></a></h3>
-        <?PHP echo Markdown::defaultTransform($post->content); ?>
-        <div class="well well-small">
-            Posted by <?PHP echo $post->author ?>
-            <?PHP if($post->author != $post->physrep){ echo ' for '.$post->physrep; }?>
-            on <?PHP echo date("D M jS @ H:i", strtotime($post->date_created))?>
-        </div>
-        </section>
-        <hr/>
+        foreach($posts as $post){ 
+            if($event !== $post->event){
+                echo "<h2>".Event::title($post->event)."</h2>";
+                    $event = $post->event;
+            }
+            ?>
+            <section id="post-<?PHP echo $post->id ?>">
+            <h3><a href='#post-<?PHP echo $post->id ?>'><?PHP echo $post->title ?></a></h3>
+            <?PHP echo Markdown::defaultTransform($post->content); ?>
+            <div class="well well-small">
+                Posted by <?PHP echo $post->author ?>
+                <?PHP if($post->author != $post->physrep){ echo ' for '.$post->physrep; }?>
+                on <?PHP echo date("D M jS @ H:i", strtotime($post->date_created))?>
+            </div>
+            </section>
+            <hr/>
         <?PHP } ?>
         
     </div>

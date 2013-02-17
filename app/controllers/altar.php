@@ -21,9 +21,11 @@ class Altar extends Controller {
         $this->data['gnav_active'] = "altar";
         $this->data['lnav_active'] = "recent";
         
+        $kudos = Model::factory('Kudos');
+        $kudos->where('event_id', Event::current());
+        
         if(count($_GET)){  
             $title = array();          
-            $kudos = Model::factory('Kudos');
             
             $this->data['query_data'] = array();
             
@@ -34,7 +36,7 @@ class Altar extends Controller {
                 $title[] = "$name is $value";
                 $this->data['query_data'][$theitle] = $index.'='.$value;
             }
-            $this->data['recent'] = $kudos->find_many();
+            $this->data['recent'] = $kudos->order_by_asc("date_created")->find_many();
             
             if(count($title) > 1){
                 $end = array_pop($title);
@@ -44,7 +46,7 @@ class Altar extends Controller {
             }
             
         } else {
-            $this->data['recent'] = Kudos::recent();
+            $this->data['recent'] = $kudos->order_by_asc("date_created")->find_many();
         }
         $this->render("altar/recent");
     }
@@ -57,12 +59,15 @@ class Altar extends Controller {
 
 		#print_r($_POST);
 		$kudos = Model::factory('Kudos')->create();
+                $kudos->event_id     = Event::current();
+                $kudos->date_created = date(DATETIME_MYSQL);
+                
 		foreach($_POST as $index => $value){
 			// Todo: Error Checking
 			$kudos->$index = $value;
 		}
 		$kudos->save();
-		return $this->index();
+		return $this->_redirect("/altar/");
 	} 
        
         $this->render("altar/add");
@@ -136,20 +141,20 @@ class Altar extends Controller {
         $this->data['title'] = $this->_nation_title($nation);
         $this->data['capnation'] = $this->_nation_name($nation);
         
-        $params = array('nation' => $nation);
+        $params = array('nation' => $nation, 'event' => Event::current());
         
         $sql = 'select group_name, sum(total) as totalize from kudos 
-            where nation = :nation
+            where nation = :nation and event_id = :event
             group by lcase(group_name) order by totalize desc';
         $this->data['groups'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
         
         $sql = 'select priest_id, priest_name, sum(total) as totalize 
-            from kudos where nation = :nation 
+            from kudos where nation = :nation and event_id = :event
             group by priest_name order by totalize desc';
         $this->data['priests'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
         
         $sql = 'select deity, sum(total) as totalize from kudos 
-            where nation = :nation
+            where nation = :nation and event_id = :event
             group by deity order by totalize desc';
         $this->data['deities'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
                 
@@ -166,15 +171,15 @@ class Altar extends Controller {
         
         $this->data['capnation'] = $this->_nation_name($nation);
         
-        $params = array('nation' => $nation, 'group' => $group_name);
+        $params = array('nation' => $nation, 'event' => Event::current(), 'group' => $group_name);
         
         $sql = 'select priest_id, priest_name, sum(total) as totalize 
-            from kudos where nation = :nation and group_name = :group 
+            from kudos where nation = :nation and group_name = :group and event_id = :event
             group by priest_name order by totalize desc';
         $this->data['priests'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
         
         $sql = 'select deity, sum(total) as totalize from kudos 
-            where nation = :nation and group_name = :group
+            where nation = :nation and group_name = :group and event_id = :event
             group by deity order by totalize desc';
         $this->data['deities'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
                 
@@ -190,15 +195,15 @@ class Altar extends Controller {
         $this->data['title']     = $this->_nation_title($nation);
         $this->data['capnation'] = $this->_nation_name($nation);
         
-        $params = array('deity' => $deity);
+        $params = array('deity' => $deity, 'event' => Event::current());
         
         $sql = 'select group_name, nation, sum(total) as totalize from kudos 
-            where deity = :deity
+            where deity = :deity and event_id = :event
             group by lcase(group_name) order by totalize desc';
         $this->data['groups'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
         
         $sql = 'select priest_id, priest_name, nation, sum(total) as totalize 
-            from kudos where deity = :deity
+            from kudos where deity = :deity and event_id = :event
             group by priest_name order by totalize desc';
         $this->data['priests'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
         

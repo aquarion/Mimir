@@ -20,6 +20,7 @@ class Kudos extends My_Model {
         $offset = ($page-1) * $count;
         
         $kudos = Model::factory('Kudos')
+            ->where("event_id", Event::current())
             ->find_many();
             #->limit($count)
             #->offset($offset)
