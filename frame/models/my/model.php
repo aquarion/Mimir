@@ -52,9 +52,13 @@ class My_Model extends Model {
     
     protected function _validate_numeric($label, $data){
         $data = trim($data);
-                
-        if (!$data || empty($data)){
-            return "$label is required.";
+        
+        if (empty($data)){
+           return true; // No requirement
+        }
+        
+        if (!is_numeric($data)){
+            return "$label must be numeric";
         } else {
             return true;
         }

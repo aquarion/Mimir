@@ -31,7 +31,12 @@ class Entry extends My_Model{
         return $this->_validate_numeric("Event", $value);
     }
     public function validate_journal_id($value){
-        return $this->_validate_numeric("Journal", $value);
+        $required = $this->_validate_required("Journal", $value);
+        if($required === true){
+            return $this->_validate_numeric("Journal", $value);
+        } else {
+            return $required;
+        }
     }
     
     
