@@ -10,9 +10,7 @@
  *
  * @author Nicholas
  */
-class Altar extends Controller {
-    //put your code here
-    
+class Altar extends My_Controller {    
     function index(){
 	return $this->kudos_tracker();
     }

@@ -39,8 +39,20 @@
         <div class="control-group">
           <label class="control-label" for="inputGroup" >Group/Nation</label>
           <div class="controls">
-            <input type="text" id="inputGroup" placeholder="Group" name="group_name">
-            <input type="text" id="inputGroup" class="input-small" placeholder="Nation" name="nation">
+            <input type="text" id="inputGroup" class="input-small" placeholder="Group" name="group_name">
+
+            <select name="nation" id="inputNation">
+            <?PHP
+            $options = Nation::options();
+            $selected = 'selected="Selected"';
+            $template = '<option value="%s" %s>%s</option>';
+            foreach($options as $index => $value){
+                $sel = $index === false ? $selected : '';
+                printf($template, $index, $sel, $value);
+            }
+            ?>
+            </select>
+            
           </div>
         </div>
             
