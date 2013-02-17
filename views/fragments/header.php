@@ -94,11 +94,40 @@
           <a class="brand" href="/" class="<?PHP echo $gactive === "" ? "active" : ''; ?>">Mimir</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="<?PHP echo $gactive == "altar" ? "active" : ''; ?>"><a href="/altar">Altar</a></li>
-              <li class="<?PHP echo $gactive == "blessr" ? "active" : ''; ?>"><a href="/blessr">Blessr</a></li>
+              <li class="<?PHP echo $gactive == "altar" ? "active" : ''; ?>"><a href="/altar">Kudos</a></li>
+              <li class="<?PHP echo $gactive == "blessr" ? "active" : ''; ?>"><a href="#">Blessings</a></li>
+              <li class="<?PHP echo $gactive == "blessr" ? "active" : ''; ?>"><a href="#">Players</a></li>
+              <li class="<?PHP echo $gactive == "blessr" ? "active" : ''; ?>"><a href="#">Potions</a></li>
+              <li class="<?PHP echo $gactive == "blessr" ? "active" : ''; ?>"><a href="#">Mysteries</a></li>
               <li class="<?PHP echo $gactive == "journals" ? "active" : ''; ?>"><a href="/journals">Journals</a></li>
+              
             </ul>
+            <ul class="nav pull-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <?PHP echo Event::current() ?>: <?PHP echo Event::title() ?>
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <?PHP
+                    foreach(Event::options() as $index => $value){
+                        echo '<li><a href="/auth/set_event/'.$index.'">'.$value.'</a></li>';
+                    }
+                    ?>
+                  </ul>
+                </li>
+              </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
+    <?PHP
+    if(Event::current() != Event::latest_event()){ ?>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6 offset3">
+      <div class="alert warning">Beware: You're viewing data for a previous Odyssey event.</div>
+    </div>
+  </div>
+</div>
+    <?PHP } ?>

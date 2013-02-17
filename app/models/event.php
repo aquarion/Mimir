@@ -103,6 +103,21 @@ class Event {
         );
     }
     
+    static function current(){
+        if(isset($_COOKIE['event'])){
+            return $_COOKIE['event'];
+        }
+        return Event::current;
+    }
+    
+    static function latest_event(){
+        return Event::current;
+    }
+    
+    static function set_current($value){
+        setcookie("event", $value, 0, '/');
+    }
+    
     static function options(){
         $options = array();
         $events = Event::events();
@@ -112,7 +127,10 @@ class Event {
         return $options;
     }
     
-    static function title($i){
+    static function title($i = false){
+        if(!$i){
+            $i = Event::current();
+        }
         $events = Event::events();
         return $events[$i]['title'];
     }
