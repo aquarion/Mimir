@@ -1,3 +1,20 @@
+<?PHP
+    $results = Nation::nations_array();
+       
+    foreach($totals as $line){
+       $results[$line->nation] = $line->totalize;
+    }
+    asort($results);
+?>
+<style type="text/css">
+    .nation_total {
+        font-size: xx-large; padding-bottom: .4em;
+    }
+    
+    .visualize {
+        margin: auto;
+    }
+</style>
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span4">
@@ -15,67 +32,50 @@
                     <img src="/assets/home/img/nations/smaller/carthage.png" />
                     <div class="caption">Carthage</div >
                 </a>
+                <div class="centered nation_total"><?PHP echo $results['carthage'] ?></div>
             </li>
             <li class="thumbnail centered span2">
                 <a href="/altar/stats/egypt" >
                     <img src="/assets/home/img/nations/smaller/egypt.png" />
                     <div class="caption">Egypt</div >
                 </a>
+                <div class="centered nation_total"><?PHP echo $results['egypt'] ?></div>
             </li>
             <li class="thumbnail centered span2">
                 <a href="/altar/stats/greece" >
                     <img src="/assets/home/img/nations/smaller/greece.png" />
                     <div class="caption">Greece</div >
                 </a>
+                <div class="centered nation_total"><?PHP echo $results['greece'] ?></div>
             </li>
             <li class="thumbnail centered span2">
                 <a href="/altar/stats/hellasphoenicia" >
                     <img src="/assets/home/img/nations/smaller/hellasphoenicia.png" />
                     <div class="caption">Hellas Phoenicia</div >
                 </a>
+                <div class="centered nation_total"><?PHP echo $results['hellasphoenicia'] ?></div>
             </li>
             <li class="thumbnail centered span2">
                 <a href="/altar/stats/persia" >
                     <img src="/assets/home/img/nations/smaller/persia.png" />
                     <div class="caption">Persia</div >
                 </a>
+                <div class="centered nation_total"><?PHP echo $results['persia'] ?></div>
             </li>
             <li class="thumbnail centered span2">
                 <a href="/altar/stats/rome" >
                     <img src="/assets/home/img/nations/smaller/rome.png" />
                     <div class="caption">Rome</div >
                 </a>
+                <div class="centered nation_total"><?PHP echo $results['rome'] ?></div>
             </li>
         </ul>
     </div>
   </div>
-
-<?PHP
-    $results = array(
-        'Carthage' => 0,
-        'Egypt' => 0,
-        'Greece' => 0,
-        'Hellas Phoenicia' => 0,
-        'Persia' => 0,
-        'Rome' => 0
-    );
-    foreach($totals as $line){
-       $results[$line->nation] = $line->totalize;
-    }
-    asort($results);
-?>
-  <div class="row-fluid">
-    <div class="span2 centered" style="font-size: xx-large"><?PHP echo $results['Carthage'] ?></div>
-    <div class="span2 centered" style="font-size: xx-large"><?PHP echo $results['Egypt'] ?></div>
-    <div class="span2 centered" style="font-size: xx-large"><?PHP echo $results['Greece'] ?></div>
-    <div class="span2 centered" style="font-size: xx-large"><?PHP echo $results['Hellas Phoenicia'] ?></div>
-    <div class="span2 centered" style="font-size: xx-large"><?PHP echo $results['Persia'] ?></div>
-    <div class="span2 centered" style="font-size: xx-large"><?PHP echo $results['Rome'] ?></div>
-  </div>
     
-  </div>
-    <div class="span8" style="margin-top: 2em;"  id="chartLocation">
-        <table class="table hidden" id="kudostotal">
+  <div class="row-fluid">
+    <div class="span12" style="margin-top: 2em;"  id="chartLocation">
+        <table class="table hidden" id="kudostotal" align="center">
 	<caption>Kudos Total</caption>
 	<thead>
             <tr>
@@ -92,8 +92,10 @@
         </tbody>
         </table>
     </div>
+  </div>
 
-    <div class="span12" style="margin-top: 2em;" id="progressLocation">
+  <div class="row-fluid">
+    <div class="span6 offset2" style="margin-top: 2em;" id="progressLocation">
         <table class="table hidden" id="kudosprogress">
 	<caption>Kudos Progress</caption>
 	<thead>
@@ -101,22 +103,9 @@
                 <th scope="col">Nation</th>
                 <?PHP
                 $columns = array_keys($progress);
-                $nations = array(
-                    'Carthage' => array(),
-                    'Egypt' => array(),
-                    'Greece' => array(),
-                    'Hellas Phoenicia' => array(),
-                    'Rome' => array(),
-                    'Persia' => array()
-                );
-                $running = array(
-                    'Carthage' => 0,
-                    'Egypt' => 0,
-                    'Greece' => 0,
-                    'Hellas Phoenicia' => 0,
-                    'Rome' => 0,
-                    'Persia' => 0
-                );
+                $nations = Nation::nations_array(array());
+                $running = Nation::nations_array();
+                
                 foreach($columns as $column){
                     foreach(array_keys($nations) as $nation){
                         $running[$nation] += $progress[$column][$nation];
@@ -132,7 +121,7 @@
 
         foreach($nations as $nation => $data){
             
-            echo '<tr><th scope="col">'.$nation.'</th>';
+            echo '<tr><th scope="col">'.Nation::name($nation).'</th>';
             foreach($data as $datum){
                  echo '<td>'.$datum.'</td>';
             }
@@ -142,43 +131,6 @@
         ?>
         </table>
     </div>
-
-    <?PHP /*<div class="span8" id="progressLocation">
-        <table class="table hidden" id="kudosprogress">
-	<caption>Kudos Progress</caption>
-	<thead>
-            <tr>
-                <th scope="col">Date</th>
-                <?PHP foreach(array_keys($results) as $nation){
-                    echo '<th scope="col">'.$nation.'</th>';
-                }?>
-            </tr>
-        </thead>
-        <tbody>
-        <?PHP
-
-        $running = array(
-            'Carthage' => 0,
-            'Egypt' => 0,
-            'Greece' => 0,
-            'Hellas Phoenicia' => 0,
-            'Rome' => 0,
-            'Persia' => 0
-        );
-         foreach($progress as $index => $line){
-               echo '<tr><th scope="row">'.$line['date'].'</th>';
-               foreach(array_keys($results) as $nation){
-                   if($line[$nation] !== 0){
-                       $running[$nation] += $line[$nation];
-                   }
-                    echo '<td scope="col">'.$running[$nation].'</td>';
-               }
-               echo "</tr>";
-            }
-        ?>
-        </tbody>
-        </table>
-    </div> */?>
   </div>
 </div>
 <script type="text/javascript">
