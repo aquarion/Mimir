@@ -22,6 +22,7 @@
           <li><a href="#groups"><i class="icon-chevron-right"></i> Groups</a></li>
           <li><a href="#gods"><i class="icon-chevron-right"></i> Gods</a></li>
           <li><a href="#priests"><i class="icon-chevron-right"></i> Priests</a></li>
+          <li><a href="#priestmatrix"><i class="icon-chevron-right"></i> Priest by Gods</a></li>
         </ul>
       </div>
       
@@ -72,6 +73,29 @@
             </tbody>
         </table>
         </section>
+        
+	<section id="priestmatrix">
+        <h2>Priests by Gods</h2>
+        <table class="table table-striped table-bordered ">
+            <thead><tr><th>Priest</th>
+		<?PHP foreach($deities as $deity){
+			echo '<th>'.$deity->deity.'</th>';
+		}?>
+		</tr></thead>
+            <tbody>
+            <?PHP foreach($priests as $priest){ 
+		
+                echo '<tr><th>'.$priest->priest_name.'</th>';
+		foreach($deities as $deity){
+			$n = Model::factory('Kudos')->where("priest_name", $priest->priest_name)->where("deity", $deity->deity)->where("event_id", Event::current())->sum("total");
+			$n = $n ? $n : '&nbsp;';
+                	$view_link = sprintf('<a href="/altar/?priest_name=%s&deity=%s">%s</a>', urlencode($priest->priest_name), urlencode($deity->deity), $n);
+			echo '<td>'.$view_link.'</td>';
+		}
+                echo '<tr>';
+                ?>
+            <?PHP } // end foreach?>
+            </tbody>
     </div>
   </div>
     
