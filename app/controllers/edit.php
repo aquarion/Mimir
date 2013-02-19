@@ -16,8 +16,8 @@ class Edit extends Controller {
         
         $thing = Model::factory($name);
         
-        $sql = 'describe :table';
-        $table = Model::factory($name)->raw_query("describe kudos")->find_many();
+        $sql = 'describe '.$name;
+        $table = Model::factory($name)->raw_query($sql)->find_many();
         
         $item = $thing->find_one($arguments[0]);
         
