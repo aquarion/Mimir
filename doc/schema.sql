@@ -29,7 +29,7 @@ create table kudos (
 
 create table journal (
     id bigint auto_increment,
-    journal_type ENUM("Deity", "NPC", "Player Account", "Crew Notes", "Other"),
+    journal_type varchar(255),
     title varchar(255),
     description text,
     PRIMARY KEY(id)
@@ -43,7 +43,8 @@ create table entry (
     content mediumtext,
     physrep varchar(255),
     author varchar(255),
-    read_by_story tinyint,
+    unread_by_story  DEFAULT 1 NULL,
+    attention_flag TINYINT(4) DEFAULT 0 NULL,
     date_created tinyint,
     PRIMARY KEY(id)
 )

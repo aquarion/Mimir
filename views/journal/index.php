@@ -3,10 +3,10 @@
     <div class="span1 centered">
       <img src="/assets/home/img/section-icons/pabodie-field-notes-icon.png" width="50em"/>
     </div>
-    <div class="span4">
+    <div class="span6">
         <?PHP include("navigation.php"); ?>
     </div>
-    <div class="span7">
+    <div class="span5">
         <h1 class="pull-right">Journals </h1>
     </div>
   </div>
@@ -25,9 +25,8 @@
             <?PHP 
             $options = $journal->journal_type_options();
             foreach($options as $index => $value){
-                $index = preg_replace('/\s+/', '', $index);
-                
-                echo '<li><a href="#'.$index.'">'.$value.'</a></li>';
+                $unread = $journal->unread_by_type($index);
+                echo '<li><a href="#'.$index.'">'.$value.' <span class="badge" title="'.$unread.' Unread by Story">'.$unread.'</span></a></li>';
             } ?>
         </ul>
         <div class="tab-content">            
@@ -36,15 +35,20 @@
             foreach($journal->journal_type_options() as $index => $value){
                 $index = preg_replace('/\s+/', '', $index);
                 echo '<ul class="tab-pane" id="'.$index.'">';
-                $myJournals = Model::factory('Journal')->where('journal_type', $value)->find_many();
+                $myJournals = Model::factory('Journal')->where('journal_type', $index)->find_many();
                 #echo '<div class="span3">Hello</div>';
                 $span = 0;
                 foreach($myJournals as $journal){
                     if($span == 0){
-                        echo '<div class="row-fluid" style="padding-bottom: 1em;">';
+                        echo '<div class="row-fluid" style="padding-bottom: 1em;">';                        
                     }
+                    $unread = $journal->unread_by_journal($journal->id);
+                    
                     echo '<li class="span3"><a href="/journals/journal/'.$journal->id.'" class="thumbnail centered" style="height: 120px">
-                          <h4>'.$journal->title.'</h4> '.$journal->description.' 
+                          <h4>'.$journal->title.' <span class="badge" title="'.$unread.' Unread by Story">'.$unread.'</span></h4>
+                            
+                            <p>'.$journal->description.'</p>
+                            <p>'.$journal->entry_count().' entries</p>
                      </a></li>';
                     if ($span >= 12){
                         echo '</div>';

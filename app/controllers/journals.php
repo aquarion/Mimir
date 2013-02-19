@@ -51,6 +51,7 @@ class Journals extends My_Controller {
         $this->render("journal/view");
     }
     
+    
     function add_entry($id){
         
         $this->data['gnav_active'] = "journals";
@@ -86,5 +87,65 @@ class Journals extends My_Controller {
 	} 
         
         $this->render("journal/add_entry");
+    }
+    
+    function ajax($intent){
+        $intent = $intent[0];
+        $return = array();
+        $htmlid = $_POST['id'];
+        list($js, $id) = explode("-", $_POST['id'], 2);
+        
+        $return['id'] = $id;
+        $return['htmlid'] = $htmlid;
+        
+        $entry = Model::factory("Entry")->find_one($id);
+        
+        if(!$entry){
+            $data['error'] = "Could not load that entry";
+            echo json_encode($return);      
+            return;
+        } 
+        
+        switch ($intent){
+            case "markread":
+                $return['addevent'] = "markunread";
+                $return['removeclass'] = "btn-primary";
+                $return['content']  = 'Mark unread';
+                $entry->unread_by_story = 0;
+                $entry->save();
+              
+                break;
+            
+            case "markunread":
+                $return['addevent'] = "markread";
+                $return['addclass'] = "btn-primary";
+                $return['content']  = 'Mark Read by Story';
+                $entry->unread_by_story = 1;
+                $entry->save();
+                break;
+            
+            case "markflag":
+                $return['addevent'] = "markunflag";
+                $return['addclass'] = "btn-danger";
+                $return['content']  = '<i class="icon-flag icon-white"></i>';
+                $entry->attention_flag = 1;
+                $entry->save();
+                break;
+            
+            case "markunflag":
+                $return['addevent'] = "markflag";
+                $return['removeclass'] = "btn-danger";
+                $return['content']  = '<i class="icon-flag"></i>';
+                $entry->attention_flag = 0;
+                $entry->save();
+                break;
+            
+            default:
+                $return['addevent'] = "wtf? ".$intent;
+            
+        }
+                
+        echo json_encode($return);      
+        return;
     }
 }

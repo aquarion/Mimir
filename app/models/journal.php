@@ -23,12 +23,42 @@ class Journal extends My_Model {
     public function journal_type_options(){
         // You can't change these without also changing the database enum.
         return array(
-            'Deity' => 'Deity',
-            'NPC' => 'NPC',
-            'Player Account' => 'Player Account',
-            'Crew Notes' => 'Crew Notes',
-            'Other' => 'Other'
+            'deity' => 'Deity',
+            'npc' => 'NPC',
+            'player-account' => 'Player Account',
+            'player-letter' => 'Player Letters',
+            'crew-notes' => 'Crew Notes',
+            'other' => 'Other'
         );
+    }
+    
+    public function journal_type_title($type){
+        $options = $this->journal_type_options();
+        return $options[$type];
+    }
+    
+    public function unread_by_type($type){
+        $sql = "Select sum(unread_by_story) as summary from entry, journal where journal.id = entry.journal_id and journal.journal_type = :type and event = :event";
+        $params = array("type" => $type, 'event' => Event::current());
+        $totals =  Model::factory('Journal')->raw_query($sql, $params)->find_one();
+        $unread = $totals->summary;
+        return $unread ? $unread : '';
+    }
+    
+    public function unread_by_journal($journal){
+        $sql = "Select sum(unread_by_story) as summary from entry where journal_id = :journal and event = :event";
+        $params = array("journal" => $journal, 'event' => Event::current());
+        $totals =  Model::factory('Journal')->raw_query($sql, $params)->find_one();
+        $unread = $totals->summary;
+        return $unread ? $unread : '';
+    }
+    
+    public function entry_count(){
+        $sql = "Select count(*) summary from entry where journal_id = :journal and event = :event";
+        $params = array("journal" => $this->id, 'event' => Event::current());
+        $totals =  Model::factory('Journal')->raw_query($sql, $params)->find_one();
+        $unread = $totals->summary;
+        return $unread ? $unread : 0;
     }
     
     public function posts() {
