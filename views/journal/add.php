@@ -3,11 +3,20 @@
     <div class="span1 centered">
       <img src="/assets/home/img/section-icons/pabodie-field-notes-icon.png" width="50em"/>
     </div>
-    <div class="span4">
+    <div class="span5">
         <?PHP include("navigation.php"); ?>
     </div>
-    <div class="span7">
+    <div class="span6">
         <h1 class="pull-right">Add New Journal</h1>
+    </div>
+  </div>
+  <div class="row-fluid">
+  
+    <div class="span12">
+        <ul class="breadcrumb">
+            <li><a href="/journals">Journals</a> <span class="divider">/</span></li>
+            <li class="active">Create Journal</li>
+        </ul>
     </div>
   </div>
   <div class="row-fluid">

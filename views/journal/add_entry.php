@@ -6,10 +6,10 @@ $journal_type = preg_replace('/\s+/', '', $journal->journal_type);
     <div class="span1 centered">
       <img src="/assets/home/img/section-icons/pabodie-field-notes-icon.png" width="50em"/>
     </div>
-    <div class="span4">
+    <div class="span5">
         <?PHP include("navigation.php"); ?>
     </div>
-    <div class="span7">
+    <div class="span6">
         <h1 class="pull-right">View Journal</h1>
     </div>
   </div>

@@ -44,7 +44,7 @@
                     }
                     $unread = $journal->unread_by_journal($journal->id);
                     
-                    echo '<li class="span3"><a href="/journals/journal/'.$journal->id.'" class="thumbnail centered" style="height: 120px">
+                    echo '<li class="span3"><a href="/journals/journal/'.$journal->id.'" class="thumbnail centered">
                           <h4>'.$journal->title.' <span class="badge" title="'.$unread.' Unread by Story">'.$unread.'</span></h4>
                             
                             <p>'.$journal->description.'</p>

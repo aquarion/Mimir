@@ -51,6 +51,21 @@ class Journals extends My_Controller {
         $this->render("journal/view");
     }
     
+    function attention(){
+        
+        $this->data['gnav_active'] = "journals";
+        $this->data['lnav_active'] = "attention";
+        
+        $this->data['posts'] = $this->fetch_attention()->find_many();
+        
+        $this->render("journal/attention");
+        
+    }
+    
+    function fetch_attention(){
+        return Model::factory("Entry")->where("event", Event::current())->where("attention_flag", 1);
+    }
+    
     
     function add_entry($id){
         
@@ -130,6 +145,7 @@ class Journals extends My_Controller {
                 $return['content']  = '<i class="icon-flag icon-white"></i>';
                 $entry->attention_flag = 1;
                 $entry->save();
+                $return['attention'] = $this->_attention_count();
                 break;
             
             case "markunflag":
@@ -138,6 +154,7 @@ class Journals extends My_Controller {
                 $return['content']  = '<i class="icon-flag"></i>';
                 $entry->attention_flag = 0;
                 $entry->save();
+                $return['attention'] = $this->_attention_count();
                 break;
             
             default:
@@ -146,6 +163,16 @@ class Journals extends My_Controller {
         }
                 
         echo json_encode($return);      
+        return;
+    }
+    
+    private function _attention_count(){
+        $count = Model::factory("Entry")->where("event", Event::current())->where("attention_flag", 1)->count();
+        return $count ? $count : '';
+    }
+    
+    function attention_count(){
+        echo $this->_attention_count();
         return;
     }
 }
