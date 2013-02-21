@@ -239,19 +239,4 @@ class Altar extends My_Controller {
         $this->render("altar/priest_stats");
     }
 
-    function cheat() {
-        die();
-        $kudos = Model::factory("Kudos")->find_many();
-        $time = strtotime("2012-08-10 18:00");
-        $every = 60 * 10;
-        foreach ($kudos as $kudo) {
-            $kudo->date_created = date(DATETIME_MYSQL, $time);
-            $time += $every;
-            $kudo->save();
-            print $kudo->priest_name . " - " . date(DATETIME_MYSQL, $time) . "<br/>";
-        }
-    }
-
 }
-
-?>
