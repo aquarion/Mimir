@@ -11,7 +11,7 @@
         </div><!-- /.span4 -->
         <div class="span4 centered notyet">
           <h2>Blessings</h2>
-          <p><img src="/assets/home/img/section-icons/Gift-5-icon.png" width="128"/></p><p><a class="btn" href="#">View details &raquo;</a></p>
+          <p><a class="btn" href="/blesser"><img src="/assets/home/img/section-icons/Gift-5-icon.png" width="128"/></p><p>View details &raquo;</a></p>
         </div><!-- /.span4 -->
         <div class="span4 centered notyet">
           <h2>Players</h2>
@@ -38,13 +38,13 @@
         </div><!-- /.span4 -->
         
     </div> <!-- /row -->
-      <div class="row">
+      <!-- div class="row">
         <div class="span5 offset2">
             <h2>Aquarion's Todo list</h2>
             <ul>
                 <li>Typeahead find on Kudos addition (Small)
-                <li>Graphs over time (Small)
-                <li>Seperate kudos gain into different events. (Medium)
+                <li><strike>Graphs over time (Small)</strike>
+                <li><strike>Seperate kudos gain into different events. (Medium)</strike>
                 <li>Players database (Large)
                 <li>Blessings Database (Large)
                 <li>Print out a blessing (Large)
@@ -56,6 +56,6 @@
                 <li>Journals "Recent Entries" page
                 
             </ul>
-        </div><!-- /.span4 -->
-    </div> <!-- /row -->
+        </div><!-- /.span4 
+    </div > <!-- /row -->
     </div> <!-- /container -->

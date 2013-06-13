@@ -63,7 +63,12 @@
 .icon-hr-line           { background-position: -144px 0; }
 .icon-undo               { background-position: -168px 0; }
 
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
 
     </style>
     <link href="/assets/away/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -94,11 +99,11 @@
           <a class="brand" href="/" class="<?PHP echo $gactive === "" ? "active" : ''; ?>">Mimir</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="<?PHP echo $gactive == "altar" ? "active" : ''; ?>"><a href="/altar">Kudos</a></li>
-              <li class="<?PHP echo $gactive == "blessr" ? "active" : ''; ?>"><a href="#">Blessings</a></li>
-              <li class="<?PHP echo $gactive == "blessr" ? "active" : ''; ?>"><a href="#">Players</a></li>
-              <li class="<?PHP echo $gactive == "blessr" ? "active" : ''; ?>"><a href="#">Potions</a></li>
-              <li class="<?PHP echo $gactive == "blessr" ? "active" : ''; ?>"><a href="#">Mysteries</a></li>
+              <li class="<?PHP echo $gactive == "altar"    ? "active" : ''; ?>"><a href="/altar">Kudos</a></li>
+              <!-- li class="<?PHP echo $gactive == "blesser"  ? "active" : ''; ?>"><a href="/blesser">Blessings</a></li -->
+              <!-- li class="<?PHP echo $gactive == "players"  ? "active" : ''; ?>"><a href="#">Players</a></li -->
+              <li class="<?PHP echo $gactive == "cauldron" ? "active" : ''; ?>"><a href="#">Potions</a></li>
+               <!-- li class="<?PHP echo $gactive == "orbital"  ? "active" : ''; ?>"><a href="#">Mysteries</a></li -->
               <li class="<?PHP echo $gactive == "journals" ? "active" : ''; ?>"><a href="/journals">Journals</a></li>
               
             </ul>

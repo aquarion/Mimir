@@ -126,7 +126,6 @@ Journal = {
         $.post("/journals/ajax/markread", data, Journal.success, "json");
     },
     markunread : function(){
-        console.log("Mark unread!");
         data = {id : $(this).attr("id")}
         $(this).off("click", Journal.markunread);
         $.post("/journals/ajax/markunread", data, Journal.success, "json");
@@ -155,7 +154,6 @@ Journal = {
         if(data.attention){
             $('#flagged_count').html(data.attention)
         }
-        console.log(data);
     },
     
     update_counts_tick : function(){
