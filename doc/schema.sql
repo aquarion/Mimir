@@ -43,7 +43,7 @@ create table entry (
     content mediumtext,
     physrep varchar(255),
     author varchar(255),
-    unread_by_story  DEFAULT 1 NULL,
+    unread_by_story TINYINT(4) DEFAULT 1 NULL,
     attention_flag TINYINT(4) DEFAULT 0 NULL,
     date_created tinyint,
     PRIMARY KEY(id)

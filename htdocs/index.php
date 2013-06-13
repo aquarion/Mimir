@@ -52,7 +52,9 @@ spl_autoload_register('frame_autoloader');
 
 $config = Config::getInstance();
 
-ORM::configure(sprintf('mysql:host=%s;dbname=%s', $config->get("database", "host"), $config->get("database", "name")));
+$db_uri = sprintf('mysql:host=%s;dbname=%s', $config->get("database", "host"), $config->get("database", "name"));
+
+ORM::configure($db_uri);
 ORM::configure('username', $config->get("database", "user"));
 ORM::configure('password', $config->get("database", "password"));
 
@@ -69,7 +71,9 @@ try {
 }
 
 if(method_exists($controller, $route->Action) || method_exists($controller, "__call")){
+    
     try{
+        $controller->init();
         call_user_func(array($controller, $route->Action), $route->Parameters);
     } catch (Exception_FourOhFour $e){
        $controller = new Error();

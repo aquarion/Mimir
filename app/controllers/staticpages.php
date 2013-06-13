@@ -10,7 +10,7 @@
  *
  * @author Nicholas
  */
-class StaticPages extends Controller {
+class StaticPages extends My_Controller {
     
     function index(){
         $this->render("frontpage");

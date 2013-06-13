@@ -8,4 +8,8 @@ class My_Controller extends Controller {
     function _redirect($to){
         header("Location:".$to);
     }
+
+    function init(){
+    	
+    }
 }
