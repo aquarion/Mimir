@@ -22,7 +22,7 @@ class My_Controller extends Controller {
     }
 
     protected function requires_auth(){
-        if(!$this->is_allowed()){
+        if($this->is_allowed()){
             return true;
         }
     	$this->_redirect("/auth/login?redirect=".urlencode($_SERVER['REQUEST_URI']));
