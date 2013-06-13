@@ -76,17 +76,22 @@ $posts = $journal->posts()->where("event", Event::current())->find_many();
             <?PHP echo Markdown::defaultTransform($post->content); ?>
             <div class="well well-small">
                 <div class="btn-group">
-                    <?PHP if($post->attention_flag){
-                        ?><button class="btn btn-danger markunflag" id="flag-<?PHP echo $post->id ?>" title="Toggle Flag"><i class="icon-flag icon-white"></i></button><?PHP
-                    } else {
-                        ?><button class="btn markflag" id="flag-<?PHP echo $post->id ?>" title="Toggle flag for Story followup"><i class="icon-flag"></i></button><?PHP
+                    <?PHP 
+
+                    if($this->is_allowed()){
+                      if($post->attention_flag){
+                          ?><button class="btn btn-danger markunflag" id="flag-<?PHP echo $post->id ?>" title="Toggle Flag"><i class="icon-flag icon-white"></i></button><?PHP
+                      } else {
+                          ?><button class="btn markflag" id="flag-<?PHP echo $post->id ?>" title="Toggle flag for Story followup"><i class="icon-flag"></i></button><?PHP
+                      }
+                      ?>
+                      <?PHP if($post->unread_by_story){
+                          ?><button class="btn btn-primary markread" id="read-<?PHP echo $post->id ?>">Mark Read By Story</button><?PHP
+                      } else {
+                          ?><button class="btn markunread" id="read-<?PHP echo $post->id ?>">Mark Unread</button><?PHP
+                      }
                     }
-                    ?>
-                    <?PHP if($post->unread_by_story){
-                        ?><button class="btn btn-primary markread" id="read-<?PHP echo $post->id ?>">Mark Read By Story</button><?PHP
-                    } else {
-                        ?><button class="btn markunread" id="read-<?PHP echo $post->id ?>">Mark Unread</button><?PHP
-                    }
+
                     ?>
                     <a class="btn" href="/edit/journal/<?PHP echo $post->id ?>">Edit</a>
                 </div>

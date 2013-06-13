@@ -121,6 +121,12 @@ input::-webkit-inner-spin-button {
                     ?>
                   </ul>
                 </li>
+                <?PHP
+                if (isset($_SESSION['authentication'])) { ?>
+                  <li><a href="/auth/logout">Logout</a></li>
+                <?PHP } else { ?>
+                  <li><a href="/auth/login?redirect=<?PHP echo urlencode($_SERVER['REQUEST_URI']); ?>">Login</a></li>
+                <?PHP } ?>
               </ul>
           </div><!--/.nav-collapse -->
         </div>

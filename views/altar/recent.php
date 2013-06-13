@@ -73,6 +73,7 @@ if (count($_GET)) {
 			<th class="detailcolumn">Air</th>
 			<th class="detailcolumn">Fire</th>
 			<th class="detailcolumn">Water</th>
+			<th class="detailcolumn">Champion</th>
 			<th>Total</th>
 			<th>Actions</th>
 		    </tr>
@@ -92,6 +93,8 @@ if (count($_GET)) {
 				case "notes":
 				case "priest_id":
 				case "event_id":
+				case "champion_id":
+				case "date_created":
 				    break;
 
 				case "priest_name":

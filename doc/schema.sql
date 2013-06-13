@@ -48,3 +48,6 @@ create table entry (
     date_created tinyint,
     PRIMARY KEY(id)
 )
+
+alter table kudos add column champion_id int after date_created null;
+alter table kudos add column champion_name varchar(255) after date_created null;

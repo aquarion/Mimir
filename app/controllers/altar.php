@@ -12,6 +12,10 @@
  */
 class Altar extends My_Controller {
 
+    function init(){
+        return $this->requires_auth();
+    }
+
     function index() {
         return $this->kudos_tracker();
     }

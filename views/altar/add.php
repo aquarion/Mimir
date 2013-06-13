@@ -177,6 +177,15 @@
             <input type="text" readonly="readonly" id="total" name="total" value="<?PHP echo $kudo->total ?>">
           </div>
         </div>
+
+
+        <div class="control-group">
+          <label class="control-label" for="inputChamp">On Behalf of Champion</label>
+          <div class="controls">
+            <input type="number" class="input-mini" id="inputChampPID" name="champion_id" placeholder="PID" length="4" min="0" value="<?PHP echo '' ?>">
+            <input type="text" id="inputChamption" placeholder="Champion" name="champion_name" value="<?PHP echo '' ?>">
+          </div>
+        </div>
                 
         <div class="control-group">
           <label class="control-label" for="inputNotes">Notes</label>

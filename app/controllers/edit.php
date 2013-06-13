@@ -10,7 +10,7 @@
  *
  * @author Nicholas
  */
-class Edit extends Controller {
+class Edit extends My_Controller {
     
     function __call($name, $arguments){
         
@@ -20,20 +20,20 @@ class Edit extends Controller {
         $table = Model::factory($name)->raw_query($sql)->find_many();
         
         $item = $thing->find_one($arguments[0]);
-        
-	if(count($_POST)){
+            
+    	if(count($_POST)){
 
-		#print_r($_POST);
-		$kudos = Model::factory($name)->create();
-		foreach($_POST as $index => $value){
-			// Todo: Error Checking
-			$item->$index = $value;
-		}
-		$item->save();
-		$this->data['success'] = "Save successful";
-	} 
-       
-        
+    		#print_r($_POST);
+    		$kudos = Model::factory($name)->create();
+    		foreach($_POST as $index => $value){
+    			// Todo: Error Checking
+    			$item->$index = $value;
+    		}
+    		$item->save();
+    		$this->data['success'] = "Save successful";
+    	} 
+           
+            
         
         $schema = array();
         foreach($table as $row){

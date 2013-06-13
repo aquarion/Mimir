@@ -1,4 +1,5 @@
 <?PHP
+session_start();
 
 require_once '../lib/idiorm/idiorm.php';
 require_once '../lib/paris/paris.php';
@@ -73,8 +74,10 @@ try {
 if(method_exists($controller, $route->Action) || method_exists($controller, "__call")){
     
     try{
-        $controller->init();
-        call_user_func(array($controller, $route->Action), $route->Parameters);
+        $res = $controller->init();
+        if($res){
+            call_user_func(array($controller, $route->Action), $route->Parameters);
+        }
     } catch (Exception_FourOhFour $e){
        $controller = new Error();
        $route->Parameters = array('page' => $_SERVER['REQUEST_URI'], 'exception' => $e);      

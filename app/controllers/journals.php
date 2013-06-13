@@ -17,19 +17,19 @@ class Journals extends My_Controller {
         $journal = Model::factory('Journal')->create();
         
 	if(count($_POST)){
-            foreach($_POST as $index => $value){
-                    // Todo: Error Checking
-                    $journal->$index = $value;
-            }
+        foreach($_POST as $index => $value){
+                // Todo: Error Checking
+                $journal->$index = $value;
+        }
 
-            $validate = $journal->validate();
+        $validate = $journal->validate();
 
-            if ($validate === true){
-                $journal->save();
-                return $this->_redirect(sprintf("/journals/journal/%s", $journal->id));
-            } else {
-                $this->data['errors'] = $validate;
-            }
+        if ($validate === true){
+            $journal->save();
+            return $this->_redirect(sprintf("/journals/journal/%s", $journal->id));
+        } else {
+            $this->data['errors'] = $validate;
+        }
 
 	} 
         $this->data['journal'] = $journal;
