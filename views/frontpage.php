@@ -13,10 +13,10 @@
           <h2>Blessings</h2>
           <p><a class="btn" href="/blesser"><img src="/assets/home/img/section-icons/Gift-5-icon.png" width="128"/></p><p>View details &raquo;</a></p>
         </div><!-- /.span4 -->
-        <div class="span4 centered notyet">
+        <div class="span4 centered">
           <h2>Players</h2>
-          <p><img src="/assets/home/img/section-icons/App-Community-Help-icon.png" width="128"/></p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p><a href="/players"><img src="/assets/home/img/section-icons/App-Community-Help-icon.png" width="128"/></a></p>
+          <p><a class="btn" href="/players">View details &raquo;</a></p>
         </div><!-- /.span4 -->
     </div> <!-- /row -->
       <div class="row">

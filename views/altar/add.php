@@ -17,8 +17,6 @@
                    echo "<li>".$error."</li>";
                }
                echo '</div>';
-             } else {
-                 echo "No errors";
              } ?>
             <h2>About the Sacrificer</h2>
         <div class="control-group">

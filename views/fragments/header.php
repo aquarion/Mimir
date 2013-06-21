@@ -101,8 +101,8 @@ input::-webkit-inner-spin-button {
             <ul class="nav">
               <li class="<?PHP echo $gactive == "altar"    ? "active" : ''; ?>"><a href="/altar">Kudos</a></li>
               <!-- li class="<?PHP echo $gactive == "blesser"  ? "active" : ''; ?>"><a href="/blesser">Blessings</a></li -->
-              <!-- li class="<?PHP echo $gactive == "players"  ? "active" : ''; ?>"><a href="#">Players</a></li -->
-              <li class="<?PHP echo $gactive == "cauldron" ? "active" : ''; ?>"><a href="#">Potions</a></li>
+              <li class="<?PHP echo $gactive == "players"  ? "active" : ''; ?>"><a href="/players">Players</a></li>
+              <!-- li class="<?PHP echo $gactive == "cauldron" ? "active" : ''; ?>"><a href="#">Potions</a></li>  -->
                <!-- li class="<?PHP echo $gactive == "orbital"  ? "active" : ''; ?>"><a href="#">Mysteries</a></li -->
               <li class="<?PHP echo $gactive == "journals" ? "active" : ''; ?>"><a href="/journals">Journals</a></li>
               

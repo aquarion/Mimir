@@ -49,5 +49,19 @@ create table entry (
     PRIMARY KEY(id)
 )
 
-alter table kudos add column champion_id int after date_created null;
-alter table kudos add column champion_name varchar(255) after date_created null;
+create table player (
+    `pid` int null,
+    `player` varchar(255),
+    `location` varchar(255),
+    `character` varchar(255),
+    `group` varchar(255),
+    `nation` varchar(255),
+    `path` varchar(255),
+    `kit` tinyint,
+    `email` varchar(255),
+    `event` tinyint not null,
+    primary key(pid,event)
+);
+
+alter table kudos add column champion_id int null after date_created;
+alter table kudos add column champion_name varchar(255) null after date_created;
