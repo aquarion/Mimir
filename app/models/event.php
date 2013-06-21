@@ -53,7 +53,7 @@ class Event {
                 'year'    => '2013/1',
             ),
             7 => array(
-                'title'   => 'The Touch of Death',
+                'title'   => 'The Sting of Death',
                 'sign'    => 'Scorpio',
                 'element' => 'Water',
                 'year'    => '2013/2',
@@ -121,9 +121,16 @@ class Event {
     static function options(){
         $options = array();
         $events = Event::events();
-        for($i=1;$i <= Event::current; $i++){
-            $options[$i] = $events[$i]['title'];
+	$max = Event::current +1;
+	if(!isset($events[$max])){
+		//$max = Event::current;
+	}
+        for($i=1;$i <= $max; $i++){
+            $options[$i] = $i.": ".$events[$i]['title'];
         }
+        //foreach($events as $i => $event){
+         //   $options[$i] = $events[$i]['title'];
+        //}
         return $options;
     }
     

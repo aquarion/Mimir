@@ -1,4 +1,5 @@
 RewriteEngine On
 RewriteRule assets/.*    - [L]
+RewriteRule odysseywiki/.*    - [L]
 RewriteRule index.php    - [L]
 RewriteRule .*   /index.php    [L]
