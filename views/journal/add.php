@@ -52,9 +52,9 @@
                   </div>       
             </div>     
             <div class="control-group">   
-                  <label class="control-label" for="inputDescription">Description</label>
+                  <label class="control-label" for="inputDescription">Journal Description</label>
                   <div class="controls">
-                        <textarea id="inputDescription" rows="3" cols="62"  name="description"><?PHP echo $journal->description ?></textarea>
+                        <textarea id="inputDescription" rows="3" cols="62"  name="description" placeholder="DO NOT PUT YOUR FIRST ENTRY HERE."><?PHP echo $journal->description ?></textarea>
                   </div>        
             </div>
             <div class="control-group">
