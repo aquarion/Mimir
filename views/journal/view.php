@@ -38,9 +38,11 @@ $posts = $journal->posts()->where("event", Event::current())->find_many();
     </div>
   </div>
   <div class="row-fluid">
-    <div class="span2">
-        <p><a href="/journals/add_entry/<?PHP echo $journal->id ?>" class="btn btn-large">Add Entry</a></p>
-        
+    <div class="span2 ">
+        <div class="centered">
+        <p><a href="/journals/add_entry/<?PHP echo $journal->id ?>" class="btn btn-large btn-primary">Add Entry</a></p>
+        <p><a href="/edit/journal/<?PHP echo $journal->id ?>" class="btn btn-small ">Edit Journal</a></p>
+        </div>
         
         <ul class="nav nav-list sidebar" id="sidebar"  >
         <?PHP
@@ -93,7 +95,7 @@ $posts = $journal->posts()->where("event", Event::current())->find_many();
                     }
 
                     ?>
-                    <a class="btn" href="/edit/journal/<?PHP echo $post->id ?>">Edit</a>
+                    <a class="btn" href="/edit/entry/<?PHP echo $post->id ?>">Edit</a>
                 </div>
                 <p class="pull-right">
                 Posted by <?PHP echo $post->author ?>
