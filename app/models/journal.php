@@ -28,6 +28,7 @@ class Journal extends My_Model {
             'player-account' => 'Player Account',
             'player-letter' => 'Player Letters',
             'crew-notes' => 'Crew Notes',
+            'quest' => 'Quests',
             'other' => 'Other'
         );
     }
