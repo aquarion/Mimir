@@ -36,7 +36,7 @@
             $options = $journal->journal_type_options();
             foreach($options as $index => $value){
                 $unread = $journal->unread_by_type($index);
-                echo '<li><a href="#'.$index.'"><i class="icon-chevron-right"></i>'.$value.' <span class="badge" title="'.$unread.' Unread by Story">'.$unread.'</span></a></li>';
+                echo '<li><a href="#'.$index.'" title="'.$value.'"><i class="icon-chevron-right"></i>'.$value.' <span class="badge" title="'.$unread.' Unread by Story">'.$unread.'</span></a></li>';
             } ?>
         </ul>
     </div>
@@ -114,7 +114,7 @@
         e.preventDefault();
         console.log(this);
         window.location.hash = this.href.split('#')[1];
-        $('#breadcrumbActive').html($(this).text());
+        $('#breadcrumbActive').html($(this).attr("title"));
     })
     
     $('#journalTabs a:first').tab('show');
@@ -127,7 +127,7 @@
     // Change hash for page-reload
     $('.nav-tabs a').on('shown', function (e) {
         window.location.hash = e.target.hash;
-        $('#breadcrumbActive').html($(this).html());
+        $('#breadcrumbActive').html($(this).attr("title"));
     })
 
 

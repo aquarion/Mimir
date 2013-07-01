@@ -42,3 +42,8 @@ Journal
     Type[Deity|NPC|Player Account|Crew Notes]
     Name
     Description
+
+A blessing has:
+    A name
+    An issuing entity
+    

@@ -99,12 +99,36 @@ input::-webkit-inner-spin-button {
           <a class="brand" href="/" class="<?PHP echo $gactive === "" ? "active" : ''; ?>">Mímir</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="<?PHP echo $gactive == "altar"    ? "active" : ''; ?>"><a href="/altar">Kudos</a></li>
-              <!-- li class="<?PHP echo $gactive == "blesser"  ? "active" : ''; ?>"><a href="/blesser">Blessings</a></li -->
-              <li class="<?PHP echo $gactive == "players"  ? "active" : ''; ?>"><a href="/players">Players</a></li>
-              <!-- li class="<?PHP echo $gactive == "cauldron" ? "active" : ''; ?>"><a href="#">Potions</a></li>  -->
-               <!-- li class="<?PHP echo $gactive == "orbital"  ? "active" : ''; ?>"><a href="#">Mysteries</a></li -->
-              <li class="<?PHP echo $gactive == "journals" ? "active" : ''; ?>"><a href="/journals">Journals</a></li>
+              <li class="dropdown">
+              <?PHP
+              $sections = array(
+                'altar' => "Kudos",
+                'blesser' => "Blessings",
+                'players' => "Players",
+                'mysteries' => "Greater Mysteries",
+                'cauldron' => "Lesser Mysteries",
+                'artifacts' => "Artifacts",
+                'journals' => "Journals",
+              );
+                $template = '<li><a href="/%1$s">%2$s</a></li>';
+                if($gactive){
+                  $gactive_title = $sections[$gactive];
+                  //printf($template, $gactive, $sections[$gactive], 'dropdown-toggle" data-toggle="dropdown');
+                  unset($sections['gactive']);
+                } else {
+                  $gactive_title = "Departments";
+                }
+                print '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$gactive_title.'<b class="caret"></b></a>';
+                  print "\n";
+                print '<ul class="dropdown-menu">';
+                  print "\n";
+                foreach($sections as $link => $title){
+                  printf($template, $link, $title);
+                  print "\n";
+                }
+                print "</ul>\n";
+              ?>
+              </li>
               <li><a href="/forum/">Forum</a></li>
               <li><a href="/odysseywiki/">Story Wiki</a></li>
               
@@ -118,9 +142,9 @@ input::-webkit-inner-spin-button {
                   <ul class="dropdown-menu">
                     <?PHP
                     foreach(Event::options() as $index => $value){
-			if($index == Event::current){
-				$value = "<b>$value</b>";
-			}
+                  			if($index == Event::current){
+                  				$value = "<b>$value</b>";
+                  			}
                         echo '<li><a href="/auth/set_event/'.$index.'">'.$value.'</a></li>';
                     }
                     ?>
