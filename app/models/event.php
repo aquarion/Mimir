@@ -113,6 +113,11 @@ class Event {
     static function latest_event(){
         return Event::current;
     }
+
+    static function current_attribute($attr){
+        $event = Event::current();
+        return Event::events()[$event][$attr];
+    }
     
     static function set_current($value){
         setcookie("event", $value, 0, '/');

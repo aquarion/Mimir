@@ -105,7 +105,7 @@ input::-webkit-inner-spin-button {
                 'altar' => "Kudos",
                 'blesser' => "Blessings",
                 'players' => "Players",
-                'mysteries' => "Greater Mysteries",
+                'mysterious' => "Greater Mysteries",
                 'cauldron' => "Lesser Mysteries",
                 'artifacts' => "Artifacts",
                 'journals' => "Journals",

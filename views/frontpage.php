@@ -38,10 +38,10 @@
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
-        <div class="span3 centered notyet">
+        <div class="span3 centered">
           <h2>Greater Mysteries</h2>
-          <p><img src="/assets/home/img/section-icons/nuclear-icon.png" width="128"/></p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p><a href="/mysterious"><img src="/assets/home/img/section-icons/nuclear-icon.png" width="128"/></a></p>
+          <p><a class="btn" href="/mysterious">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
         <div class="span3 centered notyet">

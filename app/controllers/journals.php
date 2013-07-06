@@ -83,23 +83,23 @@ class Journals extends My_Controller {
         $this->data['journal']     = $journal;
         $this->data['entry']       = $entry;
         
-	if(count($_POST)){
-            foreach($_POST as $index => $value){
-                    // Todo: Error Checking
-                    $entry->$index = $value;
-            }
+    	if(count($_POST)){
+                foreach($_POST as $index => $value){
+                        // Todo: Error Checking
+                        $entry->$index = $value;
+                }
 
-            $validate = $entry->validate();
+                $validate = $entry->validate();
 
-            if ($validate === true){
-                $entry->save();
-                #return $this->_redirect(sprintf("/journals/journal/%s", $journal->id));
-                return $this->_redirect(sprintf("/journals/journal/%s#post-%s", $journal->id, $entry->id));
-            } else {
-                $this->data['errors'] = $validate;
-            }
+                if ($validate === true){
+                    $entry->save();
+                    #return $this->_redirect(sprintf("/journals/journal/%s", $journal->id));
+                    return $this->_redirect(sprintf("/journals/journal/%s#post-%s", $journal->id, $entry->id));
+                } else {
+                    $this->data['errors'] = $validate;
+                }
 
-	} 
+    	} 
         
         $this->render("journal/add_entry");
     }

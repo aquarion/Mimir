@@ -46,4 +46,10 @@ Journal
 A blessing has:
     A name
     An issuing entity
-    
+    A target
+    A description
+    An effect
+
+    A sub-blessing count
+    A sub-blessing target
+    A sub-blessing description
