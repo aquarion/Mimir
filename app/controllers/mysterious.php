@@ -45,12 +45,34 @@ class Mysterious extends My_Controller {
         $this->render("mysterious/index");
     }
 
+    function add(){
+        return $this->editForm();
+    }
 
-    function add() {
+    function edit($arguments){
+        return $this->editForm($arguments[0]);
+    }
+
+    function view($arguments){
+        $this->data['gnav_active'] = "mysterious";
+        $this->data['lnav_active'] = "index";
+        $mystery_cxn = Model::factory('GreaterMystery');
+        $mystery = $mystery_cxn->find_one($arguments[0]);
+        $this->data['mystery'] = $mystery;
+        $this->render("mysterious/view");
+    }
+
+    function editForm($id = null) {
         $this->data['gnav_active'] = "mysterious";
         $this->data['lnav_active'] = "add";
         
-        $mystery = Model::factory('GreaterMystery')->create();
+        $mystery_cxn = Model::factory('GreaterMystery');
+
+        if($id){
+            $mystery = $mystery_cxn->find_one($id);
+        } else {
+            $mystery =$mystery_cxn->create();
+        }
         
         $mystery->event_id = Event::current();
 

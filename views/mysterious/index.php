@@ -19,12 +19,12 @@ if (count($_GET)) {
 </style>
 <div class="container-fluid">
     <div class="row-fluid">
-	<div class="span3">
-	    <?PHP include("navigation.php"); ?>
-	</div>
-	<div class="span9">
-	    <h1 class="pull-right">Greater Mysteries</h1>
-	</div>
+		<div class="span3">
+		    <?PHP include("navigation.php"); ?>
+		</div>
+		<div class="span9">
+		    <h1 class="pull-right">Greater Mysteries</h1>
+		</div>
     </div>
     <div class="row-fluid">
 	<div class="span12">
@@ -47,23 +47,23 @@ if (count($_GET)) {
 	    ?>
 
 
-	    <p>Click a row heading to sort the table, or a <i class="icon-search"></i> search link to search the table for that thing.
+	    <!--p>Click a row heading to sort the table, or a <i class="icon-search"></i> search link to search the table for that thing.
                 <?PHP  if ($q) { ?>
                 Click a <i class="icon-filter"></i> filter link to add that to the search criteria. 
                 <?PHP } ?>
-                You can also <a href="#" class="toggledetailcolumn">toggle the detail columns</a>. </p>
+                You can also <a href="#" class="toggledetailcolumn">toggle the detail columns</a>. </p-->
 
-            <table class="table-striped table-bordered " width="100%">
-		<thead>        
-		    <tr style="">
-			<th>Name</th>
-			<th>Mystery Type</th>
-			<th>Effect Type</th>
-			<th>Short Desc</th>
-			<th>Actions</th>
-		    </tr>
-		</thead>
-		<tbody>
+        <table class="table-striped table-bordered " width="100%">
+			<thead>        
+			    <tr style="">
+				<th>Name</th>
+				<th>Mystery Type</th>
+				<th>Effect Type</th>
+				<th>Short Desc</th>
+				<th>Actions</th>
+			    </tr>
+			</thead>
+			<tbody>
 
 		    <?PHP
 		    foreach ($recent as $line) {
@@ -71,16 +71,17 @@ if (count($_GET)) {
 			#$data['priest_name'] = $data['priest_name']." (".$data['priest_id'].")";
 			echo '<tr>';
 
-			$include = array("name","mystery_type","effect_type","short_desc", "actions");
+			$include = array("mystery_type","effect_type","short_desc", "actions");
 
                         
+			echo '<td><a href="/mysterious/view/'.$data['id'].'">'.$data['name'].'</a></td>';
 			foreach ($data as $index => $value) {
                 if(in_array($index, $include)){
 				    echo '<td>' . ($value ? $value : '&nbsp;') . '</td>';
 			    }
 			}
 
-			echo '<td><a href="/edit/greatermystery/' . $data['id'] . '">Edit</a></td>';
+			echo '<td><a href="/mysterious/edit/' . $data['id'] . '">Edit</a></td>';
 
 			echo "</tr>\n";
 		    }

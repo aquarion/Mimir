@@ -4,12 +4,16 @@
         <?PHP include("navigation.php"); ?>
     </div>
     <div class="span8">
-        <h1 class="pull-right">Add New Greater Mystery</h1>
+        <?PHP if($mystery->id){ ?>
+          <h1 class="pull-right">Edit Greater Mystery</h1>
+        <?PHP } else { ?>
+          <h1 class="pull-right">Add New Greater Mystery</h1>
+        <?PHP } ?>
     </div>
   </div>
   <div class="row-fluid">
     <div class="span10 offset1">        
-        <form class="form-horizontal" action="add" method="POST">
+        <form class="form-horizontal" action="<?PHP echo $mystery->id ? '/mysterious/edit/'.$mystery->id : '/mysterious/add'; ?>" method="POST">
             
             <?PHP if(isset($errors)){
                echo '<div class="alert alert-error">';
@@ -21,8 +25,9 @@
             <h2>Mystery Information</h2>
         <div class="control-group">
 
-
-    
+        <?PHP if($mystery->id){ ?>
+                <input name="id" type="hidden" value="<?PHP echo $mystery->id ?>">
+        <?PHP } ?>
         <div class="control-group">
           <label class="control-label" for="inputName">Name</label>
           <div class="controls">
@@ -37,9 +42,10 @@
         </div>
           
         <div class="control-group">
-          <label class="control-label" for="inputFlavour">Flavour Text</label>
+          <label class="control-label" for="wmd-input-flavour">Flavour Text</label>
           <div class="controls">
-            <textarea class="input-block-level" rows="3" id="inputFlavour" name="flavour"><?PHP echo $mystery->flavour ?></textarea>
+            <div id="wmd-button-bar-flavour"></div>
+            <textarea class="input-block-level" rows="3" id="wmd-input-flavour" name="flavour"><?PHP echo $mystery->flavour ?></textarea>
           </div>
         </div>
 
@@ -158,26 +164,12 @@
                 
                 
         <div class="control-group">
-          <label class="control-label" for="inputExtra">Extra Requirements</label>
+          <label class="control-label" for="wmd-input-requirements">Extra Requirements</label>
           <div class="controls">
-            <textarea class="input-block-level" rows="3" name="extra_requirements"><?PHP echo $mystery->notes ?></textarea>
+            <div id="wmd-button-bar-requirements"></div>
+            <textarea class="input-block-level input-xxlarge wmd-input" rows="10" name="extra_requirements" id="wmd-input-requirements"><?PHP echo $mystery->extra_requirements ?></textarea>
           </div>
         </div>
-
-        <div class="control-group">
-          <label class="control-label" for="inputNotes">Roleplay &amp; Effects</label>
-          <div class="controls">
-            <textarea class="input-block-level" rows="3" name="effect"><?PHP echo $mystery->effect ?></textarea>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label" for="inputNotes">Enhancements</label>
-          <div class="controls">
-            <textarea class="input-block-level" rows="3" name="effect"><?PHP echo $mystery->enhancements ?></textarea>
-          </div>
-        </div>
-            
       
         <div class="control-group">
           <label class="control-label" for="inputSign">Sign Requirement</label>
@@ -201,6 +193,24 @@
           </div>
         </div>
 
+      <h2>Effects</h2>
+
+        <div class="control-group">
+          <label class="control-label" for="wmd-input-effects">Roleplay &amp; Effects</label>
+          <div class="controls">
+            <div id="wmd-button-bar-effects"></div>
+            <textarea class="input-block-level" rows="10" name="effect" id="wmd-input-effects"><?PHP echo $mystery->effect ?></textarea>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="wmd-input-enhancements">Enhancements</label>
+          <div class="controls">
+            <div id="wmd-button-bar-enhancements"></div>
+            <textarea class="input-block-level" rows="10" name="enhancements" id="wmd-input-enhancements"><?PHP echo $mystery->enhancements ?></textarea>
+          </div>
+        </div>
+            
         <div class="control-group">
           <div class="controls">
             <button type="submit" class="btn">Make it so.</button>
@@ -242,4 +252,23 @@ Altar = {
 }
     
 $(document).ready(Altar.add_init)
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  var converter1 = Markdown.getSanitizingConverter();
+  var flavour_markdown = new Markdown.Editor(converter1, "-flavour");
+  flavour_markdown.run();
+
+  var requirements_markdown = new Markdown.Editor(converter1, "-requirements");
+  requirements_markdown.run();
+
+  var effects_markdown = new Markdown.Editor(converter1, "-effects");
+  effects_markdown.run();
+
+  var enhancements_markdown = new Markdown.Editor(converter1, "-enhancements");
+  enhancements_markdown.run();
+  
+});
 </script>
