@@ -67,7 +67,7 @@ alter table kudos add column champion_id int null after date_created;
 alter table kudos add column champion_name varchar(255) null after date_created;
 
 
-create table greater_mystery (
+create table greatermystery (
     id bigint auto_increment,
     event_id TINYINT,
     name varchar(255),
@@ -91,6 +91,21 @@ create table greater_mystery (
     duration varchar(255),
     effect text,
     enhancements text,
+    
+    date_created datetime,
+    PRIMARY KEY(id)
+);
+
+create table artifact (
+    id bigint auto_increment,
+    name varchar(255),
+    territory varchar(63),
+    effect_type varchar(63),
+
+    short_desc varchar(255),
+    flavour text,
+    duration varchar(255),
+    effect text,
     
     date_created datetime,
     PRIMARY KEY(id)

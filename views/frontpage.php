@@ -32,10 +32,10 @@
           <p><a class="btn" href="/journals/">View details &raquo;</a></p>
         </div><!-- /.span3 -->
         
-        <div class="span3 centered notyet">
+        <div class="span3 centered">
           <h2>Artifacts</h2>
-          <p><img src="/assets/home/img/section-icons/Box-icon.png" width="128"/></p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p><a class="" href="/artifacts"><img src="/assets/home/img/section-icons/Box-icon.png" width="128"/></a></p>
+          <p><a class="btn" href="/artifacts">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
         <div class="span3 centered">
