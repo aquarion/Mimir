@@ -12,7 +12,7 @@
  */
 class Event {
     
-    const current = 6;
+    const current = 7;
     
     static function events(){
         return array(
@@ -53,7 +53,7 @@ class Event {
                 'year'    => '2013/1',
             ),
             7 => array(
-                'title'   => 'The Sting of Death',
+                'title'   => 'The Touch of Death',
                 'sign'    => 'Scorpio',
                 'element' => 'Water',
                 'year'    => '2013/2',
@@ -61,7 +61,7 @@ class Event {
             // The Future
 
             8 => array(
-                'title'   => '2014/1',
+                'title'   => 'The Arrow of Fire',
                 'sign'    => 'Sagittarius',
                 'element' => 'Fire',
                 'year'    => '2014/1',
@@ -116,7 +116,8 @@ class Event {
 
     static function current_attribute($attr){
         $event = Event::current();
-        return Event::events()[$event][$attr];
+        $events = Event::events();
+	return $events[$event][$attr];
     }
     
     static function set_current($value){
