@@ -6,7 +6,7 @@
  * @author Nicholas
  */
 class GreaterMystery extends My_Model{
-     public static $_table = 'greatermystery';
+     public static $_table = 'greater_mystery';
     
     
 }

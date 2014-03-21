@@ -47,7 +47,7 @@ create table entry (
     attention_flag TINYINT(4) DEFAULT 0 NULL,
     date_created tinyint,
     PRIMARY KEY(id)
-)
+);
 
 create table player (
     `pid` int null,

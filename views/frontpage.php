@@ -44,10 +44,10 @@
           <p><a class="btn" href="/mysterious">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
-        <div class="span3 centered notyet">
+        <div class="span3 centered">
           <h2>Gazetteer</h2>
           <p><img src="/assets/home/img/section-icons/globe-icon.png" width="128"/></p>
-          <p><a class="btn" href="/journals/">View details &raquo;</a></p>
+          <p><a class="btn" href="/odygaz/">View details &raquo;</a></p>
         </div><!-- /.span3 -->
         
     </div> <!-- /row -->
