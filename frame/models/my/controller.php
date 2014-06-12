@@ -10,7 +10,7 @@ class My_Controller extends Controller {
     }
 
     function init(){
-	return $this->requires_auth();
+	   //return $this->requires_auth();
     	return true;
     }
 

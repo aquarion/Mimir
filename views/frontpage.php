@@ -1,3 +1,9 @@
+<style>
+.notyet {
+  display: none;
+}
+</style>
+
     <div class="container-fluid">
 
       <!-- Three columns of text below the carousel -->
@@ -38,13 +44,13 @@
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
-        <div class="span3 centered">
+        <div class="span3 centered notyet">
           <h2>Greater Mysteries</h2>
           <p><a href="/mysterious"><img src="/assets/home/img/section-icons/nuclear-icon.png" width="128"/></a></p>
           <p><a class="btn" href="/mysterious">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
-        <div class="span3 centered">
+        <div class="span3 centered notyet">
           <h2>Gazetteer</h2>
           <p><img src="/assets/home/img/section-icons/globe-icon.png" width="128"/></p>
           <p><a class="btn" href="/odygaz/">View details &raquo;</a></p>

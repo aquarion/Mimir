@@ -41,6 +41,7 @@
       .notyet {
             opacity:0.4;
             filter:alpha(opacity=40); /* For IE8 and earlier */    
+            display: none !important;
       }
       
       
