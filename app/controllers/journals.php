@@ -175,4 +175,36 @@ class Journals extends My_Controller {
         echo $this->_attention_count();
         return;
     }
+
+    function search(){
+        $search = Model::factory("Entry")->where('event', Event::current());
+        $journals = array();
+
+        $this->data['journal'] = false;
+        if(isset($_GET['jid']) && is_numeric($_GET['jid'])){
+            $jid = $_GET['jid'];
+            $search = $search->where('journal_id', $jid);
+            $this->data['journal'] = Model::factory("Journal")->where_id_is($jid)->find_one();
+            $journals[$jid] = $this->data['journal'];
+        }
+        $search = $search->where_raw(' MATCH (title, content) AGAINST (?)', $_GET['q']);
+        $search = $search->order_by_asc("journal_id");
+
+        $results = $search->find_many();
+
+
+        foreach($results as $entry){
+            $jid = $entry->journal_id;
+            if(!isset($journals[$jid])){
+                $journals[$jid] = Model::factory("Journal")->where_id_is($jid)->find_one();
+            }
+        }
+
+        $this->data['journals'] = $journals;
+        $this->data['results']  = $results;
+        $this->data['search_journal_type'] = false;
+
+        $this->render("journal/search_results");
+
+    }
 }

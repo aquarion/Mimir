@@ -23,6 +23,13 @@
     <div class="span9">
         <h2>Journals for <?PHP echo Event::title() ?></h2>
     </div>
+    <div class="span3">
+      <form class="form-search input-prepend" method="GET" action="/journals/search">
+          <span class="add-on"><i class="icon-search"> </i></span>
+          <input type="text" class="input-medium" name="q">
+          <button type="submit" class="btn">Search</button>
+      </form>
+    </div>
   </div>
   <div class="row-fluid">
     <div class="span2">

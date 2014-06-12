@@ -1,7 +1,5 @@
 <?PHP
 use \Michelf\Markdown;
-$journal_type = $journal->journal_type_title($journal->journal_type);
-$posts = $journal->posts()->where("event", Event::current())->find_many();
 ?>
 <div class="container-fluid">
   <div class="row-fluid">
@@ -19,19 +17,36 @@ $posts = $journal->posts()->where("event", Event::current())->find_many();
     <div class="span12">
         <ul class="breadcrumb">
             <li><a href="/journals">Journals</a> <span class="divider">/</span></li>
-            <li><a href="/journals/#<?PHP echo $journal->journal_type ?>"><?PHP echo $journal_type ?></a> <span class="divider">/</span></li>
-            <li class="active"><?PHP echo $journal->title ?></li>
+            <?PHP if ($journal){ 
+                $journal_type = $journal->journal_type_title($journal->journal_type);
+                ?>
+                <li><a href="/journals/#<?PHP echo $journal->journal_type ?>"><?PHP echo $journal_type ?></a> <span class="divider">/</span></li>     
+                <li><a href="/journals/journal/<?PHP echo $journal->id ?>"><?PHP echo $journal->title ?></a> <span class="divider">/</span> </li>
+            <?PHP } ?>
+            <?PHP if ($search_journal_type){ 
+                ?>
+                <li><a href="/journals/#<?PHP echo $journal->journal_type ?>"><?PHP echo $journal_type ?></a> <span class="divider">/</span></li>     
+            <?PHP } ?>
+            <li class="active">Search Results</li>
         </ul>
     </div>
   </div>
   <div class="row-fluid">
     <div class="span9">
-            <h2><?PHP echo $journal->title ?></h2>
+            <h2>Searching for <q>"<?PHP echo $_GET['q'] ?>"</q>
+            <?PHP if($journal){ ?>
+              in '<?PHP echo $journal->title; ?>'
+            <? } ?>
+            <?PHP if($search_journal_type){ ?>
+              in '<?PHP echo $search_journal_type; ?>'
+            <? } ?>
+            at <?PHP echo Event::title() ?>
+            </h2>
     </div>
     <div class="span3">
       <form class="form-search input-prepend" method="GET" action="/journals/search">
           <span class="add-on"><i class="icon-search"> </i></span>
-          <input type="text" class="input-medium" name="q">
+          <input type="text" class="input-medium" name="q" value="<?PHP echo $_GET['q'] ?>">
           <input type="hidden" name="jid" value="<?PHP echo $journal->id ?>">
           <button type="submit" class="btn">Search</button>
       </form>
@@ -39,19 +54,14 @@ $posts = $journal->posts()->where("event", Event::current())->find_many();
   </div>
   <div class="row-fluid">
     <div class="span2 ">
-        <div class="centered">
-        <p><a href="/journals/add_entry/<?PHP echo $journal->id ?>" class="btn btn-large btn-primary">Add Entry</a></p>
-        <p><a href="/edit/journal/<?PHP echo $journal->id ?>" class="btn btn-small ">Edit Journal</a></p>
-        </div>
-        
         <ul class="nav nav-list sidebar" id="sidebar"  >
         <?PHP
         
-        $sidebar_event = null;
-        foreach($posts as $post){ 
-            if($sidebar_event !== $post->event){
-                echo '<li class="nav-header">'.Event::title($post->event)."</li>\n";
-                $sidebar_event = $post->event;
+        $sidebar_journal = $journal ? $journal->id : null;
+        foreach($results as $post){ 
+            if($sidebar_journal !== $post->journal_id){
+                echo '<li class="nav-header">'.$journals[$post->journal_id]->title."</li>\n";
+                $sidebar_journal = $post->journal_id;
             }
             printf('<li><a href="#post-%d"><i class="icon-chevron-right"></i>%s</a></li>', $post->id, $post->title);
             echo "\n";
@@ -63,14 +73,15 @@ $posts = $journal->posts()->where("event", Event::current())->find_many();
     </div>
     <div class="span7">
         <?PHP 
-        $event = null;
-        if(count($posts) == 0){
-            echo "<p>No entries found in this journal for ".Event::title()."</p>";
+        $title_journal = $journal ? $journal->id : null;
+        if(count($results) == 0){
+            echo "<p>No results found in this journal for ".Event::title()."</p>";
         }
-        foreach($posts as $post){ 
-            if($event !== $post->event){
-                echo "<h2>".Event::title($post->event)."</h2>";
-                    $event = $post->event;
+        foreach($results as $post){ 
+            if($title_journal !== $post->journal_id){
+                echo "<h2><a href=\"/journals/journal/".$post->journal_id."\">"
+                .$journals[$post->journal_id]->title."</h2>";
+                $title_journal = $post->journal_id;
             }
             ?>
             <section id="post-<?PHP echo $post->id ?>">
