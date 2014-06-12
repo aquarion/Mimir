@@ -1,0 +1,50 @@
+A Territory's permentant record contains
+	An original culture
+	An original code
+	a GameCode
+	A Unique Code
+	A name
+
+	A quint resource level (numeric)
+	A Mysteries resource level (Low, Medium, High)
+	A specials resource level (Low, Medium, High)
+	"Special", which is no or numeric. (How does this get set?)
+	A sign
+	An element
+	BASE COIN: A coin amount
+
+	BASE QUINT: For each quint type, if the quint type is the same as the element, it gets "Special" number of Quint.
+
+	(These don't change per event)
+
+
+
+A terroritory for an event contains
+	A controlling nation
+	A controlling group
+
+	Whether it's in supply this event
+	Whether it is stockpiled for this event
+
+	Whether it is
+		Blocking tribute flow
+		Swallowing tribute flow
+		redirecting tribute flow.
+
+		Destroyed
+		Devestated
+
+
+	a COIN MULTIPLIER
+
+	a QUINT MULTIPLIER
+
+	If it's in supply this event:
+		For each quint type:
+			If it's in supply this event, add the BASE QUINT from above.
+			If it was stockpiled last event, add the BASE QUINT from that.
+			(and all the way down, for however long it was stockpiled)
+		BASE COIN * COIN MULTIPLIER
+		If it was stockpiled last event:
+			BASE COIN * Last events COIN MULTIPLER
+			(and all the way down, for however long it was stockpiled)
