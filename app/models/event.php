@@ -58,7 +58,6 @@ class Event {
                 'element' => 'Water',
                 'year'    => '2013/2',
             ),
-            // The Future
 
             8 => array(
                 'title'   => 'The Arrow of Fire',
@@ -66,29 +65,29 @@ class Event {
                 'element' => 'Fire',
                 'year'    => '2014/1',
             ),
+            // The Future
             9 => array(
-                'title'   => '2014/2',
+                'title'   => 'The Dweller in the Deep',
                 'sign'    => 'Capricon',
                 'element' => 'Earth',
                 'year'    => '2014/2',
             ),
-
             10 => array(
-                'title'   => '2015/1',
+                'title'   => 'The River of Night\'s Dreaming',
                 'sign'    => 'Aquarius',
                 'element' => 'Air',
                 'year'    => '2015/1',
             ),
 
             11 => array(
-                'title'   => '2015/2',
+                'title'   => 'The Mirror of the Sea',
                 'sign'    => 'Pisces',
                 'element' => 'Water',
                 'year'    => '2015/2',
             ),
 
             12 => array(
-                'title'   => '2016/1',
+                'title'   => 'The Golden Ram',
                 'sign'    => 'Aries',
                 'element' => 'Fire',
                 'year'    => '2016/1',
