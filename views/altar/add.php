@@ -68,6 +68,37 @@
             
           </div>
         </div>
+
+        <div class="row-fluid">
+          <div class="span12 ">
+              <ul class="">
+                  <li class=" centered span2" >
+                          <img src="/assets/home/img/nations/smaller/carthage.png" />
+                          <div class="caption">Carthage</div >
+                  </li>
+                  <li class=" centered span2">
+                          <img src="/assets/home/img/nations/smaller/egypt.png" />
+                          <div class="caption">Egypt</div >
+                  </li>
+                  <li class=" centered span2">
+                          <img src="/assets/home/img/nations/smaller/greece.png" />
+                          <div class="caption">Greece</div >
+                  </li>
+                  <li class=" centered span2">
+                          <img src="/assets/home/img/nations/smaller/hellasphoenicia.png" />
+                          <div class="caption">Hellas Phoenicia</div >
+                  </li>
+                  <li class=" centered span2">
+                          <img src="/assets/home/img/nations/smaller/persia.png" />
+                          <div class="caption">Persia</div >
+                  </li>
+                  <li class=" centered span2">
+                          <img src="/assets/home/img/nations/smaller/rome.png" />
+                          <div class="caption">Rome</div >
+                  </li>
+              </ul>
+          </div>
+        </div>
             
         <h2>About the Sacrifice Target</h2>
             
