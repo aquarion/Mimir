@@ -36,10 +36,10 @@ use \Michelf\Markdown;
             <h2>Searching for <q>"<?PHP echo $_GET['q'] ?>"</q>
             <?PHP if($journal){ ?>
               in '<?PHP echo $journal->title; ?>'
-            <? } ?>
+            <?PHP } ?>
             <?PHP if($search_journal_type){ ?>
               in '<?PHP echo $search_journal_type; ?>'
-            <? } ?>
+            <?PHP } ?>
             at <?PHP echo Event::title() ?>
             </h2>
     </div>
