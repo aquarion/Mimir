@@ -8,11 +8,11 @@
     </div>
   </div>
   <div class="row-fluid">  
-    <div class="span6 centered">
+    <div class="span2 centered">
         <img src="/assets/home/img/nations/smaller/<?PHP echo $nation?>.png" />
     </div>
     <div class="span6">
-        <h1><?PHP echo $title ?></h1>
+        <h1><?PHP echo $nation_name ?></h1>
     </div>
   </div>
   <div class="row-fluid">  
@@ -21,6 +21,7 @@
           <li><a href="/altar/stats"><i class="icon-chevron-left"></i> Back to Global</a></li>
           <li><a href="#groups"><i class="icon-chevron-right"></i> Groups</a></li>
           <li><a href="#gods"><i class="icon-chevron-right"></i> Gods</a></li>
+          <li><a href="#champions"><i class="icon-chevron-right"></i> Champions</a></li>
           <li><a href="#priests"><i class="icon-chevron-right"></i> Priests</a></li>
           <li><a href="#priestmatrix"><i class="icon-chevron-right"></i> Priest by Gods</a></li>
         </ul>
@@ -69,6 +70,21 @@
                 $view_link = sprintf('<a class="icon-filter" href="/altar/?priest_name=%s"title="Kudos Tracker filter"></a>', urlencode($priest->priest_name));
                 ?>
                 <tr><td><?PHP echo $link; ?> (<?PHP echo $view_link ?>)</td><td><?PHP echo $priest->totalize ?></td></tr>
+            <?PHP } // end foreach?>
+            </tbody>
+        </table>
+        </section>
+        
+        <section id="champions">
+        <h2>Champions</h2>
+        <table class="table table-striped table-bordered ">
+            <thead><tr><th>Champion</th><th>Kudos</th></tr></thead>
+            <tbody>
+            <?PHP foreach($champions as $champion){ 
+                $link = sprintf('<a href="/altar/stats/%s/champion/%s" title="Show Champion Stats">%s</a>', $nation, urlencode($champion->champion_name), $champion->champion_name);
+                $view_link = sprintf('<a class="icon-filter" href="/altar/?champion_name=%s"title="Kudos Tracker filter"></a>', urlencode($champion->champion_name));
+                ?>
+                <tr><td><?PHP echo $link; ?> (<?PHP echo $view_link ?>)</td><td><?PHP echo $champion->totalize ?></td></tr>
             <?PHP } // end foreach?>
             </tbody>
         </table>

@@ -20,6 +20,8 @@ class Cauldron extends My_Controller {
         $sheets = $xlsx->getSheetNames();
 	    $mysterydata = array();
 
+	    $sheets = array('Previously Nation-Specifics', 'Already Single Nation');
+
         foreach($sheets as $sheet){
 	        $mysteries = $xlsx->getSheetData($sheet);
 	        //$mysteries = $xlsx->getSheetData('Basics');
@@ -37,6 +39,7 @@ class Cauldron extends My_Controller {
 	        	}
 
 	        	$mysterydata[] = array(
+	        		'sheet' => $sheet,
 	        		'name' => $mystery[0],
 	        		'coin' => $mystery[4],
 	        		'fire' => $mystery[5],
@@ -53,12 +56,24 @@ class Cauldron extends My_Controller {
 	    return $mysterydata;
     }
 
+    function sort_mysteries($a, $b){
+    	if ($a > $b){
+    		return 1;
+    	}
+    	return -1;
+    }
+
     function index(){
         $this->data['lnav_active'] = "cauldron";
-        $this->data['mysteries']   = $this->all_mysteries();
+        $mysteries  = $this->all_mysteries();
+
+        uasort($mysteries, array($this, 'sort_mysteries'));
+        $this->data['mysteries'] = $mysteries;
         $this->render("cauldron/all_mysteries");
 
     }
+
+
 }
 
 ?>

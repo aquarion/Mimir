@@ -13,6 +13,7 @@
 class Altar extends My_Controller {
 
     function init(){
+        $this->data['title'] = "Kudos";
         return $this->requires_auth();
     }
 
@@ -152,7 +153,7 @@ class Altar extends My_Controller {
     private function _nation_stats($nation) {
 
         $this->data['nation'] = $nation;
-        $this->data['title'] = Nation::title($nation);
+        $this->data['nation_name'] = Nation::title($nation);
         $this->data['capnation'] = Nation::name($nation);
 
         $params = array('nation' => $nation, 'event' => Event::current());
@@ -166,6 +167,12 @@ class Altar extends My_Controller {
             from kudos where nation = :nation and event_id = :event
             group by priest_name order by totalize desc';
         $this->data['priests'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
+
+        $sql = 'select champion_id, champion_name, sum(total) as totalize 
+            from kudos where nation = :nation and event_id = :event
+            and champion_name != ""
+            group by champion_name order by totalize desc';
+        $this->data['champions'] = Model::factory("Kudos")->raw_query($sql, $params)->find_many();
 
         $sql = 'select deity, sum(total) as totalize from kudos 
             where nation = :nation and event_id = :event
