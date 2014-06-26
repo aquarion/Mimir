@@ -12,7 +12,7 @@
  */
 class Event {
     
-    const current = 8;
+    const current = 9;
     
     static function events(){
         return array(
@@ -65,12 +65,12 @@ class Event {
                 'element' => 'Fire',
                 'year'    => '2014/1',
             ),
-            // The Future
             9 => array(
                 'title'   => 'The Dweller in the Deep',
                 'sign'    => 'Capricon',
                 'element' => 'Earth',
-                'year'    => '2014/2',
+                'year
+            // The Future'    => '2014/2',
             ),
             10 => array(
                 'title'   => 'The River of Night\'s Dreaming',
