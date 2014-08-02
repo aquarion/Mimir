@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span4">
+    <div class="span8">
         <?PHP include("navigation.php"); ?>
     </div>
-    <div class="span8">
+    <div class="span4">
         <?PHP if($mystery->id){ ?>
           <h1 class="pull-right">Edit Greater Mystery</h1>
         <?PHP } else { ?>
