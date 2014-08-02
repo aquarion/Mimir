@@ -23,7 +23,7 @@ if (count($_GET)) {
 		    <?PHP include("navigation.php"); ?>
 		</div>
 		<div class="span7">
-		    <h1 class="pull-right">Greater Mysteries</h1>
+		    <h1 class="pull-right">Greater Mysteries Cast</h1>
 		</div>
     </div>
     <div class="row-fluid">
@@ -42,23 +42,21 @@ if (count($_GET)) {
 			<tbody>
 
 		    <?PHP
-		    foreach ($recent as $line) {
-			$data = $line->as_array();
+		    foreach ($casts as $cast) {
 			#$data['priest_name'] = $data['priest_name']." (".$data['priest_id'].")";
 			echo '<tr>';
 
 			$include = array("mystery_type","effect_type","short_desc", "actions");
 
                         
-			echo '<td><a href="/mysterious/view/'.$data['id'].'">'.$data['name'].'</a></td>';
-			foreach ($data as $index => $value) {
+			echo '<td><a href="/mysterious/view/'.$cast->mystery->id.'#cast">'.$cast->mystery->name.'</a></td>';
+			foreach ($include as $index) {
                 if(in_array($index, $include)){
-				    echo '<td>' . ($value ? $value : '&nbsp;') . '</td>';
+				    echo '<td>' . $cast->mystery->$index . '</td>';
 			    }
 			}
 
-			echo '<td><a class="btn btn-mini btn-block" href="/mysterious/edit/' . $data['id'] . '">Edit</a>
-			<a class="btn-block btn btn-mini btn-success" href="/mysterious/cast/' . $data['id'] . '">Cast</a>
+			echo '<td><a class="btn btn-mini btn-block" href="/edit/gmcast/' . $cast->id . '">Edit</a>
 			</td>';
 
 			echo "</tr>\n";

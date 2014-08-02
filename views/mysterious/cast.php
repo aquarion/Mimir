@@ -12,12 +12,9 @@ use \Michelf\Markdown;
   <div class="row-fluid">
     <div class="span10 offset1">
 
-      <h1 class="pull-center"><?PHP echo $mystery->name ?> <a href="/mysterious/edit/<?PHP echo $mystery->id ?>" class="btn">Edit</a></h1>
+      <h1 class="pull-center">Casting "<?PHP echo $mystery->name ?>"</h1>
       <p><?PHP echo Markdown::defaultTransform($mystery->short_desc); ?></p>
-     
-      <blockquote><?PHP echo Markdown::defaultTransform($mystery->flavour); ?></blockquote>
 
-      <h2>Casting</h2>
       <table class="table">
         <tr>
           <th>Drachma</th>
@@ -40,11 +37,11 @@ use \Michelf\Markdown;
         <p><?PHP echo Markdown::defaultTransform($mystery->extra_requirements); ?></p>
       <?PHP } ?>
 
+
       <h2>Effect</h2>
-        <div class="effect_fade">
-          <?PHP echo Markdown::defaultTransform($mystery->effect); ?>
-          <div class="show-full"><a href="#">Show Full Effect</a></div>
-          <div class="hide-full"><a href="#">Hide Full Effect</a></div>
+        <div class="effect_fade"><?PHP echo Markdown::defaultTransform($mystery->effect); ?>
+        <div class="show-full"><a href="#">Show Full Effect</a></div>
+        <div class="hide-full"><a href="#">Hide Full Effect</a></div>
         </div>
 
 
@@ -55,21 +52,45 @@ use \Michelf\Markdown;
         <p><?PHP echo Markdown::defaultTransform($mystery->enhancements); ?></p>
       <?PHP } ?>
 
-      <?PHP if($cast){ ?>
-        <h1><a name="cast"></a>Casting Details</h1>
-        <?PHP foreach($cast as $casting) {?>
-          <h3>Casters</h3>
-          <p><?PHP echo Markdown::defaultTransform($casting->casters); ?></p>
-          <h3>Extras &amp; Targets</h3>
-          <p><?PHP echo Markdown::defaultTransform($casting->extras_and_targets); ?></p>
-          <h3>Notes</h3>
-          <p><?PHP echo Markdown::defaultTransform($casting->notes); ?></p>
-        <hr/>
+      <hr/>
 
-        <?PHP
-      }
-      } ?>
+      <h1>Casting Details</h1>
 
+
+  <div class="row-fluid">
+    <div class="span10 offset1">        
+        <form class="form-horizontal" action="<?PHP echo '/mysterious/cast/'.$mystery->id  ?>" method="POST">
+        <input type="hidden" name="posted" value="true">
+        <div class="control-group">
+          <label class="control-label" for="wmd-input-casters">Casters</label>
+          <div class="controls">
+            <div id="wmd-button-bar-casters"></div>
+            <textarea class="input-block-level" rows="10" name="casters" id="wmd-input-casters"></textarea>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="wmd-input-extras_and_targets">Extras &amp; Targets</label>
+          <div class="controls">
+            <div id="wmd-button-bar-extras_and_targets"></div>
+            <textarea class="input-block-level" rows="10" name="extras_and_targets" id="wmd-input-extras_and_targets"></textarea>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="wmd-input-notes">Notes</label>
+          <div class="controls">
+            <div id="wmd-button-bar-notes"></div>
+            <textarea class="input-block-level" rows="10" name="notes" id="wmd-input-notes"></textarea>
+          </div>
+        </div>
+
+            
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn">Make it so.</button>
+          </div>
+        </div>
+      </form>
+    </div>
     </div>
   </div>
 </div>

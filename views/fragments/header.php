@@ -71,6 +71,47 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
+
+.effect_fade {
+
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2em;
+  padding-bottom: 4em;
+}
+
+.effect_fade .show-full {
+  position: absolute; 
+  bottom: 0; left: 0;
+  width: 100%; 
+  text-align: center; 
+  height: 100px;
+  margin: 0; padding: 0 0; 
+
+  /* "transparent" only works here because == rgba(0,0,0,0) */ 
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, transparent),color-stop(1, white));
+        background-image: -webkit-linear-gradient(top, transparent, white);
+        background-image: -moz-linear-gradient(top, transparent, white);
+        background-image: -ms-linear-gradient(top, transparent, white);
+        background-image: -o-linear-gradient(top, transparent, white);
+}
+
+
+.effect_fade .show-full a, .effect_fade .hide-full a {
+  border-radius: .5em;
+  background: lightblue;
+  color: white;
+  padding: .24em 1em .24em 1em;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-right: -50%;
+}
+
+.effect_fade .hide-full {
+  display: none;
+}
     </style>
     <link href="/assets/away/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
