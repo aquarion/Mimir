@@ -112,3 +112,14 @@ create table blessing (
     author tinytext,
     PRIMARY KEY(id)
 )
+
+create table gmcast (
+    id bigint auto_increment,
+    mystery_id bigint,
+    casters mediumtext,
+    extras_and_targets mediumtext,
+    notes mediumtext,
+    processed boolean,
+    date_cast datetime,
+    PRIMARY KEY(id)
+)

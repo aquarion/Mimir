@@ -20,7 +20,9 @@ class Cauldron extends My_Controller {
         $sheets = $xlsx->getSheetNames();
 	    $mysterydata = array();
 
-	    $sheets = array('Previously Nation-Specifics', 'Already Single Nation');
+	    $sheets = array('Previously Nation-Specifics', 'Already Single Nation', 'Basics', 'World Forge');
+
+	    $this->data['types'] = array();
 
         foreach($sheets as $sheet){
 	        $mysteries = $xlsx->getSheetData($sheet);
@@ -41,16 +43,21 @@ class Cauldron extends My_Controller {
 	        	$mysterydata[] = array(
 	        		'sheet' => $sheet,
 	        		'name' => $mystery[0],
-	        		'coin' => $mystery[4],
-	        		'fire' => $mystery[5],
-	        		'earth' => $mystery[6],
-	        		'air' => $mystery[7],
-	        		'water' => $mystery[8],
-	        		'any' => $mystery[9],
-	        		'blood' => $mystery[10],
-	        		'effect' => $mystery[12+$offset]
+	        		'type' => $mystery[1],
+	        		'prime' => $mystery[2],
+	        		'coin' => $mystery[3],
+	        		'fire' => $mystery[4],
+	        		'earth' => $mystery[5],
+	        		'air' => $mystery[6],
+	        		'water' => $mystery[7],
+	        		'any' => $mystery[8],
+	        		'blood' => $mystery[9],
+	        		'effect' => $mystery[11+$offset]
 	        	);
+
+	        	$this->data['types'][$mystery[1]] = 1;
 	        }
+
 
 	    }
 	    return $mysterydata;

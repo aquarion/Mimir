@@ -49,6 +49,8 @@ A blessing has:
     A target
     A description
     An effect
+    A duration
+    A is_cancelled box
 
     A sub-blessing count
     A sub-blessing target

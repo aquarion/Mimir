@@ -13,9 +13,16 @@
 class Blesser extends My_Controller {
    
     function index(){
-        echo "Hello World";
-                
+        $this->render("blesser/pick_nation");
         
+    }
+
+    function nation_by_character(){
+        $this->render("blesser/nation_by_character");
+    }
+
+    function nation_by_god(){
+        $this->render("blesser/nation_by_character");
     }
 }
 

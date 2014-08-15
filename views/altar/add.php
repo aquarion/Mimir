@@ -274,7 +274,6 @@ Altar = {
         $(".kudossrc").change(Altar.recalculate_total);
         $("#lives").change(Altar.recalculate_life_bonus);
         
-        console.log("Hello");
         //$("#inputPID").typeahead({source : Altar.searchByPid});
         $("#inputPID").typeahead(Altar.searchByPid);
         $("#inputCharacter").typeahead({source : Altar.searchByPriestName});
