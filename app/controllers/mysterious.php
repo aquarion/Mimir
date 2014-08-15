@@ -212,11 +212,12 @@ class Mysterious extends My_Controller {
         $this->data['gnav_active'] = "mysterious";
         $this->data['lnav_active'] = "castings";
         $cast_cxn = Model::factory('GMCast');
-        $mystery_cxn = Model::factory('GreaterMystery');
+        
         if(!$arguments){
             $this->data['casts'] = $cast_cxn->order_by_asc("date_cast")->find_many();
             foreach($this->data['casts'] as $index => &$cast){
-                $cast->mystery = $mystery = $mystery_cxn->find_one($cast->mystery_id);
+                $mystery_cxn = Model::factory('GreaterMystery');
+                $cast->mystery = $mystery_cxn->find_one($cast->mystery_id);
             }
 
             $this->render("mysterious/cast_list");
