@@ -13,27 +13,13 @@
 class Edit extends My_Controller {
     
     function __call($name, $arguments){
-        $command = 'edit';
-
-        if(count($arguments[0]) > 1){
-            $id = $arguments[0][0];
-            $command = $arguments[0][1];
-        }
-
+        
         $thing = Model::factory($name);
         
         $sql = 'describe '.$name;
         $table = Model::factory($name)->raw_query($sql)->find_many();
         
-        $item = $thing->find_one($id);
-
-
-        if($item && $command == 'delete'){
-            $item->delete();
-            $this->data['success'] = "Delete successful";
-            $this->render("success");
-
-        }
+        $item = $thing->find_one($arguments[0]);
             
     	if(count($_POST)){
 
@@ -45,7 +31,6 @@ class Edit extends My_Controller {
     		}
     		$item->save();
     		$this->data['success'] = "Save successful";
-            $this->render("edit/success");
     	} 
            
             
@@ -68,7 +53,7 @@ class Edit extends My_Controller {
         $this->data['item']   = $item;
         $this->data['name']   = $name;
 
-        $this->render("edit/edit");
+        $this->render("edit");
     }
     
 }
