@@ -1,3 +1,4 @@
 etc/configLocal.ini
 htdocs/odysseywiki
 .vagrant
+doc/data.sql

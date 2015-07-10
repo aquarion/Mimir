@@ -11,9 +11,9 @@
  * @author Nicholas
  */
 class Event {
-    
-    const current = 9;
-    
+
+    const current = 11;
+
     static function events(){
         return array(
             1 => array(
@@ -94,21 +94,21 @@ class Event {
             ),
 
             13 => array(
-                'title'   => '2016/2',
+                'title'   => 'The Cycle of the Fates',
                 'sign'    => 'Taurus',
                 'element' => 'Earth',
                 'year'    => '2016/2',
             )
         );
     }
-    
+
     static function current(){
         if(isset($_COOKIE['event'])){
             return $_COOKIE['event'];
         }
         return Event::current;
     }
-    
+
     static function latest_event(){
         return Event::current;
     }
@@ -118,11 +118,11 @@ class Event {
         $events = Event::events();
 	return $events[$event][$attr];
     }
-    
+
     static function set_current($value){
         setcookie("event", $value, 0, '/');
     }
-    
+
     static function options(){
         $options = array();
         $events = Event::events();
@@ -138,7 +138,7 @@ class Event {
         //}
         return $options;
     }
-    
+
     static function title($i = false){
         if(!$i){
             $i = Event::current();

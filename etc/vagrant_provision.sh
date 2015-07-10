@@ -15,7 +15,7 @@ a2ensite mimir
 a2dissite default
 service apache2 restart
 
-## Mysql Setup 
+## Mysql Setup
 #debconf-set-selections <<< 'mysql-server mysql-server/root_password password $PASSWORD'
 #debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password $PASSWORD'
 
@@ -25,4 +25,25 @@ mysqladmin -u root password $PASSWORD
 echo "create database mimir;" | mysql -uroot -p$PASSWORD
 echo "grant all on mimir.* to webapp@localhost identified by 'webapp'" | mysql -uroot -p$PASSWORD
 
+print "Importing Schema"
 cat /vagrant/doc/schema.sql | mysql -uwebapp -pwebapp mimir
+
+if [[ -x /vagrant/doc/data.sql ]]
+then
+  echo "Importing Data"
+  cat /vagrant/doc/data.sql | mysql -uwebapp -pwebapp mimir
+fi
+
+cat "; this is an INI file
+[database]
+host = localhost
+port = 3306
+database = mimir
+user = NOT SET
+password = NOT SET
+
+[system]
+password = deity
+current_event = 11" > /vagrant/etc/configLocal.ini
+
+chown vagrant:vagrant /vagrant/etc/configLocal.ini

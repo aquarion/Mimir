@@ -4,3 +4,6 @@
 [submodule "lib/paris"]
 	path = lib/paris
 	url = git://github.com/j4mie/paris.git
+[submodule "lib/XLSXReader"]
+	path = lib/XLSXReader
+	url = git@github.com:gneustaetter/XLSXReader.git
