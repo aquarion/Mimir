@@ -148,55 +148,67 @@ class Mysterious extends My_Controller {
             $mystery_cxn = Model::factory('GreaterMystery');
 
             /*   
-              0 => string 'Greater mysteries' (length=17)
-              1 => string 'Plaque? ' (length=8)
-              2 => string 'Short Effect Line' (length=17)
-              3 => string 'Flavour Text' (length=12)
-              4 => string 'Type' (length=4)
-              5 => string 'Culture?' (length=8)
-              6 => string 'Coin' (length=4)
-              7 => string 'Prime' (length=5)
-              8 => string 'F' (length=1)
-              9 => string 'E' (length=1)
-              10 => string 'A' (length=1)
-              11 => string 'W' (length=1)
-              12 => string 'Blood' (length=5)
-              13 => string 'Cost' (length=4)
-              14 => string 'Duration' (length=8)
-              15 => string 'Source' (length=6)
-              16 => string 'Game effects' (length=12)
+             0  => string 'Code' (length=17)
+             1  => string 'Greater mysteries' (length=17)
+             2  => string 'Focus' (length=8)
+             3  => string 'Short Effect Line' (length=17)
+             4  => string 'Flavour Text' (length=12)
+             5  => string 'Type' (length=4)
+             6  => string 'Culture?' (length=8)
+             7  => string 'Coin' (length=4)
+             8  => string 'Prime' (length=5)
+             9  => string 'F' (length=1)
+             10 => string 'E' (length=1)
+             11 => string 'A' (length=1)
+             12 => string 'W' (length=1)
+             13 => string 'Blood' (length=5)
+             14 => string 'Cost' (length=4)
+             15 => string 'Duration' (length=8)
+             16 => string 'Source' (length=6)
+             17 => string 'Game effects' (length=12)
               */
 
-            $sheets = array(array_pop($sheets));
+
+            //$sheets = array(array_pop($sheets));
             foreach($sheets as $sheet){
+                if($sheet == "Tribute distribution"){
+                    continue;
+                }
                 $mysteries = $xlsx->getSheetData($sheet);
+                echo "<h2>$sheet</h2>";
                 foreach($mysteries as $i => $mystery){
-                    if($i == 0){
+                    if($i == 0 || !$mystery[1]){
                         continue;
                     }
 
                     $newmystery = $mystery_cxn->create();
                     $newmystery->event_id = Event::current();
                     $newmystery->sign_requirement = Event::current_attribute('sign');
+                    $newmystery->set = $sheet;
                     $newmystery->date_created = date(DATETIME_MYSQL);
-                    $newmystery->name = $mystery[0];
+                    $newmystery->name = $mystery[1];
                     $newmystery->mystery_type = $mystery[4];
-                    $newmystery->aquisition_type = $mystery[15];
-                    $newmystery->effect_type  = $mystery[4];
-                    $newmystery->culture = $mystery[5];
-                    $newmystery->prime = $mystery[7];
-                    $newmystery->drachma = $mystery[6];
-                    $newmystery->quin_earth = $mystery[9];
-                    $newmystery->quin_air = $mystery[10];
-                    $newmystery->quin_fire = $mystery[8];
-                    $newmystery->quin_water = $mystery[11];
-                    $newmystery->blood = $mystery[12];
-                    $newmystery->short_desc = $mystery[2];
-                    $newmystery->flavour = $mystery[3];
-                    $newmystery->duration = $mystery[14];
-                    $newmystery->effect = $mystery[16];
+                    $newmystery->aquisition_type = $mystery[16];
+                    $newmystery->effect_type  = $mystery[5];
+                    $newmystery->culture = $mystery[6];
+                    $newmystery->prime = $mystery[8];
+                    $newmystery->drachma = $mystery[7];
+                    $newmystery->quin_earth = $mystery[10];
+                    $newmystery->quin_air = $mystery[11];
+                    $newmystery->quin_fire = $mystery[9];
+                    $newmystery->quin_water = $mystery[12];
+                    $newmystery->blood = $mystery[13];
+                    $newmystery->short_desc = $mystery[3];
+                    $newmystery->flavour = $mystery[4];
+                    $newmystery->duration = $mystery[15];
+                    $newmystery->effect = $mystery[17];
+                    $newmystery->code = $mystery[0];
 
                     $newmystery->save();
+                    echo '<pre>';
+                    var_dump($newmystery->as_array());
+                    echo '</pre>';
+
 
 
 
@@ -204,7 +216,7 @@ class Mysterious extends My_Controller {
                 }
             }
 
-            header("Location: /mysterious");
+            //header("Location: /mysterious");
 
     }
 
@@ -212,6 +224,7 @@ class Mysterious extends My_Controller {
         $this->data['gnav_active'] = "mysterious";
         $this->data['lnav_active'] = "castings";
         $cast_cxn = Model::factory('GMCast');
+        $cast_cxn->where('event_id', Event::current());
         
         if(!$arguments){
             $this->data['casts'] = $cast_cxn->order_by_asc("date_cast")->find_many();
