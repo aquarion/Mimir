@@ -13,8 +13,8 @@
           <p><a href="/altar"><img src="/assets/home/img/section-icons/Pawn-Yellow-icon.png" width="128"/></a></p>
           <p class="btn-group"><a class="btn" href="/altar">View Sacrifices</a> <a class="btn" href="/altar/add">Add New</a></p>
         </div><!-- /.span3 -->
-        
-        <div class="span3 centered notyet">
+
+        <div class="span3 centered">
           <h2>Blessings</h2>
           <p><a href="/blesser"><img src="/assets/home/img/section-icons/Gift-5-icon.png" width="128"/></p>
           <p><a class="btn" href="/blesser">View details &raquo;</a></p>
@@ -37,7 +37,7 @@
           <p><img src="/assets/home/img/section-icons/pabodie-field-notes-icon.png" width="128"/></p>
           <p><a class="btn" href="/journals/">View details &raquo;</a></p>
         </div><!-- /.span3 -->
-        
+
         <div class="span3 centered notyet">
           <h2>Artifacts</h2>
           <p><img src="/assets/home/img/section-icons/Box-icon.png" width="128"/></p>
@@ -55,7 +55,7 @@
           <p><img src="/assets/home/img/section-icons/globe-icon.png" width="128"/></p>
           <p><a class="btn" href="/odygaz/">View details &raquo;</a></p>
         </div><!-- /.span3 -->
-        
+
     </div> <!-- /row -->
       <!-- div class="row">
         <div class="span5 offset2">
@@ -73,8 +73,8 @@
                 <li>Greater Mysteries Briefing Sheets (Large)
                 <li><strike>NPC Journals (Large)</strike>
                 <li>Journals "Recent Entries" page
-                
+
             </ul>
-        </div><!-- /.span3 
+        </div><!-- /.span3
     </div > <!-- /row -->
     </div> <!-- /container -->

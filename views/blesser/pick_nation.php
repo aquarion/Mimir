@@ -33,6 +33,7 @@
     </div>
     <div class="row-fluid">
         <div class="span12 ">
+          <ul class="thumbnails">
             <li class="thumbnail centered span4">
                 <a href="/blessings/nation/hellasphoenicia" >
                     <img src="/assets/home/img/nations/smaller/hellasphoenicia.png" />
@@ -54,6 +55,23 @@
         </ul>
     </div>
   </div>
-    
+  <div class="row-fluid">
+      <div class="span12 ">
+        <ul class="thumbnails">
+          <li class="thumbnail centered span6">
+              <a href="/blessings/all" >
+                  <img src="/assets/home/img/infinite.png" />
+                  <div class="caption">All the Everything</div >
+              </a>
+          </li>
+          <li class="thumbnail centered span6">
+              <a href="/blessings/" >
+                  <img src="/assets/home/img/create.png"/>
+                  <div class="caption">Create New</div >
+              </a>
+          </li>
+      </ul>
+  </div>
 </div>
 
+</div>
