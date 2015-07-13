@@ -11,19 +11,19 @@
     <div class="span12 ">
         <ul class="thumbnails">
             <li class="thumbnail centered span4" >
-                <a href="/blessings/nation/carthage" >
+                <a href="/blesser/nation/carthage" >
                     <img src="/assets/home/img/nations/smaller/carthage.png" />
                     <div class="caption">Carthage</div >
                 </a>
             </li>
             <li class="thumbnail centered span4">
-                <a href="/blessings/nation/egypt" >
+                <a href="/blesser/nation/egypt" >
                     <img src="/assets/home/img/nations/smaller/egypt.png" />
                     <div class="caption">Egypt</div >
                 </a>
             </li>
             <li class="thumbnail centered span4">
-                <a href="/blessings/nation/greece" >
+                <a href="/blesser/nation/greece" >
                     <img src="/assets/home/img/nations/smaller/greece.png" />
                     <div class="caption">Greece</div >
                 </a>
@@ -35,19 +35,19 @@
         <div class="span12 ">
           <ul class="thumbnails">
             <li class="thumbnail centered span4">
-                <a href="/blessings/nation/hellasphoenicia" >
+                <a href="/blesser/nation/hellasphoenicia" >
                     <img src="/assets/home/img/nations/smaller/hellasphoenicia.png" />
                     <div class="caption">Hellas Phoenicia</div >
                 </a>
             </li>
             <li class="thumbnail centered span4">
-                <a href="/blessings/nation/persia" >
+                <a href="/blesser/nation/persia" >
                     <img src="/assets/home/img/nations/smaller/persia.png" />
                     <div class="caption">Persia</div >
                 </a>
             </li>
             <li class="thumbnail centered span4">
-                <a href="/blessings/nation/rome" >
+                <a href="/blesser/nation/rome" >
                     <img src="/assets/home/img/nations/smaller/rome.png" />
                     <div class="caption">Rome</div >
                 </a>
@@ -59,13 +59,13 @@
       <div class="span12 ">
         <ul class="thumbnails">
           <li class="thumbnail centered span6">
-              <a href="/blessings/all" >
+              <a href="/blesser/all" >
                   <img src="/assets/home/img/infinite.png" />
                   <div class="caption">All the Everything</div >
               </a>
           </li>
           <li class="thumbnail centered span6">
-              <a href="/blessings/" >
+              <a href="/blesser/create" >
                   <img src="/assets/home/img/create.png"/>
                   <div class="caption">Create New</div >
               </a>

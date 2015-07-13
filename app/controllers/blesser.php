@@ -11,10 +11,14 @@
  * @author Nicholas
  */
 class Blesser extends My_Controller {
-   
+
     function index(){
         $this->render("blesser/pick_nation");
-        
+
+    }
+
+    function create(){
+        $this->render("blesser/create");
     }
 
     function nation_by_character(){
