@@ -25,7 +25,7 @@ mysqladmin -u root password $PASSWORD
 echo "create database mimir;" | mysql -uroot -p$PASSWORD
 echo "grant all on mimir.* to webapp@localhost identified by 'webapp'" | mysql -uroot -p$PASSWORD
 
-print "Importing Schema"
+echo "Importing Schema"
 cat /vagrant/doc/schema.sql | mysql -uwebapp -pwebapp mimir
 
 if [[ -x /vagrant/doc/data.sql ]]
@@ -34,7 +34,7 @@ then
   cat /vagrant/doc/data.sql | mysql -uwebapp -pwebapp mimir
 fi
 
-cat "; this is an INI file
+echo "; this is an INI file
 [database]
 host = localhost
 port = 3306

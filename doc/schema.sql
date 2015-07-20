@@ -96,22 +96,30 @@ create table greater_mystery (
     PRIMARY KEY(id)
 );
 
+
 create table blessing (
     id bigint auto_increment,
-    copied_from bigint null,
-    name tinytext,
-    issuer tinytext,
+    author tinytext,
     target_id int,
     target_name tinytext,
+    blessing_type tinytext,
+    from_type tinytext,
+    issuer tinytext,
     description text,
     effect text,
     event_id tinyint,
-    review_mark tinyint,
-    game_notes text,
+
+    review_plot tinyint,
+    review_ref tinyint,
+    review_sane tinyint,
+    reason tinytext,
     duration tinytext,
-    author tinytext,
+    tokens mediumtext,
+    date_created datetime,
+    date_edited datetime,
+    date_printed datetime,
     PRIMARY KEY(id)
-)
+);
 
 create table gmcast (
     id bigint auto_increment,
