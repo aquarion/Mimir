@@ -81,19 +81,29 @@ class Blessing extends My_Model {
 			+ $this->token(4, 'count');
 	}
 
-	function is_reviewed(){
-		/* review_plot tinyint,
+    function is_reviewed(){
+        /* review_plot tinyint,
     review_ref tinyint,
     review_sane tinyint,*/
-		if(!$this->review_plot){
-			return False;
-		} elseif (!$this->review_ref){
-			return False;
-		} elseif (!$this->review_sane){
-			return False;
-		}
-		return True;
-	}
+        if(!$this->review_plot){
+            return False;
+        } elseif (!$this->review_ref){
+            return False;
+        } elseif (!$this->review_sane){
+            return False;
+        }
+        return True;
+    }
+
+    function is_printed(){
+        /* review_plot tinyint,
+    review_ref tinyint,
+    review_sane tinyint,*/
+        if(!$this->date_printed){
+            return False;
+        }
+        return True;
+    }
 }
 
 ?>

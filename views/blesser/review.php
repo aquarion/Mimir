@@ -1,5 +1,6 @@
 <?PHP 
 use \Michelf\Markdown;
+$print = array();
 ?>
 <style type="text/css">
 .panel {
@@ -31,7 +32,10 @@ use \Michelf\Markdown;
     </div>
   </div>
 
-<?PHP foreach($blessings as $blessing){ ?>
+<?PHP foreach($blessings as $blessing){ 
+  $print[] = $blessing->target_id .':'. $blessing->target_name;
+
+  ?>
 <div class="panel">
   <div class="row-fluid">
     <div class="span2">
@@ -91,7 +95,20 @@ use \Michelf\Markdown;
   <a href="/blesser/create?id=<?PHP echo $blessing->id ?>" class="btn">Edit</a>
 </div>
 
-<?PHP } ?>
+<?PHP } 
+
+if(count($print)){
+  $print = implode("%%",array_unique($print));
+  ?>
+  <form method="POST" action="printpdf">
+    <input name="print" value="<?PHP echo $print ?>" />
+    <button class="btn btn-primary" href="#"><i class="icon-print icon-white"></i> Print</button>
+  </form>
+  <?PHP
+}
+
+
+?>
 
 
 

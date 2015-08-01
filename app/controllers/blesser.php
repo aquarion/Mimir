@@ -5,6 +5,50 @@
  * and open the template in the editor.
  */
 
+
+
+    // Include the main TCPDF library (search for installation path).
+    require_once('../lib/tcpdf/tcpdf.php');
+
+
+    // Extend the TCPDF class to create custom Header and Footer
+    class MYPDF extends TCPDF {
+
+        //Page header
+        public function Header() {
+            //$pdf->ImageSVG($file='images/testsvg.svg', $x=15, $y=30, $w='', $h='', $link='http://www.tcpdf.org', $align='', $palign='', $border=1, $fitonpage=false);
+
+            // $this->ImageSVG($file='assets/pdf/header.svg', $x=-30, $y=1, $w='', $h='', $link=false, $align='T', $palign='c', $border=0, $fitonpage=false);
+            // Logo
+            $image_file = 'assets/pdf/header.png';
+            $this->Image($image_file, -1, 0, 210, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+            //$file, $x='', $y='', $w=0, $h=0, $type='', $link='', $align='', $resize=false, $dpi=300, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false, $alt=false, $altimgs=array())
+
+            $this->SetX(0);
+            $this->SetY(20);
+            // // Set font
+            $this->SetFont('helvetica', 'B', 20);
+            // // Title
+            $this->Cell(0, 0, $this->title, 'LTRB', false, 'C', 0, '', 0, false, 'M', 'M');
+        }
+
+        // Page footer
+        public function Footer() {
+            // // Position at 15 mm from bottom
+            $this->SetY(-15);
+            $image_file = 'assets/pdf/footer.png';
+            $this->Image($image_file, -1, 280, 210, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+            // // Set font
+            // $this->SetFont('helvetica', 'I', 8);
+            // // Page number
+            // $this->Cell(0, 10, 'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+            //$this->SetY(-15);
+            // $this->ImageSVG($file='assets/pdf/footer.svg', $x=-30, $y=270, $w='', $h='', $link=false, $align='B', $palign='c', $border=0, $fitonpage=false);
+            
+        }
+    }
+
+
 /**
  * Description of blesser
  *
@@ -87,6 +131,76 @@ class Blesser extends My_Controller {
         $this->data['lnav_active'] = "review";
 
         $this->render("blesser/review");
+    }
+
+
+    function printqueue(){
+
+        $blessings = Model::factory('Blessing');
+        $blessings->where('event_id', Event::current());
+
+        $dataset = $blessings->order_by_asc("date_created")->find_many();
+
+        $blessingslist = array();
+
+        foreach($dataset as $blessing){
+            if ($blessing->is_reviewed() && !$blessing->is_printed() ){
+                $blessingslist[] = $blessing;
+            }
+        }
+        $this->data['blessings'] = $blessingslist;
+        $this->data['gnav_active'] = "blesser";
+        $this->data['lnav_active'] = "print";
+
+        $this->render("blesser/review");
+    }
+
+    function printpdf(){
+
+    // create new PDF document
+    $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+    // set document information
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor('Nicola Asuni');
+    $pdf->SetTitle('Special Abilities for for Player');
+    $pdf->SetSubject('TCPDF Tutorial');
+    $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+
+    // set auto page breaks
+    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+    // set image scale factor
+    $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+    // set some language-dependent strings (optional)
+    if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+        require_once(dirname(__FILE__).'/lang/eng.php');
+        $pdf->setLanguageArray($l);
+    }
+
+    // ---------------------------------------------------------
+
+    // set font
+    $pdf->SetFont('times', 'BI', 12);
+
+    // add a page
+    $pdf->AddPage();
+
+    // set some text to print
+    $txt = '
+    TCPDF Example 003
+
+    Custom page header and footer are defined by extending the TCPDF class and overriding the Header() and Footer() methods.
+    ';
+
+    // print a block of text using Write()
+    $pdf->Write(0, $txt, '', 0, 'C', true, 0, false, false, 0);
+
+    // ---------------------------------------------------------
+
+    //Close and output PDF document
+    $pdf->Output('example_003.pdf', 'I');
     }
 
     function all(){
