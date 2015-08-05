@@ -12,10 +12,10 @@ $print = array();
 </style>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span4">
+    <div class="span6">
         <?PHP include("navigation.php"); ?>
     </div>
-    <div class="span8">
+    <div class="span6">
         <h1 class="pull-right"><?PHP 
         if (isset($lnav_active)){
           echo ucwords($lnav_active);

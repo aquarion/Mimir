@@ -27,9 +27,6 @@
             $this->SetX(0);
             $this->SetY(20);
             // // Set font
-            $this->SetFont('helvetica', 'B', 20);
-            // // Title
-            $this->Cell(0, 0, $this->title, 'LTRB', false, 'C', 0, '', 0, false, 'M', 'M');
         }
 
         // Page footer
@@ -44,7 +41,12 @@
             // $this->Cell(0, 10, 'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
             //$this->SetY(-15);
             // $this->ImageSVG($file='assets/pdf/footer.svg', $x=-30, $y=270, $w='', $h='', $link=false, $align='B', $palign='c', $border=0, $fitonpage=false);
-            
+
+        }
+
+        public function AddY($int){
+          $y = $this->GetY();
+          $this->SetY($y+$int);
         }
     }
 
@@ -57,6 +59,7 @@
 class Blesser extends My_Controller {
 
     function index(){
+        $this->data['lnav_active'] = "index";
         $this->render("blesser/pick_nation");
 
     }
@@ -65,9 +68,9 @@ class Blesser extends My_Controller {
 
         $this->data['gnav_active'] = "blesser";
         $this->data['lnav_active'] = "add";
-        
+
         $blessing_factory = Model::factory('Blessing');
-        
+
 
         if(isset($_REQUEST['id'])){
             $blessing = $blessing_factory->find_one($_REQUEST['id']);
@@ -76,7 +79,7 @@ class Blesser extends My_Controller {
             $blessing->event_id = Event::current();
             $blessing->date_created = date(DATETIME_MYSQL);
         }
-        
+
 
         if (count($_POST)) {
             foreach ($_POST as $index => $value) {
@@ -86,7 +89,7 @@ class Blesser extends My_Controller {
                 $blessing->$index = $value;
             }
             $token = array();
-            for ($i=1; $i <= 4; $i++) { 
+            for ($i=1; $i <= 4; $i++) {
                 $token[$i]['effect'] = $_POST['token_effect'][$i];
                 $token[$i]['count']  = $_POST['token_count'][$i];
                 $token[$i]['target'] = $_POST['token_target'][$i];
@@ -157,54 +160,69 @@ class Blesser extends My_Controller {
 
     function printpdf(){
 
-    // create new PDF document
-    $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $blessings = Model::factory('Blessing');
+        $blessings->where('event_id', Event::current());
 
-    // set document information
-    $pdf->SetCreator(PDF_CREATOR);
-    $pdf->SetAuthor('Nicola Asuni');
-    $pdf->SetTitle('Special Abilities for for Player');
-    $pdf->SetSubject('TCPDF Tutorial');
-    $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+        $dataset = $blessings->order_by_asc("date_created")->find_many();
 
-    // set auto page breaks
-    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+        $blessingslist = array();
 
-    // set image scale factor
-    $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        foreach($dataset as $blessing){
+            if ($blessing->is_reviewed() ){
+                $blessingslist[] = $blessing;
+            }
+        }
+        // create new PDF document
+        $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-    // set some language-dependent strings (optional)
-    if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
-        require_once(dirname(__FILE__).'/lang/eng.php');
-        $pdf->setLanguageArray($l);
-    }
+        // set auto page breaks
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
-    // ---------------------------------------------------------
+        // set image scale factor
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
-    // set font
-    $pdf->SetFont('times', 'BI', 12);
+        // set some language-dependent strings (optional)
+        if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+            require_once(dirname(__FILE__).'/lang/eng.php');
+            $pdf->setLanguageArray($l);
+        }
 
-    // add a page
-    $pdf->AddPage();
+        // ---------------------------------------------------------
 
-    // set some text to print
-    $txt = '
-    TCPDF Example 003
+        // set font
+        $pdf->SetFont('times', 'BI', 12);
 
-    Custom page header and footer are defined by extending the TCPDF class and overriding the Header() and Footer() methods.
-    ';
+        // add a page
+        $pdf->AddPage();
 
-    // print a block of text using Write()
-    $pdf->Write(0, $txt, '', 0, 'C', true, 0, false, false, 0);
+        $pdf->SetY(20);
 
-    // ---------------------------------------------------------
 
-    //Close and output PDF document
-    $pdf->Output('example_003.pdf', 'I');
+        $pdf->Write(0, 'Special Abilities for for Player', '', 0, 'C', 2, 0, false, false, 0);
+
+        $pdf->AddY(5);
+        foreach($blessingslist as $blessing){
+          $pdf->Cell(0, 0, $blessing->description, 'LTRB', 2, 'C', 0, '', 0, false, 'M', 'M');
+        }
+        // // set some text to print
+        // $txt = '
+        // TCPDF Example 003
+        //
+        // Custom page header and footer are defined by extending the TCPDF class and overriding the Header() and Footer() methods.
+        // ';
+        //
+        // // print a block of text using Write()
+        // $pdf->Write(0, $txt, '', 0, 'C', true, 0, false, false, 0);
+
+        // ---------------------------------------------------------
+
+        //Close and output PDF document
+        $pdf->Output('example_003.pdf', 'I');
     }
 
     function all(){
 
+        $this->data['lnav_active'] = "all";
         $blessings = Model::factory('Blessing');
         $blessings->where('event_id', Event::current());
 
@@ -234,18 +252,18 @@ class Blesser extends My_Controller {
         $htmlid = $_POST['id'];
         $cat    = $_POST['cat'];
         list($js, $id) = explode("-", $_POST['id'], 2);
-        
+
         $return['id'] = $id;
         $return['htmlid'] = $htmlid;
-        
+
         $blessing = Model::factory("Blessing")->find_one($id);
-        
+
         if(!$blessing){
             $data['error'] = "Could not load that entry";
-            echo json_encode($return);      
+            echo json_encode($return);
             return;
-        } 
-        
+        }
+
         switch ($intent){
             case "review":
                 $return['addevent'] = "unreview";
@@ -260,11 +278,11 @@ class Blesser extends My_Controller {
                     $return['addclass'] = "btn-inverse";
                     $blessing->review_sane = 1;
                 }
-                
+
                 $blessing->save();
-              
+
                 break;
-            
+
             case "unreview":
                 $return['addevent'] = "review";
 
@@ -278,19 +296,169 @@ class Blesser extends My_Controller {
                     $return['removeclass'] = "btn-inverse";
                     $blessing->review_sane = null;
                 }
-                
+
                 $blessing->save();
-              
+
                 break;
-            
+
             default:
                 $return['addevent'] = "wtf? ".$intent;
-            
+
         }
-                
-        echo json_encode($return);      
+
+        echo json_encode($return);
         return;
     }
-}
 
-?>
+        public function import(){
+            if(isset($_FILES['import'])){
+
+                // Undefined | Multiple Files | $_FILES Corruption Attack
+                // If this request falls under any of them, treat it invalid.
+                if (
+                    !isset($_FILES['import']['error']) ||
+                    is_array($_FILES['import']['error'])
+                ) {
+                    die('Invalid parameters.');
+                }
+
+                // Check $_FILES['import']['error'] value.
+                switch ($_FILES['import']['error']) {
+                    case UPLOAD_ERR_OK:
+                        break;
+                    case UPLOAD_ERR_NO_FILE:
+                        die('No file sent.');
+                    case UPLOAD_ERR_INI_SIZE:
+                    case UPLOAD_ERR_FORM_SIZE:
+                        die('Exceeded filesize limit.');
+                    default:
+                        die('Unknown errors.');
+                }
+                $this->importBlessings($_FILES['import']['tmp_name']);
+
+            } else {
+                $this->data['gnav_active'] = "blessr";
+                $this->data['lnav_active'] = "import";
+
+                $this->render("blesser/import_form");
+
+            }
+        }
+
+        private function importBlessings($filename, $event_id = 9){
+
+                require('../lib/XLSXReader/XLSXReader.php');
+                $xlsx = new XLSXReader($filename);
+                $sheets = $xlsx->getSheetNames();
+
+                $blessing_factory = Model::factory('Blessing');
+
+                /*array(10) {
+                  [0]=>
+                  string(6) "Number"
+                  [1]=>
+                  string(6) "Nation"
+                  [2]=>
+                  string(5) "Deity"
+                  [3]=>
+                  string(8) "Duration"
+                  [4]=>
+                  string(5) "Owner"
+                  [5]=>
+                  string(3) "PID"
+                  [6]=>
+                  string(6) "Target"
+                  [7]=>
+                  string(6) "Reason"
+                  [8]=>
+                  string(6) "Effect"
+                  [9]=>
+                  string(12) "Curse effect"
+}
+                  */
+
+
+                //$sheets = array(array_pop($sheets));
+                foreach($sheets as $sheet){
+                    $blessings = $xlsx->getSheetData($sheet);
+                    echo "<h2>$sheet</h2>";
+                    foreach($blessings as $i => $blessing){
+                        if($i == 0){
+                            continue;
+                        }
+
+
+                        $newblessing = $blessing_factory->create();
+
+
+                        printf("Looking for %s<br/>", $blessing[0]);
+                        $existsblessing = $blessing_factory->find_one($blessing[0]);
+                        if($existsblessing){
+                            printf("Blessing %s exists<br/>", $blessing[0]);
+                            continue;
+                        }
+                        var_dump($existsblessing);
+
+
+                        $newblessing->event_id = Event::current();
+                        $newblessing->date_created = date(DATETIME_MYSQL);
+
+
+                        $newblessing->id = $blessing[0]; 
+                        $newblessing->author = 'Excel Import'; 
+                        $newblessing->target_id = $blessing[5]; 
+                        $newblessing->target_name = $blessing[4]; 
+                        $newblessing->target_nation = $blessing[1]; 
+                        $newblessing->blessing_type = $blessing[7]; 
+                        $newblessing->from_type = ''; 
+                        $newblessing->issuer = $blessing[2]; 
+                        $newblessing->description = '';//$blessing[8]; 
+                        $newblessing->effect = $blessing[8];  
+                        $newblessing->review_plot = 1; 
+                        $newblessing->review_ref = 0; 
+                        $newblessing->review_sane = 0; 
+                        $newblessing->reason = $blessing[7]; 
+                        $newblessing->duration = $blessing[3]; 
+
+                        $token = array();
+                        for ($i=1; $i <= 4; $i++) {
+                            $token[$i]['effect'] = null;
+                            $token[$i]['count']  = null;
+                            $token[$i]['target'] = null;
+                        }
+                        if($blessing[9]){
+                            $token[1]['effect'] = $blessing[9];
+                            $token[1]['count'] = 1;
+                            $token[1]['target'] = '';
+                        }
+
+                        $newblessing->tokens = json_encode($token);
+
+                        $validate = $newblessing->validate();
+
+                        echo '<pre>';
+                        var_dump($blessing);
+                        var_dump($newblessing->as_array());
+                        echo '</pre><hr/>';
+
+                        if ($validate === true) {
+                            $newblessing->date_edited = date(DATETIME_MYSQL);
+                            $newblessing->save();
+                        } else {
+                            var_dump($validate);
+                            die();
+                        }
+
+                        $newblessing->save();
+
+
+
+
+
+                    }
+                }
+
+                //header("Location: /mysterious");
+
+        }
+}

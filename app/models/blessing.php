@@ -1,19 +1,14 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of entry
+ * Description of blessing
  *
  * @author Nicholas
  */
 class Blessing extends My_Model {
 
     public static $_table = 'blessing';
-    
+
     public function validate_event_id($value){
         return $this->_validate_numeric("Event", $value);
     }
@@ -28,18 +23,18 @@ class Blessing extends My_Model {
     public function validate_target_name($value){
         return $this->_validate_required("Target's Name", $value);
     }
-    public function validate_blessing_type($value){
-        return $this->_validate_required("Blessing Type", $value);
-    }
-    public function validate_reason($value){
-        return $this->_validate_required("Reason", $value);
-    }
+    // public function validate_blessing_type($value){
+    //     return $this->_validate_required("Blessing Type", $value);
+    // }
+    // public function validate_reason($value){
+    //     return $this->_validate_required("Reason", $value);
+    // }
     public function validate_duration($value){
         return $this->_validate_required("Duration", $value);
     }
-    public function validate_description($value){
-        return $this->_validate_required("Description", $value);
-    }
+    // public function validate_description($value){
+    //     //return $this->_validate_required("Description", $value);
+    // }
 
     public function validate_effect($value){
         return $this->_validate_required("Effect", $value);
@@ -47,9 +42,9 @@ class Blessing extends My_Model {
     public function validate_issuer($value){
         return $this->_validate_required("Issuer", $value);
     }
-    public function validate_from_type($value){
-        return $this->_validate_required("Source", $value);
-    }
+    // public function validate_from_type($value){
+    //     //return $this->_validate_required("Source", $value);
+    // }
 
     public function validate_token_count($value){
         foreach($value as $i => $int){
@@ -75,9 +70,9 @@ class Blessing extends My_Model {
 
 	function has_tokens(){
 		// echo '<pre>'.print_r(json_decode($this->tokens, true),1).'</pre>';
-		return $this->token(1, 'count') 
-			+ $this->token(2, 'count')  
-			+ $this->token(3, 'count')  
+		return $this->token(1, 'count')
+			+ $this->token(2, 'count')
+			+ $this->token(3, 'count')
 			+ $this->token(4, 'count');
 	}
 

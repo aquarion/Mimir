@@ -7,10 +7,10 @@
 </style>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span4">
+    <div class="span8">
         <?PHP include("navigation.php"); ?>
     </div>
-    <div class="span8">
+    <div class="span4">
         <h1 class="pull-right">Add New Blessing</h1>
     </div>
   </div>
@@ -102,8 +102,11 @@
                   'End of the Annual',
                   'Next Arena Battle or Quest this Annual',
                   'Any Arena Battle or Quest this Annual',
+                  "Until Told Otherwise",
                   'Until the stars go out',
                   'Until Revoked',
+                  'Until Death',
+                  'Until Resolved',
                   'Other'
               );
               $selected = 'selected="selected"';

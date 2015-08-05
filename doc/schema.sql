@@ -37,7 +37,7 @@ create table journal (
 
 create table entry (
     id bigint auto_increment,
-    journal_id INT NULL, 
+    journal_id INT NULL,
     event tinyint,
     title varchar(255),
     content mediumtext,
@@ -91,7 +91,7 @@ create table greater_mystery (
     duration varchar(255),
     effect text,
     enhancements text,
-    
+
     date_created datetime,
     PRIMARY KEY(id)
 );
@@ -102,6 +102,7 @@ create table blessing (
     author tinytext,
     target_id int,
     target_name tinytext,
+    target_nation tinytext,
     blessing_type tinytext,
     from_type tinytext,
     issuer tinytext,
