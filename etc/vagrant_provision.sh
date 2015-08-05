@@ -7,7 +7,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get install -q -y vim curl
 
 ## Apache Setup
-apt-get install -q -y apache2 libapache2-mod-php5 php5-json php5-xdebug php5-mysqlnd
+apt-get install -q -y apache2 libapache2-mod-php5 php5-json php5-xdebug php5-mysqlnd php5-imagick
 a2enmod rewrite
 ln -fs /vagrant /var/www/mimir
 ln -s /vagrant/etc/apache_dev.conf /etc/apache2/sites-available/mimir
@@ -20,7 +20,7 @@ service apache2 restart
 #debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password $PASSWORD'
 
 export PASSWORD=asl33p
-apt-get install -q -y mysql-server-5.5 mysql-client-5.5
+apt-get install -qq -y mysql-server-5.5 mysql-client-5.5
 mysqladmin -u root password $PASSWORD
 echo "create database mimir;" | mysql -uroot -p$PASSWORD
 echo "grant all on mimir.* to webapp@localhost identified by 'webapp'" | mysql -uroot -p$PASSWORD
@@ -38,9 +38,9 @@ echo "; this is an INI file
 [database]
 host = localhost
 port = 3306
-database = mimir
-user = NOT SET
-password = NOT SET
+name = mimir
+user = webapp
+password = webapp
 
 [system]
 password = deity

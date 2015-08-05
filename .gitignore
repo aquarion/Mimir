@@ -3,3 +3,4 @@ htdocs/odysseywiki
 .vagrant
 .phpintel
 doc/data.sql
+.tags1
