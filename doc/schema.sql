@@ -61,7 +61,7 @@ create table player (
     `kit` tinyint,
     `email` varchar(255),
     `event_id` tinyint not null,
-     primary key(id)
+     primary key(id),
      CONSTRAINT uc_player_event UNIQUE (pid,character_name,event_id)
 );
 
