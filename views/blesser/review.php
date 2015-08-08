@@ -65,6 +65,15 @@ $print = array();
           <button class="btn <?PHP echo $blessing->review_plot ? 'btn-warning unreview' : 'review' ?>" id="plotreview-<?PHP echo $blessing->id ?>">Story</button>
           <button class="btn <?PHP echo $blessing->review_sane ? 'btn-inverse unreview' : 'review' ?>" id="sanityreview-<?PHP echo $blessing->id ?>">Sanity Check</button>
         </div>
+        <?PHP if ($blessing->date_printed){
+          print "Last printed: ".date("r", $blessing->date_printed);
+        } else {
+          print "Not printed: ";
+          print '<label class="checkbox" for="canprint-'.$blessing->id.'">'
+            .'<input type="checkbox" id="canprint-'.$blessing->id.'"'
+            .($blessing->can_print ? 'CHECKED="CHECKED" class="disableprint" ' : ' class="enableprint"')
+            .'>Can Print?</label>'; 
+        } ?>
       </p>
     </div>
   </div>
@@ -92,7 +101,8 @@ $print = array();
 
     </div>
   <?PHP } ?>
-  <a href="/blesser/create?id=<?PHP echo $blessing->id ?>" class="btn">Edit</a>
+  <a href="/blesser/create?id=<?PHP echo $blessing->id ?>" class="btn"><i class="icon-trash icon-edit"></i> Edit</a>
+  <button  data-href="/blesser/delete?id=<?PHP echo $blessing->id ?>" class="btn btn-danger pull-right deleteblessing"><i class="icon-trash icon-white"></i> Delete</a>
 </div>
 
 <?PHP } 
@@ -110,7 +120,22 @@ if(count($print)){
 
 ?>
 
-
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Delete Blessing
+            </div>
+            <div class="modal-body" id="deleteBlessingText">
+                Sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 
@@ -129,6 +154,23 @@ BlessingReview = {
         $(this).off("click", BlessingReview.unreview);
         $.post("/blesser/ajax/unreview", data, BlessingReview.success, "json");
     },
+
+    enableprint : function(){
+       console.log('canprint');
+        data = {id : $(this).attr("id") }
+        $(this).off("click", BlessingReview.canprint);
+        this.checked = true;
+        $.post("/blesser/ajax/enableprint", data, BlessingReview.success, "json");
+    },
+
+    disableprint : function(){
+       console.log('cannotprint');
+        data = {id : $(this).attr("id") }
+        $(this).off("click", BlessingReview.cannotprint);
+        this.checked = false;
+        $.post("/blesser/ajax/disableprint", data, BlessingReview.success, "json");
+    },
+
     success : function(data, textStatus, jqXHR){
         if(data.error){
             $('<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
@@ -154,6 +196,8 @@ BlessingReview = {
             $('#flagged_count').html(data.attention)
         }
     },
+
+
     
 };
 
@@ -161,6 +205,16 @@ $(document).ready(function(){
     
    $('.review').on("click", BlessingReview.review);
    $('.unreview').on("click", BlessingReview.unreview);
+    
+   $('.enableprint').on("click", BlessingReview.enableprint);
+   $('.disableprint').on("click", BlessingReview.disableprint);
+
+   $('.deleteblessing').click(function(object){
+      href = $(this).data('href');
+      $('#confirm-delete a').attr('href', href);
+      $('#confirm-delete').modal('show');
+   })
+
    
 });
 </script>

@@ -36,7 +36,12 @@
 
 
     <!-- Local -->
-    <script src="/assets/home/js/mimir.js"></script>
+    <script type="text/javascript" src="/assets/home/js/mimir.js"></script>
+
+    <script type="text/javascript" >
+var twtypeahead = jQuery.fn.typeahead.noConflict();
+jQuery.fn.twtypeahead = twtypeahead;
+</script>
     <script src="/assets/home/js/sticky_headers.js"></script>
     <link href="/assets/home/css/style.css" rel="stylesheet">
 

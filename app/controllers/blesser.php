@@ -120,7 +120,7 @@ class Blesser extends My_Controller {
         $blessings = Model::factory('Blessing');
         $blessings->where('event_id', Event::current());
 
-        $dataset = $blessings->order_by_asc("date_created")->find_many();
+        $dataset = $blessings->order_by_asc("target_name")->find_many();
 
         $blessingslist = array();
 
@@ -142,12 +142,12 @@ class Blesser extends My_Controller {
         $blessings = Model::factory('Blessing');
         $blessings->where('event_id', Event::current());
 
-        $dataset = $blessings->order_by_asc("date_created")->find_many();
+        $dataset = $blessings->order_by_asc("target_name")->find_many();
 
         $blessingslist = array();
 
         foreach($dataset as $blessing){
-            if ($blessing->is_reviewed() && !$blessing->is_printed() ){
+            if ($blessing->is_reviewed() && !$blessing->is_printed() && $blessing->can_print ){
                 $blessingslist[] = $blessing;
             }
         }
@@ -250,7 +250,7 @@ class Blesser extends My_Controller {
         $intent = $intent[0];
         $return = array();
         $htmlid = $_POST['id'];
-        $cat    = $_POST['cat'];
+        $cat    = isset($_POST['cat']) ? $_POST['cat'] : false;
         list($js, $id) = explode("-", $_POST['id'], 2);
 
         $return['id'] = $id;
@@ -301,6 +301,18 @@ class Blesser extends My_Controller {
 
                 break;
 
+            case "enableprint":
+                $blessing->can_print = true;
+                $return['addevent'] = 'disableprint';
+                $blessing->save();
+                break;
+
+            case "disableprint":
+                $blessing->can_print = false;
+                $return['addevent'] = 'enableprint';
+                $blessing->save();
+                break;
+
             default:
                 $return['addevent'] = "wtf? ".$intent;
 
@@ -308,6 +320,19 @@ class Blesser extends My_Controller {
 
         echo json_encode($return);
         return;
+    }
+
+    public function delete(){
+        $blessing_factory = Model::factory('Blessing');
+        
+        $id = $_REQUEST['id'];
+
+        $newblessing = $blessing_factory->find_one($id);
+        if($newblessing){
+            $newblessing->delete();
+        }
+
+        return $this->_redirect("/blesser");
     }
 
         public function import(){
@@ -351,7 +376,6 @@ class Blesser extends My_Controller {
                 $xlsx = new XLSXReader($filename);
                 $sheets = $xlsx->getSheetNames();
 
-                $blessing_factory = Model::factory('Blessing');
 
                 /*array(10) {
                   [0]=>
@@ -388,23 +412,23 @@ class Blesser extends My_Controller {
                         }
 
 
-                        $newblessing = $blessing_factory->create();
+                        $blessing_factory = Model::factory('Blessing');
+                        
 
 
                         printf("Looking for %s<br/>", $blessing[0]);
-                        $existsblessing = $blessing_factory->find_one($blessing[0]);
-                        if($existsblessing){
+                        $newblessing = $blessing_factory->find_one($blessing[0]);
+                        if($newblessing){
                             printf("Blessing %s exists<br/>", $blessing[0]);
-                            continue;
+                        } else {
+                            $newblessing = $blessing_factory->create();
+                            $newblessing->event_id = Event::current();
+                            $newblessing->date_created = date(DATETIME_MYSQL);
+                            $newblessing->id = $blessing[0]; 
                         }
-                        var_dump($existsblessing);
 
 
-                        $newblessing->event_id = Event::current();
-                        $newblessing->date_created = date(DATETIME_MYSQL);
 
-
-                        $newblessing->id = $blessing[0]; 
                         $newblessing->author = 'Excel Import'; 
                         $newblessing->target_id = $blessing[5]; 
                         $newblessing->target_name = $blessing[4]; 
@@ -419,6 +443,7 @@ class Blesser extends My_Controller {
                         $newblessing->review_sane = 0; 
                         $newblessing->reason = $blessing[7]; 
                         $newblessing->duration = $blessing[3]; 
+                        $newblessing->date_printed = date(DATETIME_MYSQL); 
 
                         $token = array();
                         for ($i=1; $i <= 4; $i++) {

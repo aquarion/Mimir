@@ -1,10 +1,5 @@
 
-var twtypeahead = jQuery.fn.typeahead.noConflict();
-jQuery.fn.twtypeahead = twtypeahead;
-
-
 Mimir = {
-
 
     players : {},
 

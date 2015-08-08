@@ -45,6 +45,10 @@
         <div class="control-group">
           <label class="control-label" for="inputTarget">Target</label>
           <div class="controls">
+            <div class="input-prepend">
+              <span class="add-on"><i class="icon-search"></i></span>
+              <input type="search" id="inputSearch" placeholder="Search"> 
+            </div> <br/>
             <input type="number" class="input-mini" id="inputPID" name="target_id" placeholder="PID" length="4" min="0" value="<?PHP echo $blessing->target_id ?>">
             <input type="text" id="inputCharacter" placeholder="Character" name="target_name" value="<?PHP echo $blessing->target_name ?>">
           </div>
@@ -207,50 +211,45 @@
 </div>
 <script type="text/javascript">
 
-Altar = {
-
-    recalculate_total : function(){
-        var total = 0;
-        $(".kudossrc").each(function(thing){
-            thing = $(this);
-            thisTotal = thing.val() * thing.attr("data-value");
-            //console.log(this.id+" @ "+thing.val() +" x "+thing.attr("data-value")+" = "+thisTotal);
-            total = total + thisTotal;
-        });
-        $('#total').val(total);
-    },
-
-    recalculate_life_bonus : function(){
-        lives = $('#lives').val();
-        value = $('#lives').attr("data-value");
-        $('#life_bonus').val(lives*value);
-        Altar.recalculate_total();
-    },
-
-    searchByPriestName : function(query, process){
-        console.log(query);
-        console.log(process);
-    },
-
-    searchByPid : function(query, process){
-        console.log(query);
-        console.log(process);
-        return $.get('/typeahead', { pid: query }, function (data) {
-            return process(data.options);
-        });
-    },
-
+Blesser = {
 
     add_init : function(){
-        $(".kudossrc").change(Altar.recalculate_total);
-        $("#lives").change(Altar.recalculate_life_bonus);
 
-        //$("#inputPID").typeahead({source : Altar.searchByPid});
-        $("#inputPID").typeahead(Altar.searchByPid);
-        $("#inputCharacter").typeahead({source : Altar.searchByPriestName});
+        // Typeahead Options
+        var options = {
+          classNames: {
+              input: 'Typeahead-input',
+              hint: 'Typeahead-hint',
+              selectable: 'Typeahead-selectable'
+            }
+        }
+
+
+        // Setup Priest Search
+
+        $('#inputSearch').twtypeahead(options, {
+          name: 'players',
+          source: players
+        });
+
+
+        $('#inputSearch').bind('typeahead:select', function(ev, suggestion) {
+          player = Mimir.players[suggestion]
+          $('#inputPID').val(player.pid);
+          $('#inputCharacter').val(player.character_name);
+          $('#inputGroup').val(player.group);
+          $('#inputNation').val(player.nation.toLowerCase());
+          if(player.path !== "Priest"){
+            $('#priestWarning').removeClass('hidden');
+          } else {
+            $('#priestWarning').addClass('hidden');
+          }
+        });
+
+        $('#inputSearch').click(function(){$('#inputSearch').val("")});
 
     }
 }
 
-$(document).ready(Altar.add_init)
+$(document).ready(Blesser.add_init)
 </script>

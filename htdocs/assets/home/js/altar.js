@@ -45,7 +45,7 @@ Altar = {
 
 
         $('#inputSearch').bind('typeahead:select', function(ev, suggestion) {
-          player = Altar.players[suggestion]
+          player = Mimir.players[suggestion]
           $('#inputPID').val(player.pid);
           $('#inputCharacter').val(player.character_name);
           $('#inputGroup').val(player.group);
@@ -67,7 +67,7 @@ Altar = {
         });
 
         $('#inputChampionSearch').bind('typeahead:select', function(ev, suggestion) {
-          player = Altar.players[suggestion]
+          player = Mimir.players[suggestion]
           $('#inputChampPID').val(player.pid);
           $('#inputChamption').val(player.character_name);
           if(player.path !== "Champion"){
@@ -94,10 +94,10 @@ Altar = {
         $('.detailcolumn').toggle();
     },
       
-    add_init : function(){
+    recent_init : function(){
         Altar.make_table_sortable();
-              $('.detailcolumn').hide();
-              $('.toggledetailcolumn').click(Altar.toggle_details);
+        $('.detailcolumn').hide();
+        $('.toggledetailcolumn').click(Altar.toggle_details);
     }
     
 }
