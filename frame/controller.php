@@ -33,6 +33,12 @@ class Controller {
         include(VIEWS_LOC.'/'.$this->template);
         #include(VIEWS_LOC."/fragments/footer.php");
     }
+
+    function renderJson($array){
+        header("Content-Type: text/json");
+        print json_encode($array);
+        return;
+    }
     
     function __call($method, $arguments){
         throw new Exception_FourOhFour("$method Not found");

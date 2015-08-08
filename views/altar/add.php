@@ -44,8 +44,14 @@
         <div class="control-group">
           <label class="control-label" for="inputPriest">Priest</label>
           <div class="controls">
+          <div class="input-prepend">
+            <span class="add-on"><i class="icon-search"></i></span>
+            <input type="search" id="inputSearch" placeholder="Search"> 
+          </div> (If the wrong character keeps appearing, check previous characters are marked dead, then get Aq to regenerate the search)<br/>
+            
             <input type="number" class="input-mini" id="inputPID" name="priest_id" placeholder="PID" length="4" min="0" value="<?PHP echo $kudo->priest_id ?>">
             <input type="text" id="inputCharacter" placeholder="Character" name="priest_name" value="<?PHP echo $kudo->priest_name ?>">
+            <div id="priestWarning" class="alert alert-warning hidden" style="margin-top: 5px">Warning: That's not a priest</div>
           </div>
         </div>
             
@@ -211,8 +217,13 @@
         <div class="control-group">
           <label class="control-label" for="inputChamp">On Behalf of Champion</label>
           <div class="controls">
+          <div class="input-prepend">
+            <span class="add-on"><i class="icon-search"></i></span>
+            <input type="search" id="inputChampionSearch" placeholder="Search">
+          </div><br/>
             <input type="number" class="input-mini" id="inputChampPID" name="champion_id" placeholder="PID" length="4" min="0" value="<?PHP echo '' ?>">
             <input type="text" id="inputChamption" placeholder="Champion" name="champion_name" value="<?PHP echo '' ?>">
+            <div id="champWarning" class="alert alert-error hidden" style="margin-top: 5px">Warning: That's not a champion</div>
           </div>
         </div>
                 

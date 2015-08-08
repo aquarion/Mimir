@@ -19,10 +19,10 @@ if (count($_GET)) {
 </style>
 <div class="container-fluid">
     <div class="row-fluid">
-	<div class="span3">
+	<div class="span5">
 	    <?PHP include("navigation.php"); ?>
 	</div>
-	<div class="span9">
+	<div class="span7">
 	    <h1 class="pull-right">Kudos Tracker</h1>
 	</div>
     </div>

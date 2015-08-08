@@ -72,4 +72,21 @@ class Players extends My_Controller {
 
         $this->render("players/import");
     }
+
+    function alljson(){
+		$player_factory = Model::factory('Player');
+        
+        $players = $player_factory
+        	->where('event_id',  Event::current())
+        	->find_many();
+
+        $out = array();
+        foreach($players as $player){
+        	$bang = explode(" ", $player->path); 
+        	$player->path = $bang[0];
+        	$out[] = $player->asArray();
+        }
+        $this->renderJson($out);
+
+    }
 }
