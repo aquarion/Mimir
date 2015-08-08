@@ -50,6 +50,7 @@ create table entry (
 );
 
 create table player (
+    id bigint auto_increment,
     `pid` int null,
     `player` varchar(255),
     `location` varchar(255),
@@ -60,7 +61,8 @@ create table player (
     `kit` tinyint,
     `email` varchar(255),
     `event_id` tinyint not null,
-     primary key(pid,character_name,event_id)
+     primary key(id)
+     CONSTRAINT uc_player_event UNIQUE (pid,character_name,event_id)
 );
 
 alter table kudos add column champion_id int null after date_created;
