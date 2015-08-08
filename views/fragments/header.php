@@ -14,6 +14,7 @@
     <!-- Bootstrap -->
     <script src="/assets/away/bootstrap/js/bootstrap.js"></script>
     <link href="/assets/away/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/away/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     
     <!-- Visualise -->
     <script src="/assets/away/graphs/js/visualize.jQuery.js"></script>
@@ -29,103 +30,16 @@
     <script type="text/javascript" src="/assets/away/pagedown/Markdown.Sanitizer.js"></script>
     <script type="text/javascript" src="/assets/away/pagedown/Markdown.Editor.js"></script>
     
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-      
-      .centered {
-          text-align: center;
-      }
-      
-      .notyet {
-            opacity:0.4;
-            filter:alpha(opacity=40); /* For IE8 and earlier */    
-            display: none !important;
-      }
-      
-      
-.icon-link,
-.icon-blockquote,
-.icon-code,
-.icon-bullet-list,
-.icon-list,
-.icon-header,
-.icon-hr-line,
-.icon-undo {
-	background-image: url("/assets/away/pagedown/Markdown.Editor.Icons.png");
-}
-.icon-link              { background-position: 0      0; }
-.icon-blockquote        { background-position: -24px  0; }
-.icon-code              { background-position: -48px  0; }
-.icon-bullet-list       { background-position: -72px  0; }
-.icon-list              { background-position: -96px  0; }
-.icon-header            { background-position: -120px 0; }
-.icon-hr-line           { background-position: -144px 0; }
-.icon-undo               { background-position: -168px 0; }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
+    <!-- Typeahead -->
+    <script src="/assets/away/typeahead.js/typeahead.bundle.js"></script>
 
 
-.effect_fade {
+    <!-- Local -->
+    <script src="/assets/home/js/mimir.js"></script>
+    <script src="/assets/home/js/sticky_headers.js"></script>
+    <link href="/assets/home/css/style.css" rel="stylesheet">
 
-  height: 100px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 2em;
-  padding-bottom: 4em;
-}
-
-.effect_fade .show-full {
-  position: absolute; 
-  bottom: 0; left: 0;
-  width: 100%; 
-  text-align: center; 
-  height: 100px;
-  margin: 0; padding: 0 0; 
-
-  /* "transparent" only works here because == rgba(0,0,0,0) */ 
-  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, transparent),color-stop(1, white));
-        background-image: -webkit-linear-gradient(top, transparent, white);
-        background-image: -moz-linear-gradient(top, transparent, white);
-        background-image: -ms-linear-gradient(top, transparent, white);
-        background-image: -o-linear-gradient(top, transparent, white);
-}
-
-
-.effect_fade .show-full a, .effect_fade .hide-full a {
-  border-radius: .5em;
-  background: lightblue;
-  color: white;
-  padding: .24em 1em .24em 1em;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-right: -50%;
-}
-
-.effect_fade .hide-full {
-  display: none;
-}
-    </style>
-    <link href="/assets/away/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/away/bootstrap/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/away/bootstrap/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/away/bootstrap/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="/assets/away/bootstrap/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="/assets/away/bootstrap/ico/favicon.png">
   </head>
 
   <body>

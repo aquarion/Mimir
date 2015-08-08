@@ -145,25 +145,6 @@ if (count($_GET)) {
 </div>
 
 <script type="text/javascript">
-    Altar = {
-    
-	make_table_sortable : function(){
-	    // With customizations
-	    $("table").tablesorter();
-	    $("table").stickyTableHeaders();
-	},
-    
-        toggle_details: function(){
-            $('.detailcolumn').toggle();
-        },
-    
-	add_init : function(){
-	    Altar.make_table_sortable();
-            $('.detailcolumn').hide();
-            $('.toggledetailcolumn').click(Altar.toggle_details);
-	}
-    
-    }
     
 
     /*! Copyright (c) 2011 by Jonas Mosbech - https://github.com/jmosbech/StickyTableHeaders

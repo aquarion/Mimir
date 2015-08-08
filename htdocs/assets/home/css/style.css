@@ -1,0 +1,102 @@
+ body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      
+      .centered {
+          text-align: center;
+      }
+      
+      .notyet {
+            opacity:0.4;
+            filter:alpha(opacity=40); /* For IE8 and earlier */    
+            display: none !important;
+      }
+      
+      
+.icon-link,
+.icon-blockquote,
+.icon-code,
+.icon-bullet-list,
+.icon-list,
+.icon-header,
+.icon-hr-line,
+.icon-undo {
+	background-image: url("/assets/away/pagedown/Markdown.Editor.Icons.png");
+}
+.icon-link              { background-position: 0      0; }
+.icon-blockquote        { background-position: -24px  0; }
+.icon-code              { background-position: -48px  0; }
+.icon-bullet-list       { background-position: -72px  0; }
+.icon-list              { background-position: -96px  0; }
+.icon-header            { background-position: -120px 0; }
+.icon-hr-line           { background-position: -144px 0; }
+.icon-undo               { background-position: -168px 0; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+
+.effect_fade {
+
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2em;
+  padding-bottom: 4em;
+}
+
+.effect_fade .show-full {
+  position: absolute; 
+  bottom: 0; left: 0;
+  width: 100%; 
+  text-align: center; 
+  height: 100px;
+  margin: 0; padding: 0 0; 
+
+  /* "transparent" only works here because == rgba(0,0,0,0) */ 
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, transparent),color-stop(1, white));
+        background-image: -webkit-linear-gradient(top, transparent, white);
+        background-image: -moz-linear-gradient(top, transparent, white);
+        background-image: -ms-linear-gradient(top, transparent, white);
+        background-image: -o-linear-gradient(top, transparent, white);
+}
+
+
+.effect_fade .show-full a, .effect_fade .hide-full a {
+  border-radius: .5em;
+  background: lightblue;
+  color: white;
+  padding: .24em 1em .24em 1em;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-right: -50%;
+}
+
+.effect_fade .hide-full {
+  display: none;
+}
+
+
+.tt-menu {
+  background: #FFF;
+  border: 2px solid #333;
+  border-radius: 5px;
+  font-size: 12pt;
+}
+
+.tt-suggestion {
+  padding: 3px;
+}
+
+.tt-cursor {
+  background: #DDD;
+}
+
+#inputSearch, #inputChampionSearch {
+  margin-bottom: .5em;
+}

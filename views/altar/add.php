@@ -234,52 +234,8 @@
       
   </div>
 </div>
-<script type="text/javascript">
 
-Altar = {
-    
-    recalculate_total : function(){
-        var total = 0;
-        $(".kudossrc").each(function(thing){
-            thing = $(this);
-            thisTotal = thing.val() * thing.attr("data-value");
-            //console.log(this.id+" @ "+thing.val() +" x "+thing.attr("data-value")+" = "+thisTotal);
-            total = total + thisTotal;
-        });
-        $('#total').val(total);
-    },
-    
-    recalculate_life_bonus : function(){
-        lives = $('#lives').val();
-        value = $('#lives').attr("data-value");
-        $('#life_bonus').val(lives*value);
-        Altar.recalculate_total();
-    },
-    
-    searchByPriestName : function(query, process){
-        console.log(query);
-        console.log(process);
-    },
-    
-    searchByPid : function(query, process){
-        console.log(query);
-        console.log(process);
-        return $.get('/typeahead', { pid: query }, function (data) {
-            return process(data.options);
-        });
-    },
-    
-    
-    add_init : function(){
-        $(".kudossrc").change(Altar.recalculate_total);
-        $("#lives").change(Altar.recalculate_life_bonus);
-        
-        //$("#inputPID").typeahead({source : Altar.searchByPid});
-        $("#inputPID").typeahead(Altar.searchByPid);
-        $("#inputCharacter").typeahead({source : Altar.searchByPriestName});
-        
-    }    
-}
+<script type="text/javascript">
     
 $(document).ready(Altar.add_init)
 </script>
