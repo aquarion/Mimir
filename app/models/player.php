@@ -12,6 +12,6 @@
  */
 class Player extends My_Model {
 
+
 }
 
-?>

@@ -14,7 +14,8 @@ class Players extends My_Controller {
         $this->render("players/index");
     }
 
-    function import(){            
+    function import(){
+            
         $this->data['lnav_active'] = "import";
 
         if(isset($_FILES['userfile'])){
