@@ -70,6 +70,16 @@ class Cauldron extends My_Controller {
     	return -1;
     }
 
+    // function cauldron(){
+    //     $this->data['lnav_active'] = "cauldron";
+    //     $mysteries  = $this->all_mysteries();
+
+    //     uasort($mysteries, array($this, 'sort_mysteries'));
+    //     $this->data['mysteries'] = $mysteries;
+    //     $this->render("cauldron/index");
+
+    // }
+
     function index(){
         $this->data['lnav_active'] = "cauldron";
         $mysteries  = $this->all_mysteries();
@@ -77,6 +87,16 @@ class Cauldron extends My_Controller {
         uasort($mysteries, array($this, 'sort_mysteries'));
         $this->data['mysteries'] = $mysteries;
         $this->render("cauldron/all_mysteries");
+
+    }
+
+    function printpdf(){
+        $this->data['lnav_active'] = "cauldron";
+        $mysteries  = $this->all_mysteries();
+
+        uasort($mysteries, array($this, 'sort_mysteries'));
+        $this->data['mysteries'] = $mysteries;
+        $this->renderAlone("cauldron/print_pdf");
 
     }
 
