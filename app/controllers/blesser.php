@@ -141,6 +141,24 @@ class Blesser extends My_Controller {
         $this->render("blesser/review");
     }
 
+    function character($user){
+
+        list($pid, $character) = explode(":", $user[0], 2);
+
+        $blessings_cxn = Model::factory('Blessing');
+        $blessings_cxn->where('event_id', Event::current())
+            ->where("target_id", $pid)
+            ->where("target_name", $character);
+
+        $blessings = $blessings_cxn->order_by_asc("date_created")->find_many();
+
+        $this->data['blessings'] = $blessings;
+        $this->data['gnav_active'] = "blesser";
+        $this->data['lnav_active'] = "character";
+
+        $this->render("blesser/review");
+    }
+
 
     function printqueue(){
 
@@ -191,11 +209,13 @@ class Blesser extends My_Controller {
                 }
             }
 
-            $characters[$user] = array(
-                'name'      => $character,
-                'pid'       => $pid,
-                'blessings' => $blessingslist
-            );
+            if(count($blessingslist)){   
+                $characters[$user] = array(
+                    'name'      => $character,
+                    'pid'       => $pid,
+                    'blessings' => $blessingslist
+                );
+            }
 
         }
 
@@ -276,38 +296,32 @@ class Blesser extends My_Controller {
 
                 //$pdf->Cell(w, h, txt, border, ln, align, fill, link, stretch, ignore_min, calign, valign);
                 $pdf->SetTextColor    (128, 128, 128, false, false, 'black'); 
-                $pdf->Cell(20, 3, "Deity", '', 0, 'L');
+                $pdf->Cell(20, 3, "From", '', 0, 'L');
                 $pdf->AddY(7);
                 $pdf->Cell(20, 3, "Nation", '', 0, 'L');
                 $pdf->AddY(7);
                 $pdf->Cell(20, 3, "Reason", '', 0, 'L');
-                $pdf->AddY(7);
-                $pdf->Cell(0, 3, "Target", '', 0, 'L');
                 $pdf->AddY(12);
                 $pdf->Cell(20, 3, "Duration", '', 0, 'L');
                 
-                $x = 30;
+                $x = 25;
                 $pdf->SetY($y);
                 $pdf->SetTextColor    (0, 0, 0, false, false, 'black'); 
 
                 $pdf->SetX($x);
-                $pdf->Cell(20, 3, "Deity", '', 0, 'L');
+                $pdf->MultiCell(50, 0, $blessing->issuer, '', 'L', 0, 0);
                 $pdf->AddY(7);
 
                 $pdf->SetX($x);
-                $pdf->Cell(20, 3, "Nation", '', 0, 'L');
+                $pdf->MultiCell(50, 0, $blessing->target_nation, '', 'L', 0, 0);
                 $pdf->AddY(7);
                 
                 $pdf->SetX($x);
-                $pdf->Cell(20, 3, "Reason", '', 0, 'L');
-                $pdf->AddY(7);
-                
-                $pdf->SetX($x);
-                $pdf->Cell(0, 3, "Target", '', 0, 'L');
+                $pdf->MultiCell(50, 0, $blessing->reason, '', 'L', 0, 0);
                 $pdf->AddY(12);
                 
                 $pdf->SetX($x);
-                $pdf->Cell(20, 3, "Duration", '', 0, 'L');
+                $pdf->MultiCell(50, 0, $blessing->duration, '', 'L', 0, 0);
 
                 $left_y = $pdf->GetY();
 
@@ -332,6 +346,9 @@ class Blesser extends My_Controller {
                 $pdf->AddY(5);
                 $pdf->Cell(0, 10, " ", 'B', 1, 'R', false, '', 0, false, 'M', 'M');
                 $pdf->AddY(5);
+
+                $blessing->date_printed = date(DATETIME_MYSQL);
+                $blessing->save();
             }
 
             if(count($tokens)){
@@ -350,21 +367,32 @@ class Blesser extends My_Controller {
                 foreach($tokens as $token){
                     for ($i=0; $i < $token['count']; $i++) {
 
-                        if($pdf->GetY()){
 
-                        }
+                        $html = '';
 
-                        $html = sprintf('<b>%d/%d/%d/%d</b>', $token['blessing'],  $token['token_id'], $i, $token['count']);
+                        
                         if($token['target']){
-                            $html .= sprintf("<b>%s</b>", $token['target']);
+                            $html .= sprintf("<h2>%s</h2>", $token['target']);
                         }
                         $html .= '<br/>'.$token['effect'];
+                        $html .= sprintf('<br/><i>%d/%d/%d/%d</i>', $token['blessing'],  $token['token_id'], $i, $token['count']);
+
+                        $pdf->startTransaction();
+                        $startPage = $pdf->getPage();
                         $pdf->SetCellPadding(2);
                         $pdf->writeHTMLCell(0, '', 10, '', $html, 'TLRB', 1, 0, true, 'L', true);
-                        $pdf->AddY(6);
-                        if($pdf->PublicCheckPageBreak(20)) {
-                            $pdf->Ln();
+
+                        if($pdf->getPage() == $startPage){
+                            $pdf->commitTransaction();
+                        } else {
+                            $pdf = $pdf->rollbackTransaction();
+                            $pdf->AddPage();
+                            $pdf->SetCellPadding(2);
+                            $pdf->writeHTMLCell(0, '', 10, '', $html, 'TLRB', 1, 0, true, 'L', true);
                         }
+                        
+
+                        $pdf->AddY(6);
                     }
                 }
             }

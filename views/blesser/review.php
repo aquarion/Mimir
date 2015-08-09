@@ -32,7 +32,16 @@ $print = array();
     </div>
   </div>
 
-<?PHP foreach($blessings as $blessing){ 
+<?PHP
+
+if(!count($blessings)){
+  ?><div class="alert">
+    Sorry, No blessings found
+  </div> <?PHP
+}
+
+
+foreach($blessings as $blessing){ 
   $print[] = $blessing->target_id .':'. $blessing->target_name;
 
   ?>
@@ -40,8 +49,9 @@ $print = array();
   <div class="row-fluid">
     <div class="span2">
       <p class="text-center">
-        <b><?PHP echo $blessing->target_id ?><br/>
-        <?PHP echo $blessing->target_name ?></b>
+        <b><a href="/blesser/character/<?PHP echo $blessing->target_id.':'.$blessing->target_name ?>">
+        <?PHP echo $blessing->target_id ?><br/>
+        <?PHP echo $blessing->target_name ?></a></b>
       </p>
     </div>
     <div class="span2">
@@ -66,9 +76,9 @@ $print = array();
           <button class="btn <?PHP echo $blessing->review_sane ? 'btn-inverse unreview' : 'review' ?>" id="sanityreview-<?PHP echo $blessing->id ?>">Sanity Check</button>
         </div>
         <?PHP if ($blessing->date_printed){
-          print "Last printed: ".date("r", $blessing->date_printed);
+          print "<br/>Last printed: ".$blessing->date_printed;
         } else {
-          print "Not printed: ";
+          print "<br/>Not printed: ";
           print '<label class="checkbox" for="canprint-'.$blessing->id.'">'
             .'<input type="checkbox" id="canprint-'.$blessing->id.'"'
             .($blessing->can_print ? 'CHECKED="CHECKED" class="disableprint" ' : ' class="enableprint"')
@@ -110,7 +120,7 @@ $print = array();
 if(count($print)){
   $print = implode("%%",array_unique($print));
   ?>
-  <form method="POST" action="printpdf">
+  <form method="POST" action="/blesser/printpdf">
     <input name="print" value="<?PHP echo $print ?>" />
     <button class="btn btn-primary" href="#"><i class="icon-print icon-white"></i> Print</button>
   </form>
