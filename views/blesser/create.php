@@ -96,45 +96,26 @@
         </div>
 
         <div class="control-group">
-        <label class="control-label" for="inputType">Duration</label>
+        <label class="control-label" for="inputDuration">Duration</label>
         <div class="controls">
-          <select name="duration">
-              <?PHP
-              $type_options = array(
-                  'Until next Sunrise or Sunset (Soonist)',
-                  'Until next Sunrise or Sunset (Latest)',
-                  'End of the Annual',
-                  'Next Arena Battle or Quest this Annual',
-                  'Any Arena Battle or Quest this Annual',
-                  "Until Told Otherwise",
-                  'Until the stars go out',
-                  'Until Revoked',
-                  'Until Death',
-                  'Until Resolved',
-                  'Other'
-              );
-              $selected = 'selected="selected"';
-              foreach($type_options as $option){
-                  printf('<option %s>%s</option>', $blessing->duration == $option ? $selected : '', $option);
-              }
-              ?>
-          </select>
+              <input type="text" id="inputDuration" placeholder="Duration" name="duration" value="<?PHP echo $blessing->duration ?>" autocomplete="off">
         </div>
 
         <h2>What have you done to me?</h2>
 
-
+        <p>(Seperate paragraphs with a clear empty line, use *bold* and _italic_ )</p>
+        
         <div class="control-group">
           <label class="control-label" for="inputNotes">IC Description</label>
           <div class="controls">
-              <textarea class="input-block-level" rows="3" name="description"><?PHP echo $blessing->description ?></textarea>
+              <textarea class="input-block-level" rows="5" name="description"><?PHP echo $blessing->description ?></textarea>
           </div>
         </div>
 
         <div class="control-group">
           <label class="control-label" for="inputNotes">Game Effects</label>
           <div class="controls">
-              <textarea class="input-block-level" rows="3" name="effect"><?PHP echo $blessing->effect ?></textarea>
+              <textarea class="input-block-level" rows="5" name="effect"><?PHP echo $blessing->effect ?></textarea>
           </div>
         </div>
 
@@ -224,8 +205,22 @@ Blesser = {
 
     add_init : function(){
 
+        $("textarea").keyup(function(e) {
+            while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+                $(this).height($(this).height()+1);
+            };
+        });
+
+        $("textarea").each(function(e) {
+            while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+                $(this).height($(this).height()+1);
+            };
+        });
+
         // Typeahead Options
         var options = {
+          hint : true,
+          minlength : 0,
           classNames: {
               input: 'Typeahead-input',
               hint: 'Typeahead-hint',
@@ -261,6 +256,33 @@ Blesser = {
         });
 
         $('#inputSearch').click(function(){$('#inputSearch').val("")});
+
+        // Setup Duration Autocomplete
+
+        
+        var durations = [
+            'Until next Sunrise or Sunset (Soonist)',
+            'Until next Sunrise or Sunset (Latest)',
+            'End of the Annual',
+            'Next Arena Battle or Quest this Annual',
+            'Any Arena Battle or Quest this Annual',
+            "Until Told Otherwise",
+            'Until the stars go out',
+            'Until Revoked',
+            'Until Death',
+            'Until Resolved'];
+
+        var durations = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.whitespace,
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          // `states` is an array of state names defined in "The Basics"
+          local: durations
+        });
+
+        $('#inputDuration').twtypeahead(options, {
+          name: 'durations',
+          source: durations
+        });
 
     }
 }

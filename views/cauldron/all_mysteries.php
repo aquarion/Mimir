@@ -2,16 +2,22 @@
 <div class="container">
 
 <ul class="nav nav-pills">
-          	<li class="toggleinvert" title="invert selection"><a href="#" ><i class="icon-refresh"></i></a></li>
-          	<li class="active toggleall"><a href="#"     >All</a></li>
-          	<?PHP 
-          	$types = array_keys($types);
-          	sort($types);
-          	foreach($types as $type ) { ?>
-          	<li class="active toggleme" id="<?PHP echo 'nav'.preg_replace('/\s+/', '', $type) ?>"><a href="#"     ><?PHP echo $type ?></a></li>
-          	<?PHP } ?>
-        </ul>
+	<li class="active"><a href="/cauldron/"   ><i class="icon-list"></i> All</a></li>
+	<li class=""><a href="/cauldron/printpdf" ><i class="icon-print"></i> Print</a></li>
+</ul>
 
+<ul class="nav nav-pills">
+  	<li class="toggleinvert" title="invert selection"><a href="#" ><i class="icon-refresh"></i></a></li>
+  	<li class="active toggleall"><a href="#"     >All</a></li>
+  	<?PHP 
+  	$types = array_keys($types);
+  	sort($types);
+  	foreach($types as $type ) { ?>
+  	<li class="active toggleme" id="<?PHP echo 'nav'.preg_replace('/\s+/', '', $type) ?>"><a href="#"     ><?PHP echo $type ?></a></li>
+  	<?PHP } ?>
+</ul>
+
+            
 <?PHP 
 $row = NULL;
 foreach($mysteries as $mystery){
@@ -32,22 +38,22 @@ foreach($mysteries as $mystery){
 			<h3 class="mysteryname"><?PHP echo $mystery['name'] ?></h3>
 			<div class="row-fluid">
 				<div class="span2">
-					Earth
+					<img src="/assets/home/img/elements/icons/earth_element-25.png" />
 				</div>
 				<div class="span2">
-					Fire
+					<img src="/assets/home/img/elements/icons/fire_element-25.png" />
 				</div>
 				<div class="span2">
-					Air
+					 <img src="/assets/home/img/elements/icons/air_element_filled-25.png" />
 				</div>
 				<div class="span2">
-					Water
+					<img src="/assets/home/img/elements/icons/water_element-25.png" />
 				</div>
 				<div class="span2">
-					Blood
+					<img src="/assets/home/img/elements/icons/water_filled-25.png" />
 				</div>
 				<div class="span2">
-					Coin
+					<img src="/assets/home/img/elements/icons/receive_cash_filled_sasha-25.png" />
 				</div>
 			</div>
 			<div class="row-fluid">
