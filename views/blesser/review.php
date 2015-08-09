@@ -96,7 +96,7 @@ $print = array();
         <?PHP echo $blessing->token($i,'count') ?>&times; <b><?PHP echo $blessing->token($i,'target') ?></b><br/>
          <p><?PHP echo Markdown::defaultTransform($blessing->token($i,'effect')); ?></p>
       </div>
-    <? } ?>
+    <?PHP } ?>
 
 
     </div>

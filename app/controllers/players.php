@@ -84,7 +84,7 @@ class Players extends My_Controller {
         foreach($players as $player){
         	$bang = explode(" ", $player->path); 
         	$player->path = $bang[0];
-        	$out[] = $player->asArray();
+        	$out[] = $player->as_array();
         }
         $this->renderJson($out);
 
