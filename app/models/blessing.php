@@ -1,5 +1,7 @@
 <?php
 
+use \Michelf\Markdown;
+
 /**
  * Description of blessing
  *
@@ -76,6 +78,19 @@ class Blessing extends My_Model {
 			+ $this->token(4, 'count');
 	}
 
+    function tokens(){
+        $tokens = json_decode($this->tokens, true);
+        $return = array();
+        foreach($tokens as $id => $token){
+            if($token['count']){
+                $token['blessing'] = $this->id;
+                $token['token_id'] = $id;
+                $return[] = $token;
+            }
+        }
+        return $return;
+    }
+
     function is_reviewed(){
         /* review_plot tinyint,
     review_ref tinyint,
@@ -98,6 +113,14 @@ class Blessing extends My_Model {
             return False;
         }
         return True;
+    }
+
+    function allow_print(){
+        if ($this->is_reviewed() && $this->can_print){
+            return True;
+        } 
+
+        return False;
     }
 }
 

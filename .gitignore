@@ -4,3 +4,4 @@ htdocs/odysseywiki
 .phpintel
 doc/data.sql
 .tags1
+lib/tcpdf/fonts

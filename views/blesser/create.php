@@ -165,32 +165,41 @@
         </div>
 
         <h2>Tokens</h2>
-        <p>Tokens for the "blessed" to give out (Count must be > 1, Target isn't required. Effect kind of is)</p>
+        <p>Tokens for the "blessed" to give out (Count must be > 1, Target isn't required. Effect kind of is). Examples for Target:
+        <ul>
+          <li>Persian Champions</li>
+          <li>The Silenced Court</li>
+          <li>1763 - Tendao of Palma</li>
+        </ul>
+
+        Start typing a character name to auto-complete from the player db.
+        </p>
+
       </div>
     </div>
 
         <div class="row-fluid">
           <div class="span3 panel panel-default">
             Count:  <input    name= "token_count[1]" value="<?PHP echo $blessing->token(1,'count') ?>"  type="number" /><br/>
-            Target: <input    name="token_target[1]" value="<?PHP echo $blessing->token(1,'target') ?>" type="text" placeholder="eg. Name [PID], or 'Persian Champion'"/><br/>
+            Target: <input    name="token_target[1]" value="<?PHP echo $blessing->token(1,'target') ?>" type="text" class="character_search" placeholder="eg. Name [PID], or 'Persian Champion'"/><br/>
             Effect: <textarea name="token_effect[1]"       ><?PHP echo $blessing->token(1,'effect') ?></textarea>
           </div>
 
           <div class="span3 panel panel-default">
             Count:  <input    name= "token_count[2]" value="<?PHP echo $blessing->token(2,'count') ?>"  type="number" /><br/>
-            Target: <input    name="token_target[2]" value="<?PHP echo $blessing->token(2,'target') ?>" type="text" placeholder="eg. Name [PID], or 'Persian Champion'"/><br/>
+            Target: <input    name="token_target[2]" value="<?PHP echo $blessing->token(2,'target') ?>" type="text" class="character_search" placeholder="eg. Name [PID], or 'Persian Champion'"/><br/>
             Effect: <textarea name="token_effect[2]"       ><?PHP echo $blessing->token(2,'effect') ?></textarea>
           </div>
 
           <div class="span3 panel panel-default">
             Count:  <input    name= "token_count[3]" value="<?PHP echo $blessing->token(3,'count') ?>"  type="number" /><br/>
-            Target: <input    name="token_target[3]" value="<?PHP echo $blessing->token(3,'target') ?>" type="text" placeholder="eg. Name [PID], or 'Persian Champion'"/><br/>
+            Target: <input    name="token_target[3]" value="<?PHP echo $blessing->token(3,'target') ?>" type="text" class="character_search" placeholder="eg. Name [PID], or 'Persian Champion'"/><br/>
             Effect: <textarea name="token_effect[3]"       ><?PHP echo $blessing->token(3,'effect') ?></textarea>
           </div>
 
           <div class="span3 panel panel-default">
             Count:  <input    name= "token_count[4]" value="<?PHP echo $blessing->token(4,'count') ?>"  type="number" /><br/>
-            Target: <input    name="token_target[4]" value="<?PHP echo $blessing->token(4,'target') ?>" type="text" placeholder="eg. Name [PID], or 'Persian Champion'"/><br/>
+            Target: <input    name="token_target[4]" value="<?PHP echo $blessing->token(4,'target') ?>" type="text" class="character_search" placeholder="eg. Name [PID], or 'Persian Champion'"/><br/>
             Effect: <textarea name="token_effect[4]"       ><?PHP echo $blessing->token(4,'effect') ?></textarea>
           </div>
         </div>
@@ -228,6 +237,11 @@ Blesser = {
         // Setup Priest Search
 
         $('#inputSearch').twtypeahead(options, {
+          name: 'players',
+          source: players
+        });
+
+        $('.character_search').twtypeahead(options, {
           name: 'players',
           source: players
         });

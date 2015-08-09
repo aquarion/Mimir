@@ -4,6 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+use \Michelf\Markdown;
 
 
 
@@ -48,6 +49,10 @@
           $y = $this->GetY();
           $this->SetY($y+$int);
         }
+
+        public function PublicCheckPageBreak($val=null){
+            return $this->checkPageBreak($val);
+        }  
     }
 
 
@@ -160,26 +165,64 @@ class Blesser extends My_Controller {
 
     function printpdf(){
 
-        $blessings = Model::factory('Blessing');
-        $blessings->where('event_id', Event::current());
 
-        $dataset = $blessings->order_by_asc("date_created")->find_many();
-
-        $blessingslist = array();
-
-        foreach($dataset as $blessing){
-            if ($blessing->is_reviewed() ){
-                $blessingslist[] = $blessing;
-            }
+        if(!isset($_POST['print'])){
+            die('No');
         }
+
+        $people = explode("%%", $_POST['print']);
+
+        $characters = array();
+
+        foreach($people as $user){
+            list($pid, $character) = explode(":", $user, 2);
+
+            $blessings_cxn = Model::factory('Blessing');
+            $blessings_cxn->where('event_id', Event::current())
+                ->where("target_id", $pid)
+                ->where("target_name", $character);
+
+            $blessings = $blessings_cxn->order_by_asc("date_created")->find_many();
+
+            $blessingslist = array();
+            foreach($blessings as $blessing){
+                if($blessing->allow_print()){
+                    $blessingslist[] = $blessing;
+                }
+            }
+
+            $characters[$user] = array(
+                'name'      => $character,
+                'pid'       => $pid,
+                'blessings' => $blessingslist
+            );
+
+        }
+
+
         // create new PDF document
         $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
+        $pdf->SetTopMargin(20);
+
+        $Candara = TCPDF_FONTS::addTTFfont("../fonts/Candara.ttf", "TrueTypeUnicode", "", 32);
+        $Candara_Italic = TCPDF_FONTS::addTTFfont("../fonts/Candarai.ttf", "TrueTypeUnicode", "", 32);
+        $Candara_Bold = TCPDF_FONTS::addTTFfont("../fonts/Candarab.ttf", "TrueTypeUnicode", "", 32);
+        $Candara_BI = TCPDF_FONTS::addTTFfont("../fonts/Candaraz.ttf", "TrueTypeUnicode", "", 32);
+
+        //$pdf->addTTFfont("candara", "", "../doc/LuisCandara.ttf");
+
         // set auto page breaks
-        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+        $pdf->SetAutoPageBreak(TRUE, 30);
+        $pdf->SetFooterMargin(30);
 
         // set image scale factor
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+        $pdf->AddSpotColor("black", 0, 0, 0 , 100);   
+
+        $pdf->SetFillSpotColor('black', 5);
+
 
         // set some language-dependent strings (optional)
         if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
@@ -187,23 +230,147 @@ class Blesser extends My_Controller {
             $pdf->setLanguageArray($l);
         }
 
+        // Candara
+
         // ---------------------------------------------------------
 
         // set font
-        $pdf->SetFont('times', 'BI', 12);
+        // $pdf->SetFont('helvetica', '', 12);
+        // $pdf->SetFont('candara', '', 12);
 
-        // add a page
-        $pdf->AddPage();
+        foreach($characters as $character){
+            // add a page
+            $pdf->AddPage();
 
-        $pdf->SetY(20);
+            $pdf->SetY(20);
+
+            $pdf->SetFont($Candara_Italic, 'I', 18);
+            //$pdf->SetTextColor    ($r, $g, $b, $k, $ret, $name);
+            $pdf->SetTextColor    (31, 73, 125, false, false, 'darkblue'); 
+
+            $pdf->Write(0, 'Exceptional Abilities for '.Event::title(), '', 0, 'R', 2, 0, false, false, 0);
+
+            $pdf->AddY(5);
+
+            $pdf->Cell(100, 10, $character['name'], 'B', 0, 'L', 1, '', 0, false, 'M', 'M');
+            $pdf->Cell(90, 10, $character['pid'], 'B', 1, 'R', 1, '', 0, false, 'M', 'M');
+
+            $pdf->AddY(5);
+            $pdf->SetFont($Candara, '', 10);
+
+            $pdf->SetTextColor    (0, 0, 0, false, false, 'black'); 
+
+            $tokens = array();
+
+            foreach($character['blessings'] as $blessing){
+                // $pdf->MultiCell(100, 0, $blessing->effect, 'B', 1, 'L', 1, '', 0, false, 'T', 'M');
+                //$pdf->MultiCell(100, 0, $blessing->effect, 'B', 1, 'L', 1, '', 0, false, 'T', 'M');
+                //$pdf->write(5, $blessing->effect, false, false, 'L', true, 0, false, false, false, false, array('L' => 30));
+                $y = $pdf->GetY();
+
+                if($blessing->has_tokens()){
+                    $tokens = array_merge($tokens, $blessing->tokens());
+                }
+
+                #$pdf->writeHTMLCell(60, '', '', $y, $blessingstuff, 0, 0, 0, true, 'L', true);
+
+                //$pdf->Cell(w, h, txt, border, ln, align, fill, link, stretch, ignore_min, calign, valign);
+                $pdf->SetTextColor    (128, 128, 128, false, false, 'black'); 
+                $pdf->Cell(20, 3, "Deity", '', 0, 'L');
+                $pdf->AddY(7);
+                $pdf->Cell(20, 3, "Nation", '', 0, 'L');
+                $pdf->AddY(7);
+                $pdf->Cell(20, 3, "Reason", '', 0, 'L');
+                $pdf->AddY(7);
+                $pdf->Cell(0, 3, "Target", '', 0, 'L');
+                $pdf->AddY(12);
+                $pdf->Cell(20, 3, "Duration", '', 0, 'L');
+                
+                $x = 30;
+                $pdf->SetY($y);
+                $pdf->SetTextColor    (0, 0, 0, false, false, 'black'); 
+
+                $pdf->SetX($x);
+                $pdf->Cell(20, 3, "Deity", '', 0, 'L');
+                $pdf->AddY(7);
+
+                $pdf->SetX($x);
+                $pdf->Cell(20, 3, "Nation", '', 0, 'L');
+                $pdf->AddY(7);
+                
+                $pdf->SetX($x);
+                $pdf->Cell(20, 3, "Reason", '', 0, 'L');
+                $pdf->AddY(7);
+                
+                $pdf->SetX($x);
+                $pdf->Cell(0, 3, "Target", '', 0, 'L');
+                $pdf->AddY(12);
+                
+                $pdf->SetX($x);
+                $pdf->Cell(20, 3, "Duration", '', 0, 'L');
+
+                $left_y = $pdf->GetY();
+
+                $pdf->SetY($y);
+                //    writeHTMLCell($w, $h, $x, $y, $html='',        $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
+
+                $blessingText = '';
+                if($blessing->description) {
+                    $blessingText .= Markdown::defaultTransform($blessing->description)."<hr/>";
+                }
+                if($blessing->effect) {
+                    $blessingText .= Markdown::defaultTransform($blessing->effect);
+                }
 
 
-        $pdf->Write(0, 'Special Abilities for for Player', '', 0, 'C', 2, 0, false, false, 0);
+                $pdf->writeHTMLCell(120, '', 80, '', $blessingText, 0, 1, 0, true, 'L', true);
 
-        $pdf->AddY(5);
-        foreach($blessingslist as $blessing){
-          $pdf->Cell(0, 0, $blessing->description, 'LTRB', 2, 'C', 0, '', 0, false, 'M', 'M');
+                if($pdf->GetY() < $left_y){
+                    $pdf->SetY($left_y);
+                }
+
+                $pdf->AddY(5);
+                $pdf->Cell(0, 10, " ", 'B', 1, 'R', false, '', 0, false, 'M', 'M');
+                $pdf->AddY(5);
+            }
+
+            if(count($tokens)){
+
+                $pdf->SetFont($Candara_Italic, 'I', 18);
+                //$pdf->SetTextColor    ($r, $g, $b, $k, $ret, $name);
+                $pdf->SetTextColor    (31, 73, 125, false, false, 'darkblue'); 
+
+                $pdf->Cell(0, 10, $character['name']." Handout Tokens", 'B', 0, 'L', 0, '', 0, false, 'M', 'M');
+
+                $pdf->AddY(7);
+                $pdf->SetFont($Candara, '', 10);
+
+                $pdf->SetTextColor    (0, 0, 0, false, false, 'black'); 
+
+                foreach($tokens as $token){
+                    for ($i=0; $i < $token['count']; $i++) {
+
+                        if($pdf->GetY()){
+
+                        }
+
+                        $html = sprintf('<b>%d/%d/%d/%d</b>', $token['blessing'],  $token['token_id'], $i, $token['count']);
+                        if($token['target']){
+                            $html .= sprintf("<b>%s</b>", $token['target']);
+                        }
+                        $html .= '<br/>'.$token['effect'];
+                        $pdf->SetCellPadding(2);
+                        $pdf->writeHTMLCell(0, '', 10, '', $html, 'TLRB', 1, 0, true, 'L', true);
+                        $pdf->AddY(6);
+                        if($pdf->PublicCheckPageBreak(20)) {
+                            $pdf->Ln();
+                        }
+                    }
+                }
+            }
+
         }
+
         // // set some text to print
         // $txt = '
         // TCPDF Example 003

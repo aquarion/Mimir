@@ -116,7 +116,7 @@ class Event {
     static function current_attribute($attr){
         $event = Event::current();
         $events = Event::events();
-	return $events[$event][$attr];
+	   return $events[$event][$attr];
     }
 
     static function set_current($value){
