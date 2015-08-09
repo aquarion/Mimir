@@ -44,7 +44,7 @@ foreach($mysteries as $mystery){
 					<img src="/assets/home/img/elements/icons/fire_element-25.png" />
 				</div>
 				<div class="span2">
-					 <img src="/assets/home/img/elements/icons/air_element_filled-25.png" />
+					 <img src="/assets/home/img/elements/icons/air_element-25.png" />
 				</div>
 				<div class="span2">
 					<img src="/assets/home/img/elements/icons/water_element-25.png" />
