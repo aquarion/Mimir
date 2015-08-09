@@ -51,8 +51,8 @@ class OdysseyPDF extends TCPDF {
 
         // $this->ImageSVG($file='assets/pdf/header.svg', $x=-30, $y=1, $w='', $h='', $link=false, $align='T', $palign='c', $border=0, $fitonpage=false);
         // Logo
-        $image_file = 'assets/pdf/header.png';
-        $this->Image($image_file, -1, 0, 210, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        $image_file = 'assets/pdf/header.jpg';
+        $this->Image($image_file, -1, 0, 210, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
         //$file, $x='', $y='', $w=0, $h=0, $type='', $link='', $align='', $resize=false, $dpi=300, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false, $alt=false, $altimgs=array())
 
         $this->SetX(0);
@@ -64,8 +64,8 @@ class OdysseyPDF extends TCPDF {
     public function Footer() {
         // // Position at 15 mm from bottom
         $this->SetY(-15);
-        $image_file = 'assets/pdf/footer.png';
-        $this->Image($image_file, -1, 280, 210, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        $image_file = 'assets/pdf/footer.jpg';
+        $this->Image($image_file, -1, 280, 210, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
         // // Set font
         // $this->SetFont('helvetica', 'I', 8);
         // // Page number
