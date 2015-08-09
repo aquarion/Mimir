@@ -87,7 +87,12 @@ class OdysseyPDF extends TCPDF {
     }
 
     public function odcFontNormal($size=10){
-        $this->SetFont($this->font_Candara, '', 10);
+        $this->SetFont($this->font_Candara, '', $size);
+        $this->SetTextColor    (0, 0, 0, false, false, 'black'); 
+    }
+
+    public function odcFontItalic($size=10){
+        $this->SetFont($this->font_Candara_Italic, '', $size);
         $this->SetTextColor    (0, 0, 0, false, false, 'black'); 
     }
 

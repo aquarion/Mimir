@@ -1,6 +1,11 @@
 <style >
 .notyet {
   display: none;
+
+}
+
+.span3 h2 {
+  height: 2em;
 }
 </style>
 
@@ -38,10 +43,10 @@
           <p><a class="btn" href="/journals/">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
-        <div class="span3 centered notyet">
-          <h2>Artifacts</h2>
+        <div class="span3 centered">
+          <h2>Items</h2>
           <p><img src="/assets/home/img/section-icons/Box-icon.png" width="128"/></p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p><a class="btn" href="/warehouse/">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
         <div class="span3 centered">
