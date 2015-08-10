@@ -68,7 +68,7 @@ jQuery.fn.twtypeahead = twtypeahead;
                 'players' => "Players",
                 'mysterious' => "Greater Mysteries",
                 'cauldron' => "Lesser Mysteries",
-                'artifacts' => "Artifacts",
+                'warehouse' => "Artefacts",
                 'journals' => "Journals",
               );
                 $template = '<li><a href="/%1$s">%2$s</a></li>';

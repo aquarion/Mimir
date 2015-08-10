@@ -4,5 +4,5 @@
 ?>
 
 <ul class="nav nav-pills">
-	<li class="<?PHP echo $active == "all"   ? "active" : ''; ?>"><a href="/warehouse/all" >All Items</a></li>
+	<li class="<?PHP echo $active == "all"   ? "active" : ''; ?>"><a href="/warehouse" >All Items</a></li>
 </ul>

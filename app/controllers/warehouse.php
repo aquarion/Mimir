@@ -1,12 +1,9 @@
 <?php
 
 class Warehouse extends My_Controller {
-    function init(){
-        $this->data['gnav_active'] = "artifacts";
-        return true;
-    }
 
     function all_items(){
+        $this->data['gnav_active'] = "artifacts";
     	require('../lib/XLSXReader/XLSXReader.php');
 		$xlsx = new XLSXReader('../doc/Item List E11.xlsx');
 
@@ -40,6 +37,7 @@ class Warehouse extends My_Controller {
     }
 
     function item($args){
+        $this->data['gnav_active'] = "artifacts";
     	list($sheet, $row) = $args;
         $items  = $this->all_items();
         $this->data['item'] = $items[urldecode($sheet)][$row];
@@ -50,6 +48,7 @@ class Warehouse extends My_Controller {
     }
 
     function printpdf($args){
+        $this->data['gnav_active'] = "artifacts";
     	list($sheet, $row) = $args;
         $items  = $this->all_items();
         $this->data['item'] = $items[urldecode($sheet)][$row];
@@ -58,6 +57,7 @@ class Warehouse extends My_Controller {
     }
 
     function index(){
+        $this->data['gnav_active'] = "artifacts";
         $items  = $this->all_items();
 
         unset($items['Ribbon numbers']);
