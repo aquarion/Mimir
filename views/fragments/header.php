@@ -1,9 +1,25 @@
-<?PHP if(!isset($gnav_active)){ $gactive = ""; } else { $gactive = $gnav_active; } ?>
+<?PHP 
+if(!isset($gnav_active)){ $gactive = ""; } else { $gactive = $gnav_active; } 
+
+              $sections = array(
+                'altar' => "Kudos",
+                'blesser' => "Blessings",
+                'players' => "Players",
+                'mysterious' => "Greater Mysteries",
+                'cauldron' => "Lesser Mysteries",
+                'warehouse' => "Artefacts",
+                'journals' => "Journals",
+              );
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Mímir</title>
+    <title>Mímir
+	<?PHP echo isset($sections[$gactive]) ? ' - '.$sections[$gactive] : '' ?>
+	<?PHP echo $lnav_active ? ' - '.ucwords($lnav_active) : '' ?>
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -62,15 +78,6 @@ jQuery.fn.twtypeahead = twtypeahead;
             <ul class="nav">
               <li class="dropdown">
               <?PHP
-              $sections = array(
-                'altar' => "Kudos",
-                'blesser' => "Blessings",
-                'players' => "Players",
-                'mysterious' => "Greater Mysteries",
-                'cauldron' => "Lesser Mysteries",
-                'warehouse' => "Artefacts",
-                'journals' => "Journals",
-              );
                 $template = '<li><a href="/%1$s">%2$s</a></li>';
                 if($gactive){
                   $gactive_title = $sections[$gactive];

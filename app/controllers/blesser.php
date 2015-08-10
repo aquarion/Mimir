@@ -7,6 +7,11 @@
  */
 class Blesser extends My_Controller {
 
+    function init(){
+        $this->data['gnav_active'] = "blesser";
+        return $this->requires_auth();
+    }
+
     function index(){
         $this->data['lnav_active'] = "index";
         $this->render("blesser/pick_nation");
