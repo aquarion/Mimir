@@ -58,8 +58,16 @@ foreach($blessings as $blessing){
     </div>
     <div class="span2">
       <p class="text-center">
-        From<br/>
-        <b><?PHP echo $blessing->from_type ?> &mdash; <?PHP echo $blessing->issuer ?></b><br/>
+        From <b>
+        <?PHP 
+        $blam = explode(":", $blessing->issuer, 2);
+        if(count($blam) > 1){
+            $issuer = trim($blam[1]);
+        } else {
+            $issuer = $blam[0];
+        }
+        echo $issuer;
+        ?></b><br/>
         For <b><?PHP echo $blessing->reason ?></b>
       </p>
     </div>
