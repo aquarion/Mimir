@@ -78,6 +78,20 @@ class Blessing extends My_Model {
 			+ $this->token(4, 'count');
 	}
 
+
+
+    function count_token_sets(){
+        $out = 0;
+	$tokens = json_decode($this->tokens, true);
+        foreach($tokens as $id => $token){
+            if($token['count']){
+                $out++;
+            }
+        }
+        return $out;
+    }
+
+
     function tokens(){
         $tokens = json_decode($this->tokens, true);
         $return = array();

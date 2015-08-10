@@ -89,10 +89,13 @@ foreach($blessings as $blessing){
   </div>
   <div class="row-fluid">
     <div class="span12">
+     <?PHP if($blessing->description){ ?>
       <h3>IC Description</h3>
-      <?PHP echo Markdown::defaultTransform($blessing->description); ?>
+      <?PHP echo Markdown::defaultTransform($blessing->description); 
+	?>
     <hr/>
       <h3>Game Effect</h3>
+	<?PHP } ?>
       <?PHP echo Markdown::defaultTransform($blessing->effect); ?>
     </div>
   </div>
@@ -101,8 +104,15 @@ foreach($blessings as $blessing){
     <h3>Splash Tokens</h3>
     </div>
     <div class="row-fluid">
-    <?PHP for ($i=1; $i <= 4; $i++) {  ?>
-      <div class="span3 panel panel-default">
+    <?PHP 
+	$span = 12/$blessing->count_token_sets();
+
+	for ($i=1; $i <= 4; $i++) { 
+		if (!$blessing->token($i,'count')){
+			continue;
+		}	
+	 ?>
+      <div class="span<?PHP echo $span; ?> panel panel-default">
         <?PHP echo $blessing->token($i,'count') ?>&times; <b><?PHP echo $blessing->token($i,'target') ?></b><br/>
          <p><?PHP echo Markdown::defaultTransform($blessing->token($i,'effect')); ?></p>
       </div>

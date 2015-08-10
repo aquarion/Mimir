@@ -142,6 +142,7 @@ Blesser = {
         $('#inputSearch').bind('typeahead:select', function(ev, suggestion) {
           player = Mimir.players[suggestion]
           console.log(player)
+          console.log(suggestion)
           window.location.href = '/blesser/character/'+player.pid+':'+player.character_name;
         });
 

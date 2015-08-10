@@ -90,6 +90,8 @@ class Blesser extends My_Controller {
 
         list($pid, $character) = explode(":", $user[0], 2);
 
+	$character = urldecode($character);
+
         $blessings_cxn = Model::factory('Blessing');
         $blessings_cxn->where('event_id', Event::current())
             ->where("target_id", $pid)
