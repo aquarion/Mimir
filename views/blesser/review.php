@@ -17,7 +17,9 @@ $print = array();
     </div>
     <div class="span6">
         <h1 class="pull-right"><?PHP 
-        if (isset($lnav_active)){
+        if ($lnav_active == "deity"){
+          echo "By Issuer";
+        } elseif (isset($lnav_active)){
           echo ucwords($lnav_active);
         } else {
           echo 'View';
@@ -72,8 +74,8 @@ foreach($blessings as $blessing){
         Review<br/>
         <div class="btn-group">
           <button class="btn <?PHP echo $blessing->review_ref  ? 'btn-primary unreview' : 'review' ?>" id="refreview-<?PHP echo $blessing->id ?>">Aquarion</button>
-          <button class="btn <?PHP echo $blessing->review_plot ? 'btn-warning unreview' : 'review' ?>" id="plotreview-<?PHP echo $blessing->id ?>">Story</button>
-          <button class="btn <?PHP echo $blessing->review_sane ? 'btn-inverse unreview' : 'review' ?>" id="sanityreview-<?PHP echo $blessing->id ?>">Sanity Check</button>
+          <button class="btn <?PHP echo $blessing->review_plot ? 'btn-warning unreview' : 'review' ?>" id="plotreview-<?PHP echo $blessing->id ?>">Ian</button>
+          <button class="btn <?PHP echo $blessing->review_sane ? 'btn-inverse unreview' : 'review' ?>" id="sanityreview-<?PHP echo $blessing->id ?>">Simon</button>
         </div>
         <?PHP if ($blessing->date_printed){
           print "<br/>Last printed: ".$blessing->date_printed;
@@ -131,7 +133,7 @@ if(count($print)){
   $print = implode("%%",array_unique($print));
   ?>
   <form method="POST" action="/blesser/printpdf">
-    <input name="print" value="<?PHP echo $print ?>" />
+    <input type="hidden" name="print" value="<?PHP echo $print ?>" />
     <button class="btn btn-primary" href="#"><i class="icon-print icon-white"></i> Print</button>
   </form>
   <?PHP

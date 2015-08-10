@@ -86,6 +86,56 @@ class Blesser extends My_Controller {
         $this->render("blesser/review");
     }
 
+
+
+    function deity($arguments){
+
+        if(isset($arguments[0])){
+            return $this->for_deity(urldecode($arguments[0]));
+        }
+
+        $dataset = Model::factory('Blessing')
+            ->where('event_id', Event::current())
+            ->group_by('issuer')
+            // ->order_by_asc("target_nation")
+            ->find_many();
+
+
+        $issuers = array();
+        foreach($dataset as $blessing){
+            $blam = explode(":", $blessing->issuer, 2);
+            if(count($blam) > 1){
+                $issuer = trim($blam[1]);
+            } else {
+                $issuer = $blam[0];
+            }
+            $issuers[] = $issuer;
+        }
+
+        sort($issuers);
+        $issuers = array_unique($issuers);
+
+        $this->data['issuers'] = $issuers;
+        $this->data['gnav_active'] = "blesser";
+        $this->data['lnav_active'] = "deity";
+        $this->render("blesser/deity");
+
+    }
+
+    function for_deity($deity){
+        $blessings = Model::factory('Blessing');
+        $blessings->where('event_id', Event::current());
+        $blessings->where_like('issuer', '%'.$deity.'%');
+
+        $blessingslist = $blessings->order_by_asc("target_name")->find_many();
+
+        $this->data['blessings'] = $blessingslist;
+        $this->data['gnav_active'] = "blesser";
+        $this->data['lnav_active'] = "deity";
+
+        $this->render("blesser/review");
+    }
+
     function character($user){
 
         list($pid, $character) = explode(":", $user[0], 2);
