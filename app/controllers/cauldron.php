@@ -15,7 +15,7 @@ class Cauldron extends My_Controller {
     
     function all_mysteries(){
     	require('../lib/XLSXReader/XLSXReader.php');
-		$xlsx = new XLSXReader('../doc/LesserMysteries.xlsx');
+		$xlsx = new XLSXReader('../data/LesserMysteries.xlsx');
 
         $sheets = $xlsx->getSheetNames();
 	    $mysterydata = array();

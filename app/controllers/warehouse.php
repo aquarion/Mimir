@@ -5,7 +5,7 @@ class Warehouse extends My_Controller {
     function all_items(){
         $this->data['gnav_active'] = "artifacts";
     	require('../lib/XLSXReader/XLSXReader.php');
-		$xlsx = new XLSXReader('../doc/Item List E11.xlsx');
+		$xlsx = new XLSXReader(sprintf('../data/Item List E%d.xlsx', Event::current()));
 
         $sheets = $xlsx->getSheetNames();
 	    $mysterydata = array();
