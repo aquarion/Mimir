@@ -4,7 +4,7 @@ use \Michelf\Markdown;
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span1 centered">
-      <img src="/assets/home/img/section-icons/pabodie-field-notes-icon.png" width="50em"/>
+      <img src="/assets/home/img/section-icons/Literature-100.png"/>
     </div>
     <div class="span5">
         <?PHP include("navigation.php"); ?>
