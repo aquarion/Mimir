@@ -15,22 +15,22 @@ $mystery_template = '
 <table>
     <tr>
         <td>
-            <img src="/assets/home/img/elements/icons/earth_element-25.png" />
+            <img src="/assets/home/img/elements/icons/earth_element-50.jpg" />
         </td>
         <td>
-            <img src="/assets/home/img/elements/icons/fire_element-25.png" />
+            <img src="/assets/home/img/elements/icons/fire_element-50.jpg" />
         </td>
         <td>
-            <img src="/assets/home/img/elements/icons/air_element-25.png" />
+            <img src="/assets/home/img/elements/icons/air_element-50.jpg" />
         </td>
         <td>
-            <img src="/assets/home/img/elements/icons/water_element-25.png" />
+            <img src="/assets/home/img/elements/icons/water_element-50.jpg" />
         </td>
         <td>
-            <img src="/assets/home/img/elements/icons/water_filled-25.png" />
+            <img src="/assets/home/img/elements/icons/water_filled-50.jpg" />
         </td>
         <td>
-            <img src="/assets/home/img/elements/icons/receive_cash_filled_sasha-25.png" />
+            <img src="/assets/home/img/elements/icons/receive_cash_filled_sasha-50.jpg" />
         </td>
     </tr>
     <tr>
