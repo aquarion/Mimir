@@ -21,7 +21,7 @@
 
         <div class="span3 centered">
           <h2>Blessings</h2>
-          <p><a href="/blesser"><img src="/assets/home/img/section-icons/Gift Filled-100.png"/></p>
+          <p><a href="/blesser"><img src="/assets/home/img/section-icons/Gift Filled-100.png"/></a></p>
           <p><a class="btn" href="/blesser">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
@@ -33,19 +33,19 @@
 
         <div class="span3 centered">
           <h2>Lesser Mysteries</h2>
-          <p><img src="/assets/home/img/section-icons/Mortar and Pestle-100.png"/></p>
+          <p><a href="/cauldron"><img src="/assets/home/img/section-icons/Mortar and Pestle-100.png"/></a></p>
           <p><a class="btn" href="/cauldron">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
         <div class="span3 centered">
           <h2>Journals</h2>
-          <p><img src="/assets/home/img/section-icons/Literature-100.png"/></p>
+          <p><a href="/journals"><img src="/assets/home/img/section-icons/Literature-100.png"/></a></p>
           <p><a class="btn" href="/journals/">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
         <div class="span3 centered">
           <h2>Items</h2>
-          <p><img src="/assets/home/img/section-icons/Product-100.png"/></p>
+          <p><a href="/warehouse"><img src="/assets/home/img/section-icons/Product-100.png"/></a></p>
           <p><a class="btn" href="/warehouse/">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
