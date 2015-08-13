@@ -32,16 +32,13 @@
         </div><!-- /.span3 -->
 
         <div class="span3 centered">
-          <h2>Lesser Mysteries</h2>
-          <p><a href="/cauldron"><img src="/assets/home/img/section-icons/Mortar and Pestle-100.png"/></a></p>
-          <p><a class="btn" href="/cauldron">View details &raquo;</a></p>
-        </div><!-- /.span3 -->
-
-        <div class="span3 centered">
           <h2>Journals</h2>
           <p><a href="/journals"><img src="/assets/home/img/section-icons/Literature-100.png"/></a></p>
           <p><a class="btn" href="/journals/">View details &raquo;</a></p>
         </div><!-- /.span3 -->
+      </div>
+
+      <div class="row-fluid">
 
         <div class="span3 centered">
           <h2>Items</h2>
@@ -50,9 +47,21 @@
         </div><!-- /.span3 -->
 
         <div class="span3 centered">
+          <h2>Lesser Mysteries</h2>
+          <p><a href="/cauldron"><img src="/assets/home/img/section-icons/Mortar and Pestle-100.png"/></a></p>
+          <p><a class="btn" href="/cauldron">View details &raquo;</a></p>
+        </div><!-- /.span3 -->
+
+        <div class="span3 centered">
           <h2>Greater Mysteries</h2>
           <p><a href="/mysterious"><img src="/assets/home/img/section-icons/Mushroom Cloud-100.png"/></a></p>
           <p><a class="btn" href="/mysterious">View details &raquo;</a></p>
+        </div><!-- /.span3 -->
+
+        <div class="span3 centered">
+          <h2>Briefing Sheets</h2>
+          <p><a href="/briefencounter"><img src="/assets/home/img/section-icons/Paper-100.png"/></a></p>
+          <p><a class="btn" href="/briefencounter">View details &raquo;</a></p>
         </div><!-- /.span3 -->
 
     </div> <!-- /row -->

@@ -9,6 +9,7 @@ if(!isset($gnav_active)){ $gactive = ""; } else { $gactive = $gnav_active; }
                 'cauldron' => "Lesser Mysteries",
                 'warehouse' => "Artefacts",
                 'journals' => "Journals",
+                'briefencounter' => "Briefings",
               );
 
 ?>
