@@ -181,11 +181,21 @@ class Mysterious extends My_Controller {
                         continue;
                     }
 
-                    $newmystery = $mystery_cxn->create();
+
+                    $mystery_factory = Model::factory('GreaterMystery');
+                    
+                    printf("Looking for %s<br/>", $mystery[0]);
+                    $newmystery = $mystery_factory->where('code', $mystery[0])->find_one();
+                    if($newmystery){
+                        printf("Mystery %s exists<br/>", $newmystery->code);
+                    } else {
+                        $newmystery = $mystery_factory->create();
+                        $newmystery->date_created = date(DATETIME_MYSQL);
+                    }
+
                     $newmystery->event_id = Event::current();
                     $newmystery->sign_requirement = Event::current_attribute('sign');
                     $newmystery->set = $sheet;
-                    $newmystery->date_created = date(DATETIME_MYSQL);
                     $newmystery->name = $mystery[1];
                     $newmystery->mystery_type = $mystery[4];
                     $newmystery->aquisition_type = $mystery[16];
