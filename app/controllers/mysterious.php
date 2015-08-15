@@ -256,6 +256,7 @@ class Mysterious extends My_Controller {
             
             $cast->date_cast = date(DATETIME_MYSQL);
             $cast->mystery_id = $arguments[0];
+            $cast->event_id = Event::current();
 
             $validate = $cast->validate();
 
