@@ -170,7 +170,7 @@
             <input type="number" class="input-mini kudossrc" data-value="5" id="water" placeholder="Water" name="quin_water" min="0" value="<?PHP echo $kudo->quin_water ?>">
             </div>
             
-          </div>git 
+          </div>
         </div>
             
         <div class="control-group">

@@ -21,6 +21,7 @@
   </div>
   <div class="row-fluid">
     <div class="span11 offset1">
+	<h1>Creating a new Journal</h1>
         <?PHP if(isset($errors)){
            echo '<div class="alert alert-error">';
            foreach($errors as $index => $error){
@@ -43,6 +44,7 @@
                         $options = $journal->journal_type_options();
                         $selected = 'selected="Selected"';
                         $template = '<option value="%s" %s>%s</option>';
+			printf($template,0,'',"---Choose---");
                         foreach($options as $index => $value){
                             $sel = $index == $journal->journal_type ? $selected : '';
                             printf($template, $index, $sel, $value);
@@ -54,6 +56,7 @@
             <div class="control-group">   
                   <label class="control-label" for="inputDescription">Journal Description</label>
                   <div class="controls">
+			DO NOT PUT YOUR FIRST ENTRY HERE<br/>
                         <textarea id="inputDescription" rows="3" cols="62"  name="description" placeholder="DO NOT PUT YOUR FIRST ENTRY HERE."><?PHP echo $journal->description ?></textarea>
                   </div>        
             </div>

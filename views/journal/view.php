@@ -100,7 +100,10 @@ $posts = $journal->posts()->where("event", Event::current())->find_many();
                 <p class="pull-right">
                 Posted by <?PHP echo $post->author ?>
                 <?PHP if($post->author != $post->physrep){ echo ' for '.$post->physrep; }?>
-                on <?PHP echo date("D M jS @ H:i", strtotime($post->date_created))?>
+                on <?PHP //echo date("D M jS @ H:i", strtotime($post->date_created));
+
+		echo $post->date_created;
+		?>
                 </p>
             </div>
             </section>

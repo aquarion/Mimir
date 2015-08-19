@@ -45,7 +45,7 @@ create table entry (
     author varchar(255),
     unread_by_story TINYINT(4) DEFAULT 1 NULL,
     attention_flag TINYINT(4) DEFAULT 0 NULL,
-    date_created tinyint,
+    date_created datetime,
     PRIMARY KEY(id)
 );
 
