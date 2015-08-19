@@ -98,11 +98,20 @@ jQuery.fn.twtypeahead = twtypeahead;
                 print "</ul>\n";
               ?>
               </li>
-              <li><a href="/forum/">Forum</a></li>
-              <li><a href="/odysseywiki/">Story Wiki</a></li>
+              <li><a href="http://larp.me.uk/odysseywiki/">Story Wiki</a></li>
+              <li><a href="/stagingwiki/">Staging Wiki</a></li>
               
             </ul>
             <ul class="nav pull-right">
+		<li style="line-height: 40px;"><img src="/assets/home/img/signs/<?PHP
+		echo Event::lattr('sign');
+		 ?>-32_invert.png"
+			title="Sign is <?PHP echo Event::current_attribute('sign') ?>"
+			>&nbsp;</li>
+		<li style="line-height: 40px;"><img src="/assets/home/img/elements/icons/<?PHP
+		echo Event::lattr('element');
+		 ?>_element-32_invert.png" 
+			title="Element is <?PHP echo Event::current_attribute('element') ?>"></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <?PHP echo Event::current() ?>: <?PHP echo Event::title() ?>
@@ -114,7 +123,12 @@ jQuery.fn.twtypeahead = twtypeahead;
                   			if($index == Event::current){
                   				$value = "<b>$value</b>";
                   			}
-                        echo '<li><a href="/auth/set_event/'.$index.'">'.$value.'</a></li>';
+                        echo '<li>'
+				.'<a href="/auth/set_event/'.$index.'">'
+				//.'<img src="/assets/home/img/signs/'.Event::lattr('sign',$index).'-25.png" style="float: left"; />'
+				.$value
+				.'</a>'
+				.'</li>';
                     }
                     ?>
                   </ul>

@@ -104,3 +104,7 @@ input::-webkit-inner-spin-button {
 .text-right {
   text-align: right;
 }
+
+.navbar-inverse .brand, .navbar-inverse .nav > li > a  {
+	color: #FFF;
+}
