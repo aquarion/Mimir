@@ -77,7 +77,7 @@ foreach($blessings as $blessing){
         Author: <b><?PHP echo $blessing->author ?> </b><br/>
       </p>
     </div>
-    <div class="span3">
+    <div class="span4">
       <p class="text-center">
         Review<br/>
         <div class="btn-group">
@@ -89,11 +89,13 @@ foreach($blessings as $blessing){
           print "<br/>Last printed: ".$blessing->date_printed;
         } else {
           print "<br/>Not printed: ";
+	}
+
           print '<label class="checkbox" for="canprint-'.$blessing->id.'">'
             .'<input type="checkbox" id="canprint-'.$blessing->id.'"'
             .($blessing->can_print ? 'CHECKED="CHECKED" class="disableprint" ' : ' class="enableprint"')
-            .'>Can Print?</label>'; 
-        } ?>
+            .'> Active (Only Active blessings will be printed)</label>'; 
+         ?>
       </p>
     </div>
   </div>

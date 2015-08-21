@@ -152,7 +152,8 @@ class Blesser extends My_Controller {
             ->where("target_id", $pid)
             ->where("target_name", $character);
 
-        $blessings = $blessings_cxn->order_by_asc("date_created")->find_many();
+        $blessings = $blessings_cxn->order_by_desc("can_print")
+		->order_by_asc("date_created")->find_many();
 
         $this->data['blessings'] = $blessings;
         $this->data['gnav_active'] = "blesser";
