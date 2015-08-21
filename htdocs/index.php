@@ -61,7 +61,14 @@ ORM::configure('password', $config->get("database", "password"));
 
 
 $router = new Router();
-$route = $router->route($_SERVER['REQUEST_URI']);
+
+$path = $_SERVER['REQUEST_URI'];
+
+if($path == "/news"){
+	$path = "/StaticPages/news";
+}
+
+$route = $router->route($path);
 
 try {
     $controller = new $route->Controller;
