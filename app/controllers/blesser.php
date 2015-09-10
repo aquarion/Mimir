@@ -345,6 +345,7 @@ class Blesser extends My_Controller {
     }
 
     public function import(){
+	die("Temporarily disabled");
         if(isset($_FILES['import'])){
 
             // Undefined | Multiple Files | $_FILES Corruption Attack
@@ -377,6 +378,36 @@ class Blesser extends My_Controller {
             $this->render("blesser/import_form");
 
         }
+    }
+
+
+    public function export(){
+	// output headers so that the file is downloaded rather than displayed
+	header('Content-Type: text/csv; charset=utf-8');
+	header('Content-Disposition: attachment; filename=blessings.csv');
+
+	// create a file pointer connected to the output stream
+	$output = fopen('php://output', 'w');
+
+	// output the column headings
+
+	// fetch the data
+	//mysql_connect('localhost', 'username', 'password');
+	//mysql_select_db('database');
+	//$rows = mysql_query('SELECT field1,field2,field3 FROM table');
+
+
+        $blessings_cxn = Model::factory('Blessing');
+        $blessings_cxn->where('event_id', Event::current());
+
+        $blessings = $blessings_cxn->order_by_asc("target_name")->find_many();
+
+	fputcsv($output, array_keys($blessings[0]->as_array()));
+	// loop over the rows, outputting them
+	foreach($blessings as $blessing){
+	    fputcsv($output, $blessing->as_array());
+	}
+	fclose($output);
     }
 
     private function importBlessings($filename, $event_id = 9){

@@ -50,13 +50,19 @@
           </div>
                   <div class="caption">Blessings for Player</div >
           </li>
-          <li class="thumbnail centered span5">
+          <li class="thumbnail centered span4">
               <a href="/blesser/create" >
                     <img src="/assets/home/img/blesser/create_new-100.png"/>
                   <div class="caption">Create New</div >
               </a>
           </li>
-            <li class="thumbnail centered span3">
+            <li class="thumbnail centered span2">
+                <a href="/blesser/export" >
+                    <img src="/assets/home/img/blesser/export-100.png" style="height: 100px;"/>
+                    <div class="caption">Export CSV</div >
+                </a>
+            </li>
+            <li class="thumbnail centered span2">
                 <a href="/blesser/import" >
                     <img src="/assets/home/img/blesser/excel-100.png" style="height: 100px;"/>
                     <div class="caption">Import Spreadsheet</div >
