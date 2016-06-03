@@ -3,8 +3,9 @@
 class Players extends My_Controller {
     function init(){
         $this->data['gnav_active'] = "players";
-        return true;
+        return $this->requires_auth();
     }
+
 
     function index(){            
         $this->data['lnav_active'] = "players";

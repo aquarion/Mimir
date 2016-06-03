@@ -8,8 +8,10 @@
 class Cauldron extends My_Controller {
     public static $_table = 'cauldron';
 
+
     function init(){
-    	return true;
+        $this->data['gnav_active'] = "cauldron";
+        return $this->requires_auth();
     }
     
     
