@@ -149,8 +149,11 @@ class Blesser extends My_Controller {
 
         $blessings_cxn = Model::factory('Blessing');
         $blessings_cxn->where('event_id', Event::current())
-            ->where("target_id", $pid)
-            ->where("target_name", $character);
+            ->where("target_id", $pid);
+
+        if($character){
+            $blessings_cxn->where("target_name", $character);
+        }
 
         $blessings = $blessings_cxn->order_by_desc("can_print")
 		->order_by_asc("date_created")->find_many();
@@ -162,6 +165,36 @@ class Blesser extends My_Controller {
         $this->render("blesser/review");
     }
 
+
+
+    function namecheck(){
+        ORM::configure('logging', true);
+
+        $blessings = Model::factory('Blessing');
+        $blessings->where('event_id', Event::current());
+
+
+        $dataset = $blessings->order_by_asc("target_id")->group_by("target_name")->find_many();
+
+        $blessingslist = array();
+
+        foreach($dataset as $blessing){
+            if (!isset($blessingslist[$blessing->target_id])){
+                $players = Model::factory('Player');
+                $blessingslist[$blessing->target_id]['blessings'] = array();
+                $player = $players->where('event_id', Event::current())->where("pid", $blessing->target_id)->find_one();
+
+                $blessingslist[$blessing->target_id]['player'] = $player;
+            }
+            $blessingslist[$blessing->target_id]["blessings"][] = $blessing;
+        }
+
+        $this->data['players'] = $blessingslist;
+        $this->data['gnav_active'] = "blesser";
+        $this->data['lnav_active'] = "namecheck";
+
+        $this->render("blesser/namecheck");
+    }
 
     function printqueue(){
 
@@ -345,7 +378,7 @@ class Blesser extends My_Controller {
     }
 
     public function import(){
-	die("Temporarily disabled");
+	//die("Temporarily disabled");
         if(isset($_FILES['import'])){
 
             // Undefined | Multiple Files | $_FILES Corruption Attack
@@ -469,7 +502,7 @@ class Blesser extends My_Controller {
 
 
 
-                $newblessing->author = 'Excel Import'; 
+                $newblessing->author = 'Excel Import '.date(DATETIME_MYSQL); 
                 $newblessing->target_id = $blessing[5]; 
                 $newblessing->target_name = $blessing[4]; 
                 $newblessing->target_nation = $blessing[1]; 
