@@ -178,6 +178,7 @@ class Mysterious extends My_Controller {
                 echo "<h2>$sheet</h2>";
                 foreach($mysteries as $i => $mystery){
                     if($i == 0 || !$mystery[1]){
+                        print "Skipping row $i <br/>";
                         continue;
                     }
 
@@ -195,24 +196,28 @@ class Mysterious extends My_Controller {
 
                     $newmystery->event_id = Event::current();
                     $newmystery->sign_requirement = Event::current_attribute('sign');
-                    $newmystery->set = $sheet;
+                    $newmystery->set = substr($sheet0, 15);
+
+                    $newmystery->code = $mystery[0];
                     $newmystery->name = $mystery[1];
-                    $newmystery->mystery_type = $mystery[4];
-                    $newmystery->aquisition_type = $mystery[16];
-                    $newmystery->effect_type  = $mystery[5];
-                    $newmystery->culture = $mystery[6];
-                    $newmystery->prime = $mystery[8];
-                    $newmystery->drachma = $mystery[7];
-                    $newmystery->quin_earth = $mystery[10];
-                    $newmystery->quin_air = $mystery[11];
-                    $newmystery->quin_fire = $mystery[9];
-                    $newmystery->quin_water = $mystery[12];
-                    $newmystery->blood = $mystery[13];
+                    // Focus
                     $newmystery->short_desc = $mystery[3];
                     $newmystery->flavour = $mystery[4];
+                    $newmystery->mystery_type = $mystery[$sheet];
+
+                    $newmystery->effect_type  = $mystery[5];
+                    $newmystery->culture = $mystery[6];
+                    $newmystery->drachma = $mystery[7];
+                    $newmystery->prime = $mystery[8];
+                    $newmystery->quin_fire = $mystery[9];
+                    $newmystery->quin_earth = $mystery[10];
+                    $newmystery->quin_air = $mystery[11];
+                    $newmystery->quin_water = $mystery[12];
+                    $newmystery->blood = $mystery[13];
+
                     $newmystery->duration = $mystery[15];
+                    $newmystery->aquisition_type = $mystery[16];
                     $newmystery->effect = $mystery[17];
-                    $newmystery->code = $mystery[0];
 
                     $newmystery->save();
                     echo '<pre>';
