@@ -1,5 +1,5 @@
  body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        /*padding-top: 60px; */ /* 60px to make the container go all the way to the bottom of the topbar */
       }
       
       .centered {
@@ -107,4 +107,38 @@ input::-webkit-inner-spin-button {
 
 .navbar-inverse .brand, .navbar-inverse .nav > li > a  {
 	color: #FFF;
+}
+
+
+.navbar-inverse .navbar-inner {
+  background-image: url("/assets/home/img/header.png");
+  background-repeat: repeat-x;
+}
+
+body {
+  background-image: url("/assets/home/img/header_light.png");
+  background-repeat: repeat-x;
+}
+
+@media (min-width: 979px) {
+  .container-fluid {
+  }
+}
+
+.footer {
+  min-height: 70px;
+  background-image: url("/assets/home/img/footer_light.png");
+  background-repeat: repeat-x;
+  position: relative;
+}
+
+.footer .words {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.tableFloatingHeader {
+  background: rgba(255,255,255,.75);
 }
