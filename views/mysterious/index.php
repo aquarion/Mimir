@@ -19,12 +19,12 @@ if (count($_GET)) {
 </style>
 <div class="container-fluid">
     <div class="row-fluid">
-		<div class="span5">
-		    <?PHP include("navigation.php"); ?>
-		</div>
-		<div class="span7">
-		    <h1 class="pull-right">Greater Mysteries</h1>
-		</div>
+      <div class="span6">
+          <?PHP include("navigation.php"); ?>
+      </div>
+      <div class="span6">
+          <h1 class="pull-right">Greater Mysteries</h1>
+      </div>
     </div>
     <div class="row-fluid">
 	<div class="span12">
@@ -57,8 +57,13 @@ if (count($_GET)) {
 			    }
 			}
 
-			echo '<td><a class="btn btn-mini btn-block" href="/mysterious/edit/' . $data['id'] . '">Edit</a>
-			<a class="btn-block btn btn-mini btn-success" href="/mysterious/cast/' . $data['id'] . '">Cast</a>
+			echo '<td>
+			<div class="btn-group">
+				<a class="btn btn-small" href="/mysterious/edit/' . $data['id'] . '"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-small" href="/mysterious/print/' . $data['id'] . '"><i class="icon-print"></i> Print</a>
+				<a class="btn btn-small btn-success" href="/mysterious/cast/' . $data['id'] . '"><i class="icon-star icon-white"></i> Cast</a>
+			</div>
+			
 			</td>';
 
 			echo "</tr>\n";
@@ -172,6 +177,8 @@ if (count($_GET)) {
 		    var newTopOffset = isNaN(base.options.fixedOffset) ?
 			base.options.fixedOffset.height() : base.options.fixedOffset;
 
+			newTopOffset = 0;
+
 		    var offset = $this.offset();
 		    var scrollTop = base.$window.scrollTop() + newTopOffset;
 		    var scrollLeft = base.$window.scrollLeft();
@@ -184,7 +191,7 @@ if (count($_GET)) {
 
 			base.$clonedHeader.css({
 			    'top': newTopOffset,
-			    'margin-top': 40,
+			    'margin-top': 0,
 			    'left': newLeft,
 			    'display': 'block'
 			});

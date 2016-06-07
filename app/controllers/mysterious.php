@@ -53,6 +53,13 @@ class Mysterious extends My_Controller {
         return $this->editForm($arguments[0]);
     }
 
+    function printall($arguments){
+        $mystery = Model::factory('GreaterMystery');
+        $mystery->where('event_id', Event::current());
+        $this->data['mysteries'] = $mystery->order_by_asc("date_created")->find_many();
+        $this->renderAlone("mysterious/print");
+    }
+
     function view($arguments){
         $this->data['gnav_active'] = "mysterious";
         $this->data['lnav_active'] = "index";
@@ -64,6 +71,20 @@ class Mysterious extends My_Controller {
         $this->data['cast'] = $cast->order_by_asc("date_cast")->find_many();
         $this->data['mystery'] = $mystery;
         $this->render("mysterious/view");
+    }
+
+
+    function printpdf($arguments){
+        $this->data['gnav_active'] = "mysterious";
+        $this->data['lnav_active'] = "index";
+        $mystery_cxn = Model::factory('GreaterMystery');
+        $cast_cxn = Model::factory('GMCast');
+
+        $mystery = $mystery_cxn->find_one($arguments[0]);
+        $cast = $cast_cxn->where("mystery_id", $arguments[0]);
+        $this->data['cast'] = $cast->order_by_asc("date_cast")->find_many();
+        $this->data['mysteries'] = array($mystery);
+        $this->renderAlone("mysterious/print");
     }
 
     function editForm($id = null) {

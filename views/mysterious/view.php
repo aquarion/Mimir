@@ -1,18 +1,25 @@
 <?PHP
 use \Michelf\Markdown;
 ?><div class="container-fluid">
-    <div class="row-fluid">
-    <div class="span5">
-        <?PHP include("navigation.php"); ?>
-    </div>
-    <div class="span7">
-        <h1 class="pull-right">Greater Mysteries</h1>
-    </div>
-    </div>
+  <div class="row-fluid">
+      <div class="span6">
+          <?PHP include("navigation.php"); ?>
+      </div>
+      <div class="span6">
+          <h1 class="pull-right">Greater Mysteries</h1>
+      </div>
+  </div>
   <div class="row-fluid">
     <div class="span10 offset1">
 
-      <h1 class="pull-center"><?PHP echo $mystery->name ?> <a href="/mysterious/edit/<?PHP echo $mystery->id ?>" class="btn">Edit</a></h1>
+      <h1 class="pull-center"><?PHP echo $mystery->name ?> 
+
+      <div class="btn-group">
+      <a href="/mysterious/edit/<?PHP echo $mystery->id ?>" class="btn"><i class="icon-edit"></i> Edit</a>
+      <a href="/mysterious/print/<?PHP echo $mystery->id ?>" class="btn"><i class="icon-print"></i> Print</a>
+      <a href="/mysterious/cast/<?PHP echo $mystery->id ?>" class="btn"><i class="icon-star"></i> Cast</a>
+      </div>
+      </h1>
       <p><?PHP echo Markdown::defaultTransform($mystery->short_desc); ?></p>
      
       <blockquote><?PHP echo Markdown::defaultTransform($mystery->flavour); ?></blockquote>

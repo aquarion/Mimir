@@ -80,6 +80,11 @@ class OdysseyPDF extends TCPDF {
       $this->SetY($y+$int);
     }
 
+    public function AddX($int){
+      $x = $this->GetX();
+      $this->SetX($x+$int);
+    }
+
     public function odcFontHeading($size=18){
         $this->SetFont($this->font_Candara_Italic, 'I', $size);
         //$pdf->SetTextColor    ($r, $g, $b, $k, $ret, $name);
@@ -93,6 +98,11 @@ class OdysseyPDF extends TCPDF {
 
     public function odcFontItalic($size=10){
         $this->SetFont($this->font_Candara_Italic, '', $size);
+        $this->SetTextColor    (0, 0, 0, false, false, 'black'); 
+    }
+
+    public function odcFontBoldItalic($size=10){
+        $this->SetFont($this->font_Candara_BI, '', $size);
         $this->SetTextColor    (0, 0, 0, false, false, 'black'); 
     }
 

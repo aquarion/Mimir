@@ -5,4 +5,5 @@
 	<li class="<?PHP echo $active == "add"   ? "active" : ''; ?>"><a href="/mysterious/add" >Add Mystery</a></li>
 	<li class="<?PHP echo $active == "import"   ? "active" : ''; ?>"><a href="/mysterious/import" >Import Mysteries</a></li>
 	<li class="<?PHP echo $active == "castings"   ? "active" : ''; ?>"><a href="/mysterious/cast" >Mysteries Cast</a></li>
+	<li><a href="/mysterious/printall" ><i class="icon-print"></i> Print All</a></li>
 </ul>

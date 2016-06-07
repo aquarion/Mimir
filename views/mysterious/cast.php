@@ -2,12 +2,12 @@
 use \Michelf\Markdown;
 ?><div class="container-fluid">
     <div class="row-fluid">
-    <div class="span5">
-        <?PHP include("navigation.php"); ?>
-    </div>
-    <div class="span7">
-        <h1 class="pull-right">Greater Mysteries</h1>
-    </div>
+      <div class="span6">
+          <?PHP include("navigation.php"); ?>
+      </div>
+      <div class="span6">
+          <h1 class="pull-right">Cast a Greater Mystery</h1>
+      </div>
     </div>
   <div class="row-fluid">
     <div class="span10 offset1">

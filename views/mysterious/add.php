@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span8">
+    <div class="span6">
         <?PHP include("navigation.php"); ?>
     </div>
-    <div class="span4">
+    <div class="span6">
         <?PHP if($mystery->id){ ?>
           <h1 class="pull-right">Edit Greater Mystery</h1>
         <?PHP } else { ?>
@@ -132,19 +132,19 @@
           <div class="controls">
             
             <div class="input-prepend">
-            <span class="add-on kudos"><img src="/assets/home/img/elements/Green.png" width="16"></span>
+            <span class="add-on kudos"><img src="/assets/home/img/elements/icons/earth_element-25.png" ></span>
             <input type="number" class="input-mini kudossrc" data-value="5" id="earth" placeholder="Earth" name="quin_earth" min="0" value="<?PHP echo $mystery->quin_earth ?>">
             </div>
             <div class="input-prepend">
-            <span class="add-on"><img src="/assets/home/img/elements/White.png" width="16"></span>
+            <span class="add-on kudos"><img src="/assets/home/img/elements/icons/air_element-25.png" ></span>
             <input type="number" class="input-mini kudossrc" data-value="5" id="air" placeholder="Air" name="quin_air" min="0" value="<?PHP echo $mystery->quin_air ?>">
             </div>
             <div class="input-prepend">
-            <span class="add-on"><img src="/assets/home/img/elements/Red.png" width="16"></span>
+            <span class="add-on kudos"><img src="/assets/home/img/elements/icons/fire_element-25.png" ></span>
             <input type="number" class="input-mini kudossrc" data-value="5" id="fire" placeholder="Fire" name="quin_fire" min="0" value="<?PHP echo $mystery->quin_fire ?>">
             </div>
             <div class="input-prepend">
-            <span class="add-on"><img src="/assets/home/img/elements/Blue.png" width="16"></span>
+            <span class="add-on kudos"><img src="/assets/home/img/elements/icons/water_element-25.png" ></span>
             <input type="number" class="input-mini kudossrc" data-value="5" id="water" placeholder="Water" name="quin_water" min="0" value="<?PHP echo $mystery->quin_water ?>">
             </div>
             

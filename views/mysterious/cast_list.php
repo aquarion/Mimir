@@ -19,12 +19,12 @@ if (count($_GET)) {
 </style>
 <div class="container-fluid">
     <div class="row-fluid">
-		<div class="span5">
-		    <?PHP include("navigation.php"); ?>
-		</div>
-		<div class="span7">
-		    <h1 class="pull-right">Greater Mysteries Cast</h1>
-		</div>
+      <div class="span6">
+          <?PHP include("navigation.php"); ?>
+      </div>
+      <div class="span6">
+          <h1 class="pull-right">Greater Mysteries</h1>
+      </div>
     </div>
     <div class="row-fluid">
 	<div class="span12">
@@ -56,7 +56,7 @@ if (count($_GET)) {
 			    }
 			}
 
-			echo '<td><a class="btn btn-mini btn-block" href="/edit/gmcast/' . $cast->id . '">Edit</a>
+			echo '<td><a class="btn btn-small" href="/edit/gmcast/' . $cast->id . '"><i class="icon-edit"></i> Edit</a>
 			</td>';
 
 			echo "</tr>\n";
