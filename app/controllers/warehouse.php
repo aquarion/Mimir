@@ -3,6 +3,7 @@
 class Warehouse extends My_Controller {
     function init(){
         $this->data['gnav_active'] = "warehouse";
+        $this->data['lnav_active'] = "all";
         return $this->requires_auth();
     }
 
@@ -50,11 +51,18 @@ class Warehouse extends My_Controller {
     }
 
     function printpdf($args){
-    	list($sheet, $row) = $args;
+        list($sheet, $row) = $args;
         $items  = $this->all_items();
-        $this->data['item'] = $items[urldecode($sheet)][$row];
+        $this->data['items'] = array($items[urldecode($sheet)][$row]);
         $this->renderAlone("warehouse/print");
 
+    }
+
+    function printpdfsheet($args){
+        list($sheet, $row) = $args;
+        $items  = $this->all_items();
+        $this->data['items'] = $items[urldecode($sheet)];
+        $this->renderAlone("warehouse/print");
     }
 
     function index(){
