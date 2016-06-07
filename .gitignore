@@ -5,3 +5,5 @@ htdocs/odysseywiki
 doc/data.sql
 .tags1
 lib/tcpdf/fonts
+data/*.xlsx
+briefings/*
