@@ -97,7 +97,7 @@ jQuery.fn.twtypeahead = twtypeahead;
                 print "</ul>\n";
               ?>
               </li>
-              <li><a href="http://larp.me.uk/odysseywiki/">Story Wiki</a></li>
+              <li><a href="/odysseywiki/">Story Wiki</a></li>
               <li><a href="/stagingwiki/">Staging Wiki</a></li>
               
             </ul>
@@ -134,10 +134,11 @@ jQuery.fn.twtypeahead = twtypeahead;
                 </li>
                 <?PHP
                 if (isset($_SESSION['authentication'])) { ?>
-                  <li><a href="/auth/logout">Logout</a></li>
-                <?PHP } else { ?>
+                  <li><a href="/auth/logout" title="Logout"><i class="icon-off icon-white"></i></a></li>
+                <?PHP 
+                  }  /* else { ?>
                   <li><a href="/auth/login?redirect=<?PHP echo urlencode($_SERVER['REQUEST_URI']); ?>">Login</a></li>
-                <?PHP } ?>
+                <?PHP }*/ ?>
               </ul>
           </div><!--/.nav-collapse -->
         </div>

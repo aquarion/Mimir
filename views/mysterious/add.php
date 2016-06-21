@@ -29,6 +29,12 @@
                 <input name="id" type="hidden" value="<?PHP echo $mystery->id ?>">
         <?PHP } ?>
         <div class="control-group">
+          <label class="control-label" for="inputCode">Code</label>
+          <div class="controls">
+            <input type="text" id="inputCode" placeholder="Code" name="code" value="<?PHP echo $mystery->code ?>">
+          </div>
+        </div>
+        <div class="control-group">
           <label class="control-label" for="inputName">Name</label>
           <div class="controls">
             <input type="text" id="inputName" placeholder="Name" name="name" value="<?PHP echo $mystery->name ?>">

@@ -16,7 +16,7 @@ use \Michelf\Markdown;
 
       <div class="btn-group">
       <a href="/mysterious/edit/<?PHP echo $mystery->id ?>" class="btn"><i class="icon-edit"></i> Edit</a>
-      <a href="/mysterious/print/<?PHP echo $mystery->id ?>" class="btn"><i class="icon-print"></i> Print</a>
+      <a href="/mysterious/printpdf/<?PHP echo $mystery->id ?>" class="btn"><i class="icon-print"></i> Print</a>
       <a href="/mysterious/cast/<?PHP echo $mystery->id ?>" class="btn"><i class="icon-star"></i> Cast</a>
       </div>
       </h1>

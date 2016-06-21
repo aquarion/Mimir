@@ -32,6 +32,7 @@ if (count($_GET)) {
         <table class="table-striped table-bordered " width="100%">
 			<thead>        
 			    <tr style="">
+				<th>Code</th>
 				<th>Name</th>
 				<th>Mystery Type</th>
 				<th>Effect Type</th>
@@ -47,20 +48,23 @@ if (count($_GET)) {
 			#$data['priest_name'] = $data['priest_name']." (".$data['priest_id'].")";
 			echo '<tr>';
 
-			$include = array("mystery_type","effect_type","short_desc", "actions");
+			$include = array("code", "name", "mystery_type","effect_type","short_desc");
 
                         
-			echo '<td><a href="/mysterious/view/'.$data['id'].'">'.$data['name'].'</a></td>';
-			foreach ($data as $index => $value) {
-                if(in_array($index, $include)){
-				    echo '<td>' . ($value ? $value : '&nbsp;') . '</td>';
-			    }
+			$data['name'] = '<a href="/mysterious/view/'.$data['id'].'">'.$data['name'].'</a>';
+			// foreach ($data as $index => $value) {
+   //              if(in_array($index, $include)){
+			// 	    echo '<td>' . ($value ? $value : '&nbsp;') . '</td>';
+			//     }
+			// }
+			foreach ($include as $index) {
+				   echo '<td>' . (isset($data[$index]) ? $data[$index] : '&nbsp;') . '</td>';
 			}
 
 			echo '<td>
 			<div class="btn-group">
 				<a class="btn btn-small" href="/mysterious/edit/' . $data['id'] . '"><i class="icon-edit"></i> Edit</a>
-				<a class="btn btn-small" href="/mysterious/print/' . $data['id'] . '"><i class="icon-print"></i> Print</a>
+				<a class="btn btn-small" href="/mysterious/printpdf/' . $data['id'] . '"><i class="icon-print"></i> Print</a>
 				<a class="btn btn-small btn-success" href="/mysterious/cast/' . $data['id'] . '"><i class="icon-star icon-white"></i> Cast</a>
 			</div>
 			

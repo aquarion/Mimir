@@ -36,7 +36,7 @@ foreach($items as $sheet_name => $sheet_items){
   <div id="tabContent<?PHP echo $sheet_id ?>" class="tab-pane <?PHP echo ($active ? 'active' : '') ?>">
   <h1><?PHP 
     echo $sheet_name;
-    printf('<a class="btn btn-primary" href="/warehouse/printpdfsheet/%s"><i class="icon-print icon-white"></i> Print All</a>', urlencode($sheet_name));
+    printf(' <a class="btn btn-primary" href="/warehouse/printpdfsheet/%s"><i class="icon-print icon-white"></i> Print All</a>', urlencode($sheet_name));
   ?></h1>
   <table class="table-striped table-bordered " width="100%">
   <thead>
@@ -48,7 +48,6 @@ foreach($items as $sheet_name => $sheet_items){
       <th>Source</th>
       <th>WOTS</th>
       <th>WOTA</th>
-      <th>Column1</th>
       <th>Pack in:</th>
 
       <!-- <th>Kit</th> -->
@@ -59,6 +58,7 @@ foreach($items as $sheet_name => $sheet_items){
   foreach($sheet_items as $i => $row){
 
       unset($row['Rules Effect']);
+      unset($row['Column1']);
       unset($row['Descriptor Text']);
       $row['Ribbon #'] = sprintf('<a href="/warehouse/item/%s/%d">%s</a>', urlencode($sheet_name), $i, $row['Ribbon #'] );
       $row['Item'] = sprintf('<a href="/warehouse/item/%s/%d">%s</a>', urlencode($sheet_name), $i, $row['Item'] );

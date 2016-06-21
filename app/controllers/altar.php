@@ -63,14 +63,39 @@ class Altar extends My_Controller {
         $kudos->event_id = Event::current();
         $kudos->date_created = date(DATETIME_MYSQL);
 
+        $numeric = array(
+            'chalkoi',
+            'obol',
+            'drachma',
+            'pentadrachma',
+            'mina',
+
+            'lives',
+            'life_bonus',
+            'arena_bonus',
+            'quin_earth',
+            'quin_fire',
+            'quin_water',
+            'quin_air',
+
+            'total',
+            'champion_id'
+        );
+
+
         if (count($_POST)) {
             foreach ($_POST as $index => $value) {
+                if(in_array($index, $numeric)){
+                    $value = intval($value);
+                }
                 $kudos->$index = $value;
             }
             
             $validate = $kudos->validate();
 
             if ($validate === true) {
+                echo '<pre>';
+                var_dump($kudos->as_array());
                 $kudos->save();
                 return $this->_redirect("/altar/");
             } else {

@@ -31,7 +31,7 @@ foreach($items as $item ){
 
 	$text = 'This artefact cannot be destroyed by normal means. You should call RESIST to any CRUSH that would damage this item, although the call affects your other items as normal.
 
-This artifact physrep is the Property of Profound Decisions and must be returned at end of event
+This artifact physrep is the Property of Profound Decisions and must be returned at end of event, This information is valid only for the '.ucwords(Event::ordinal()).' Annual. 
 
 To be able to use this artefact you must have either read this rules sheet while in possession of the item or consulted a referee and shown them the item.';
 

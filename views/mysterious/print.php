@@ -86,7 +86,7 @@ foreach($mysteries as $mystery ){
 	$pdf->AddY(3);
 
 	$pdf->odcFontBoldItalic(9);
-	$pdf->MultiCell(0, 0, "This Greater Mystery may only be cast once at the Eleventh Annual, and may only be cast under the Sign of ".$mystery->sign_requirement, '', "C", false);
+	$pdf->MultiCell(0, 0, "This Greater Mystery may only be cast once at the ".ucwords(Event::ordinal())." Annual unless otherwise specified, and may only be cast under the Sign of ".$mystery->sign_requirement, '', "C", false);
 
 	$pdf->odcFontNormal(9);
 
@@ -94,7 +94,7 @@ foreach($mysteries as $mystery ){
 	$image_file = 'assets/pdf/pdlogo.jpg';
 	$pdf->Image($image_file, false, false, false, false, 'JPG', '', 'T', false, 150, '', false, false, 0, false, false, false);
 
-	$text = 'This sheet represets the information available through the use of the Lesser Mystery "Wisdom of the Seer" on a Greater Mystery focus. This information is valid only for the Eleventh Annual. 
+	$text = 'This sheet represets the information available through the use of the Lesser Mystery "Wisdom of the Seer" on a Greater Mystery focus. This information is valid only for the '.ucwords(Event::ordinal()).' Annual. 
 
 This is an OOC document, but represents IC knowledge your character has gained of the purpose of the Greater Mystery and the ritual and ceremony necessary for the casting of it.';
 

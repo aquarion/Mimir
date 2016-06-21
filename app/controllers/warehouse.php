@@ -8,40 +8,43 @@ class Warehouse extends My_Controller {
     }
 
     function all_items(){
-    	require('../lib/XLSXReader/XLSXReader.php');
-		$xlsx = new XLSXReader(sprintf('../data/Item List E%d.xlsx', Event::current()));
+        require('../lib/XLSXReader/XLSXReader.php');
+        $xlsx = new XLSXReader(sprintf('../data/Item List E%d.xlsx', Event::current()));
 
         $sheets = $xlsx->getSheetNames();
-	    $mysterydata = array();
+        $mysterydata = array();
 
 
-	    $this->data['types'] = array();
+        $this->data['types'] = array();
 
-	    $sheetdata = array();
+        $sheetdata = array();
 
         foreach($sheets as $sheet){
-        	$sheetdata[$sheet] = array();
-	        $items = $xlsx->getSheetData($sheet);
-	        //$mysteries = $xlsx->getSheetData('Basics');
-	        //var_dump($mysteries);
-	        
-	        $cols = array_shift($items);
+            if($sheet == "Ribbon numbers"){
+                continue;
+            }
+            $sheetdata[$sheet] = array();
+            $items = $xlsx->getSheetData($sheet);
+            //$mysteries = $xlsx->getSheetData('Basics');
+            //var_dump($mysteries);
+            
+            $cols = array_shift($items);
 
-	        foreach($items as $index => $item){
-	   			 $retitem = array();
-	   			 foreach($item as $i => $row){
-	   			 	$retitem[$cols[$i]] = $row;
-	   			 }
-	   			 $sheetdata[$sheet][] = $retitem;
-	        }
+            foreach($items as $index => $item){
+                 $retitem = array();
+                 foreach($item as $i => $row){
+                    $retitem[$cols[$i]] = $row;
+                 }
+                 $sheetdata[$sheet][] = $retitem;
+            }
 
 
-	    }
-	    return $sheetdata;
+        }
+        return $sheetdata;
     }
 
     function item($args){
-    	list($sheet, $row) = $args;
+        list($sheet, $row) = $args;
         $items  = $this->all_items();
         $this->data['item'] = $items[urldecode($sheet)][$row];
         $this->data['sheet'] = $sheet;
