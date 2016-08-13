@@ -15,7 +15,6 @@ define("DATETIME_MYSQL", 'Y-m-d H:i:s');
 
 set_include_path(get_include_path() . PATH_SEPARATOR . LIBS_LOC.'php-markdown-lib\Michelf'); // Markdown
 
-
 class Exception_ClassNotFound extends Exception {
     
 }

@@ -262,6 +262,30 @@ class Blesser extends My_Controller {
 
     }
 
+    function x000D(){
+
+        $this->data['lnav_active'] = "all";
+        $blessings = Model::factory('Blessing');
+        $blessings->where('event_id', Event::current());
+
+        $blessingslist = $blessings->order_by_asc("date_created")->find_many();
+
+
+	foreach($blessingslist as $blessing){
+		if(strpos($blessing->effect, "_x000D_") === FALSE){
+			continue;
+		}
+		print nl2br(str_replace("_x000D_", "", $blessing->effect));
+		print "<hr/>";
+		print nl2br($blessing->effect);
+		print "<hr/>";
+		print "<hr/>";
+		$blessing->effect = str_replace("_x000D_", "", $blessing->effect);
+		$blessing->save();
+	}
+
+    }
+
     function all(){
 
         $this->data['lnav_active'] = "all";

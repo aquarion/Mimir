@@ -62,7 +62,11 @@ class Warehouse extends My_Controller {
     }
 
     function printpdfsheet($args){
-        list($sheet, $row) = $args;
+	if(count($args) == 1){
+		$sheet = $args[0];
+	} else {
+        	list($sheet, $row) = $args;
+	}
         $items  = $this->all_items();
         $this->data['items'] = $items[urldecode($sheet)];
         $this->renderAlone("warehouse/print");

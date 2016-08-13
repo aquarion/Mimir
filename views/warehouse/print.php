@@ -43,4 +43,9 @@ To be able to use this artefact you must have either read this rules sheet while
 
 }
 
-$pdf->Output('blessingslist.pdf', 'I');
+if(count($items) > 1){
+	$pdf->Output('items_list.pdf', 'I');
+} else {
+	$pdf->Output($item['Item'].".pdf", "I");
+}
+
