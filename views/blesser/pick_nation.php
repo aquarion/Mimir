@@ -39,7 +39,7 @@
   <div class="row-fluid">
       <div class="span12 ">
         <ul class="thumbnails">
-          <li class="thumbnail centered span4">
+          <li class="thumbnail centered span3">
 
           <div style="margin-top: 20px; margin-bottom: 20px">
             <div class="input-prepend">
@@ -50,7 +50,7 @@
           </div>
                   <div class="caption">Blessings for Player</div >
           </li>
-          <li class="thumbnail centered span4">
+          <li class="thumbnail centered span3">
               <a href="/blesser/create" >
                     <img src="/assets/home/img/blesser/create_new-100.png"/>
                   <div class="caption">Create New</div >
@@ -66,6 +66,12 @@
                 <a href="/blesser/import" >
                     <img src="/assets/home/img/blesser/excel-100.png" style="height: 100px;"/>
                     <div class="caption">Import Spreadsheet</div >
+                </a>
+            </li>
+            <li class="thumbnail centered span2">
+                <a href="/blesser/namecheck" >
+                    <img src="/assets/home/img/blesser/business-contact-100.png" style="height: 100px;"/>
+                    <div class="caption">Reconcile</div >
                 </a>
             </li>
         </ul>
