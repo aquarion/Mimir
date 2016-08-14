@@ -98,7 +98,7 @@ jQuery.fn.twtypeahead = twtypeahead;
               ?>
               </li>
               <li><a href="/odysseywiki/">Story Wiki</a></li>
-              <li><a href="/stagingwiki/">Staging Wiki</a></li>
+              <li><a href="http://odyssey.crew.profounddecisions.co.uk/stagingwiki/">Staging Wiki</a></li>
               
             </ul>
             <ul class="nav pull-right">
