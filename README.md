@@ -3,13 +3,14 @@ Colophon
 
 Odyssey management. By all the gods, Odysseus could have done with this...
 
+Written by Nicholas 'Aquarion' Avenell <aquarion@profounddecisions.co.uk>
+
 Environments
 ============
 
 * Dev: http://mimir.melior.istic.net
 * Stage: http://mimir.aqxs.net
-* Live: http://odyssey.crew.profounddecisions.co.uk
-* Live Alt: http://odyssey.larp.me.uk (Active when Live is in a field for Empire)
+* Live: http://dagon.church
 
 Giants Stood Atop
 =================
@@ -25,8 +26,8 @@ Pretty
 ------
 
 * CSS/Design Framework: Bootstrap 2 (http://twitter.github.io/bootstrap/)
-* Logos are by PD, obviously
-* Icons: IconArchive.com (Icons need to be replaced at some point)
+* Nation Logos & header/footer graphics are by PD
+* Icons: Mostly from https://icons8.com/
 
 Interacty
 ---------
