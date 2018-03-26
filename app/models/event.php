@@ -12,105 +12,105 @@
  */
 class Event {
   
-    const current = 13;
+    const current = 1;
 
     static function events(){
         return array(
             1 => array(
-                'title'   => 'Steer of Heaven',
+                'title'   => 'Event 1',
                 'sign'    => 'Taurus',
                 'element' => 'Earth',
-                'year'    => '2010/1',
+                'year'    => '2018/1',
                 'ordinal' => 'First',
             ),
-            2 => array(
-                'title'   => 'Two Faces of Earth and Sky',
-                'sign'    => 'Gemini',
-                'element' => 'Air',
-                'year'    => '2011/1',
-                'ordinal' => 'Second',
-            ),
-            3 => array(
-                'title'   => 'Claws of the Tide King',
-                'sign'    => 'Cancer',
-                'element' => 'Water',
-                'year'    => '2011/2',
-                'ordinal' => 'Third',
-            ),
-            4 => array(
-                'title'   => 'Crown of the Sphinx',
-                'sign'    => 'Leo',
-                'element' => 'Fire',
-                'year'    => '2012/1',
-                'ordinal' => 'Fourth',
-            ),
-            5 => array(
-                'title'   => 'Queen of the Blood Moon',
-                'sign'    => 'Virgo',
-                'element' => 'Earth',
-                'year'    => '2012/2',
-                'ordinal' => 'Fifth',
-            ),
-            6 => array(
-                'title'   => 'Balance of the World',
-                'sign'    => 'Libra',
-                'element' => 'Air',
-                'year'    => '2013/1',
-                'ordinal' => 'Sixth',
-            ),
-            7 => array(
-                'title'   => 'Touch of Death',
-                'sign'    => 'Scorpio',
-                'element' => 'Water',
-                'year'    => '2013/2',
-                'ordinal' => 'Seventh',
-            ),
+            // 2 => array(
+            //     'title'   => 'Two Faces of Earth and Sky',
+            //     'sign'    => 'Gemini',
+            //     'element' => 'Air',
+            //     'year'    => '2011/1',
+            //     'ordinal' => 'Second',
+            // ),
+            // 3 => array(
+            //     'title'   => 'Claws of the Tide King',
+            //     'sign'    => 'Cancer',
+            //     'element' => 'Water',
+            //     'year'    => '2011/2',
+            //     'ordinal' => 'Third',
+            // ),
+            // 4 => array(
+            //     'title'   => 'Crown of the Sphinx',
+            //     'sign'    => 'Leo',
+            //     'element' => 'Fire',
+            //     'year'    => '2012/1',
+            //     'ordinal' => 'Fourth',
+            // ),
+            // 5 => array(
+            //     'title'   => 'Queen of the Blood Moon',
+            //     'sign'    => 'Virgo',
+            //     'element' => 'Earth',
+            //     'year'    => '2012/2',
+            //     'ordinal' => 'Fifth',
+            // ),
+            // 6 => array(
+            //     'title'   => 'Balance of the World',
+            //     'sign'    => 'Libra',
+            //     'element' => 'Air',
+            //     'year'    => '2013/1',
+            //     'ordinal' => 'Sixth',
+            // ),
+            // 7 => array(
+            //     'title'   => 'Touch of Death',
+            //     'sign'    => 'Scorpio',
+            //     'element' => 'Water',
+            //     'year'    => '2013/2',
+            //     'ordinal' => 'Seventh',
+            // ),
 
-            8 => array(
-                'title'   => 'Arrow of Fire',
-                'sign'    => 'Sagittarius',
-                'element' => 'Fire',
-                'year'    => '2014/1',
-                'ordinal' => 'Eighth',
-            ),
-            9 => array(
-                'title'   => 'Dweller in the Deep',
-                'sign'    => 'Capricorn',
-                'element' => 'Earth',
-                'year'    => '2014/2',
-                'ordinal' => 'Ninth',
-            ),
-            10 => array(
-                'title'   => 'River of Night\'s Dreaming',
-                'sign'    => 'Aquarius',
-                'element' => 'Air',
-                'year'    => '2015/1',
-                'ordinal' => 'Tenth',
-            ),
+            // 8 => array(
+            //     'title'   => 'Arrow of Fire',
+            //     'sign'    => 'Sagittarius',
+            //     'element' => 'Fire',
+            //     'year'    => '2014/1',
+            //     'ordinal' => 'Eighth',
+            // ),
+            // 9 => array(
+            //     'title'   => 'Dweller in the Deep',
+            //     'sign'    => 'Capricorn',
+            //     'element' => 'Earth',
+            //     'year'    => '2014/2',
+            //     'ordinal' => 'Ninth',
+            // ),
+            // 10 => array(
+            //     'title'   => 'River of Night\'s Dreaming',
+            //     'sign'    => 'Aquarius',
+            //     'element' => 'Air',
+            //     'year'    => '2015/1',
+            //     'ordinal' => 'Tenth',
+            // ),
 
-            11 => array(
-                'title'   => 'Mirror of the Sea',
-                'sign'    => 'Pisces',
-                'element' => 'Water',
-                'year'    => '2015/2',
-                'ordinal' => 'Eleventh',
-            ),
+            // 11 => array(
+            //     'title'   => 'Mirror of the Sea',
+            //     'sign'    => 'Pisces',
+            //     'element' => 'Water',
+            //     'year'    => '2015/2',
+            //     'ordinal' => 'Eleventh',
+            // ),
 
-            12 => array(
-                'title'   => 'Golden Ram',
-                'sign'    => 'Aries',
-                'element' => 'Fire',
-                'year'    => '2016/1',
-                'ordinal' => 'Twelfth',
-            ),
+            // 12 => array(
+            //     'title'   => 'Golden Ram',
+            //     'sign'    => 'Aries',
+            //     'element' => 'Fire',
+            //     'year'    => '2016/1',
+            //     'ordinal' => 'Twelfth',
+            // ),
 
-            13 => array(
-                'title'   => 'The Great Wheel of the Fates',
-                'sign'    => 'Taurus',
-                'element' => 'Earth',
-                'year'    => '2016/2',
-                'ordinal' => 'Thirteenth',
-            )
+            // 13 => array(
+            //     'title'   => 'The Great Wheel of the Fates',
+            //     'sign'    => 'Taurus',
+            //     'element' => 'Earth',
+            //     'year'    => '2016/2',
+            //     'ordinal' => 'Thirteenth',
+            // )
         );
     }
 

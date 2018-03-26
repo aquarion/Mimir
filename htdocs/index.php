@@ -52,7 +52,7 @@ spl_autoload_register('frame_autoloader');
 
 $config = Config::getInstance();
 
-$db_uri = sprintf('mysql:host=%s;dbname=%s', $config->get("database", "host"), $config->get("database", "name"));
+$db_uri = sprintf('mysql:host=%s;dbname=%s;port=3306', $config->get("database", "host"), $config->get("database", "name"));
 
 ORM::configure($db_uri);
 ORM::configure('username', $config->get("database", "user"));
@@ -90,7 +90,7 @@ if(method_exists($controller, $route->Action) || method_exists($controller, "__c
        $route->Action = "FourOhFour";
        call_user_func(array($controller, $route->Action), $route->Parameters);
     } catch (Exception $e){
-       $controller = new Error();
+       $controller = new MimirError();
        $route->Parameters = array('page' => $_SERVER['REQUEST_URI'], 'exception' => $e);      
        $route->Action = "FiveHundred";
        call_user_func(array($controller, $route->Action), $route->Parameters);

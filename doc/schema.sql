@@ -133,6 +133,6 @@ create table gmcast (
     processed boolean,
     date_cast datetime,
     PRIMARY KEY(id)
-)
+);
 
 alter table blessing add column can_print tinyint default 1 after review_sane;

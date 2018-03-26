@@ -11,7 +11,7 @@ class Router {
         
         $route = new Route();
         
-        $route->Controller = "Error";
+        $route->Controller = "MimirError";
         $route->Action     = "index";
         $route->Parameters = array();
         $route->Path       = $path;

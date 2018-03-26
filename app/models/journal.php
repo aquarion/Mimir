@@ -23,7 +23,7 @@ class Journal extends My_Model {
     public function journal_type_options(){
         // You can't change these without also changing the database enum.
         return array(
-            'deity' => 'Deity',
+            // 'deity' => 'Deity',
             'npc' => 'NPC',
             'player-account' => 'Player Account',
             'player-letter' => 'Player Letters',

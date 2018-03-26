@@ -1,7 +1,7 @@
 <?php
 
 
-class Error extends Controller {
+class MimirError extends Controller {
     
     function FourOhFour($params){
         $this->data = $params;

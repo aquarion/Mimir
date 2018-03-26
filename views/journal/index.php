@@ -15,7 +15,7 @@
     <div class="span12">
         <ul class="breadcrumb">
             <li><a href="/journals">Journals</a> <span class="divider">/</span></li>
-            <li class="active" id="breadcrumbActive">Deity</li>
+            <li class="active" id="breadcrumbActive">NPCs</li>
         </ul>
     </div>
   </div>
